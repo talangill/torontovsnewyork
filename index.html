@@ -1213,68 +1213,71 @@
     </div>
   </div>
 
-  <!-- SECTION 5: REFLECTION -->
+  <!-- SECTION 5: CHOOSE YOUR OWN ADVENTURE -->
   <div class="section" id="s5">
     <div class="section-header">
-      <p class="section-number">05 / 05 · Reflection & Action</p>
-      <h2 class="section-title">What Will You Take to Toronto?</h2>
-      <p class="section-desc">Culture isn't just something you observe — it's something you interact with. As future leaders, cultural intelligence is one of your most powerful assets.</p>
+      <p class="section-number">05 / 05 · Your Day, Your Choices</p>
+      <h2 class="section-title">Choose Your City. Live the Culture.</h2>
+      <p class="section-desc">Play alone or with a partner. Navigate a full day — from waking up to drinks after dinner — making cultural choices at every turn. Your decisions shape how people see you. Good luck. 🎮</p>
     </div>
     <div class="content-block">
 
-      <div class="activity-prompt">
-        <h3>🎯 Group Activity (15 minutes)</h3>
-        <p style="color:rgba(255,255,255,0.9); font-size:14px; margin-bottom:16px; line-height:1.7">In groups of 3-4, discuss the following questions and prepare a 90-second response to share with the class:</p>
-        <ol>
-          <li>Based on what you've learned today, what's the <strong>one cultural difference</strong> between Canada and the USA that surprised you most — and why?</li>
-          <li>As a Dutch student going to Toronto: what cultural adjustment do you think you personally will need to make? What might come naturally to you?</li>
-          <li>Imagine you're opening a startup in Toronto. Name one thing about Toronto's culture that you'd want to leverage — and one cultural assumption from home you'd need to let go of.</li>
-        </ol>
+      <!-- City Picker -->
+      <div id="adv-picker">
+        <div class="city-picker">
+          <button class="city-pick-btn toronto-pick" onclick="startAdventure('toronto')">
+            <span class="pick-emoji">🍁</span>
+            <h3>Toronto</h3>
+            <p>Canada's most multicultural city. Polite, curious, innovative — but don't mistake calm for pushover.</p>
+          </button>
+          <button class="city-pick-btn nyc-pick" onclick="startAdventure('nyc')">
+            <span class="pick-emoji">🗽</span>
+            <h3>New York City</h3>
+            <p>The city that never sleeps. Direct, ambitious, electric — where everyone's in a hurry and opinions are free.</p>
+          </button>
+        </div>
+        <p style="text-align:center; color:rgba(245,240,232,0.4); font-size:13px; font-style:italic;">You can replay with the other city afterwards!</p>
       </div>
 
-      <div class="reflection-grid">
-        <div class="reflection-card">
-          <h3>🧭 Cultural Sensitivity Checklist</h3>
-          <p>Before you arrive in Toronto, be aware of: the <em>mosaic</em> rather than melting pot dynamic, the value of genuine politeness (not small talk — actual care), the pride Torontonians have in being distinct from NYC, the extraordinary density of cultures in every single neighbourhood, and that the city's "Canadian politeness" masks extraordinary ambition and innovation underneath.</p>
-        </div>
-        <div class="reflection-card">
-          <h3>🔍 Things to Notice On the Ground</h3>
-          <p>Watch how people interact in public spaces — on the subway, in coffee shops, in queues. Listen for the mix of languages. Notice how businesses serve multicultural communities. Pay attention to how Canadian directness <em>differs</em> from Dutch directness. Look for the Canadian flag and how differently it is displayed versus the American flag. These micro-signals reveal macro-culture.</p>
-        </div>
-        <div class="reflection-card">
-          <h3>🚀 The Innovation Angle</h3>
-          <p>Toronto is home to Google's largest office outside the US, major AI research labs (Vector Institute, Mila), a booming fintech and medtech scene, and the MaRS Discovery District — one of the world's largest urban innovation hubs. This isn't the shy Canada of stereotype. It's a confident, globally-connected innovation ecosystem. How does cultural openness fuel this?</p>
-        </div>
-        <div class="reflection-card">
-          <h3>🤝 The Leadership Takeaway</h3>
-          <p>The Canadian workplace model — collaborative, respectful of work-life balance, diversity-first — is increasingly what modern leadership theory advocates globally. You'll see it in practice in Toronto. The question for leaders isn't "which culture is better?" — it's "when do I need which approach?" Adaptive cultural fluency is the skill to build.</p>
-        </div>
-      </div>
-
-      <div class="takeaway-row">
-        <div class="takeaway-item">
-          <div class="icon">🪞</div>
-          <p><strong>See yourself clearly</strong><br>Understand your own cultural defaults before judging others'</p>
-        </div>
-        <div class="takeaway-item">
-          <div class="icon">🧩</div>
-          <p><strong>Embrace the mosaic</strong><br>Not every culture needs to merge — difference can be a strength</p>
-        </div>
-        <div class="takeaway-item">
-          <div class="icon">🔊</div>
-          <p><strong>Listen beyond words</strong><br>Cultural communication is about what's <em>not</em> said as much as what is</p>
+      <!-- Adventure Area -->
+      <div id="adv-game" style="display:none">
+        <div class="adv-scene">
+          <div class="adv-meta">
+            <span class="adv-step-badge" id="adv-step-label">Step 1 of 15</span>
+            <div class="adv-score-bar">
+              <span>Cultural fit: </span>
+              <div id="score-pips"></div>
+            </div>
+          </div>
+          <div class="adv-location" id="adv-location"></div>
+          <div class="adv-situation" id="adv-situation"></div>
+          <div class="adv-context" id="adv-context"></div>
+          <div class="adv-choices" id="adv-choices"></div>
+          <div class="adv-feedback" id="adv-feedback"></div>
+          <button class="adv-next-btn" id="adv-next" onclick="nextStep()">Next →</button>
         </div>
       </div>
 
-      <div class="fun-fact" style="margin-top:32px; background:rgba(200,169,81,0.15); border:1px solid var(--gold);">
-        <div class="ff-icon">✈️</div>
-        <p style="color:var(--cream)"><strong>Safe travels — and enjoy Toronto!</strong> Go in curious, go in humble, go in open. The best cultural learning happens not in the classroom but when you're eating jerk chicken in Scarborough, watching the sun set over Lake Ontario, or having an unexpectedly deep conversation with a stranger on the TTC. That's the real masterclass.</p>
+      <!-- Result Area -->
+      <div id="adv-result" style="display:none">
+        <div class="adv-result">
+          <span class="result-emoji" id="res-emoji"></span>
+          <div class="result-title" id="res-title"></div>
+          <div class="result-subtitle" id="res-subtitle"></div>
+          <div class="result-score-display" id="res-score"></div>
+          <div class="result-desc" id="res-desc"></div>
+          <div class="result-insight" id="res-insight"></div>
+          <div class="result-btns">
+            <button class="result-btn primary" onclick="resetAdventure()">↺ Try the Other City</button>
+            <button class="result-btn secondary" onclick="resetAdventure()">Play Again</button>
+          </div>
+        </div>
       </div>
 
     </div>
     <div class="section-nav">
-      <button class="nav-btn prev" onclick="goSection(4)">← Cultural Dimensions</button>
-      <span class="section-progress">Section 5 of 5</span>
+      <button class="nav-btn prev" onclick="goSection(4)" style="border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.5);">← Cultural Dimensions</button>
+      <span class="section-progress" style="color:rgba(245,240,232,0.4)">Section 5 of 5</span>
       <button class="nav-btn next" onclick="goSection(1)" style="border-color:var(--gold);color:var(--gold);">↺ Start Over</button>
     </div>
   </div>
@@ -1282,10 +1285,10 @@
 </div><!-- end #main -->
 
 <script>
+  // ===================== CORE NAV =====================
   let currentSection = 1;
   const totalSections = 5;
   let startTime = null;
-  let timerInterval = null;
   const sessionMinutes = 60;
 
   function startMasterclass() {
@@ -1303,7 +1306,7 @@
     for (let i = 1; i <= totalSections; i++) {
       const dot = document.createElement('button');
       dot.className = 'nav-dot' + (i === 1 ? ' active' : '');
-      dot.title = ['Warm-Up', 'National Cultures', 'Toronto vs NYC', 'Cultural Dimensions', 'Reflection'][i-1];
+      dot.title = ['Warm-Up', 'National Cultures', 'Toronto vs NYC', 'Cultural Dimensions', 'City Adventure'][i-1];
       dot.onclick = () => goSection(i);
       container.appendChild(dot);
     }
@@ -1312,8 +1315,7 @@
   function goSection(n) {
     document.getElementById('s' + currentSection).classList.remove('active');
     currentSection = n;
-    const next = document.getElementById('s' + currentSection);
-    next.classList.add('active');
+    document.getElementById('s' + currentSection).classList.add('active');
     window.scrollTo(0, 0);
     updateNavDots();
   }
@@ -1325,14 +1327,11 @@
   }
 
   function startTimer() {
-    timerInterval = setInterval(() => {
+    setInterval(() => {
       const elapsed = (Date.now() - startTime) / 1000;
-      const m = Math.floor(elapsed / 60);
-      const s = Math.floor(elapsed % 60);
-      document.getElementById('navTimer').textContent = 
-        String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-      const pct = Math.min((elapsed / (sessionMinutes * 60)) * 100, 100);
-      document.getElementById('timerFill').style.width = pct + '%';
+      const m = Math.floor(elapsed / 60), s = Math.floor(elapsed % 60);
+      document.getElementById('navTimer').textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+      document.getElementById('timerFill').style.width = Math.min((elapsed / (sessionMinutes * 60)) * 100, 100) + '%';
     }, 1000);
   }
 
@@ -1340,31 +1339,548 @@
     const opts = btn.closest('.quiz-options').querySelectorAll('.quiz-opt');
     opts.forEach(o => o.disabled = true);
     btn.classList.add(isCorrect ? 'correct' : 'wrong');
-    if (!isCorrect) {
-      opts.forEach(o => {
-        if (!o.classList.contains('wrong')) o.classList.add('correct');
-      });
-    }
+    if (!isCorrect) opts.forEach(o => { if (!o.classList.contains('wrong')) o.classList.add('correct'); });
     document.getElementById(revealId).classList.add('show');
   }
 
   const tabIds = ['identity', 'politics', 'work', 'language'];
   function showTab(id) {
-    tabIds.forEach(t => {
-      const el = document.getElementById('tab-' + t);
-      if (el) el.style.display = (t === id) ? 'block' : 'none';
-    });
-    document.querySelectorAll('.tab-btn').forEach(b => {
-      b.classList.toggle('active', b.getAttribute('onclick').includes(id));
-    });
+    tabIds.forEach(t => { const el = document.getElementById('tab-' + t); if (el) el.style.display = (t === id) ? 'block' : 'none'; });
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.getAttribute('onclick').includes(id)));
   }
 
   function toggleAccordion(header) {
-    const item = header.parentElement;
-    const isOpen = item.classList.contains('open');
+    const item = header.parentElement, isOpen = item.classList.contains('open');
     document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   }
+
+  // ===================== ADVENTURE GAME =====================
+  const adventures = {
+    toronto: [
+      {
+        location: "☀️ 7:30 AM — Your Airbnb, Kensington Market",
+        situation: "You're heading out for your first full day in Toronto. In the hallway you bump into your neighbour — an older Jamaican-Canadian woman carrying groceries. She makes eye contact and smiles.",
+        context: "In Toronto, brief warm exchanges with strangers are completely normal. Ignoring people in communal spaces can read as rude or cold.",
+        choices: [
+          { text: "Smile back warmly and say "Good morning! Need a hand with those bags?"", good: true },
+          { text: "Give a quick nod and head out — you don't want to bother her.", good: false },
+          { text: "Say "Hey!" and keep walking — you're already running late.", good: false },
+          { text: "Hold the door open silently without making eye contact.", good: false }
+        ],
+        feedback_good: "✅ Perfect start. Torontonians appreciate warmth and genuine offers of help. You've already made a small but real connection — this is how the mosaic works, one interaction at a time.",
+        feedback_bad: "❌ In Toronto's communal culture, small acts of acknowledgement matter more than you'd think. A simple warm exchange costs nothing and builds the social fabric that makes the city work."
+      },
+      {
+        location: "☕ 8:15 AM — Independent café, Kensington Market",
+        situation: "The café is busy. You order a flat white. The barista — who has a visible sleeve tattoo and speaks with a soft Trinidadian accent — asks how you're doing.",
+        context: "Toronto service culture is genuinely warm, not just scripted. The question is real. How you respond sets the tone.",
+        choices: [
+          { text: ""Really well thanks, loving the neighbourhood so far — is this place new?" (and actually listen to the answer)", good: true },
+          { text: ""Fine thanks." (already looking at your phone)", good: false },
+          { text: ""Just a flat white please, oat milk if you have it." (ignoring the question)", good: false },
+          { text: ""Great! And you?" (without waiting for the answer)", good: false }
+        ],
+        feedback_good: "✅ You treated the interaction as a real conversation — which is what it was. In Toronto, service workers are community members, not invisible. Your genuine curiosity is already earning you invisible social credit.",
+        feedback_bad: "❌ Toronto's warmth is real, not performative. Brushing off a genuine question — especially from someone of a visible minority in a diverse city — can read as dismissive or aloof. Slow down and connect."
+      },
+      {
+        location: "🚇 8:45 AM — TTC Subway, Line 1",
+        situation: "The subway is packed. You find a seat. An elderly man with a cane gets on at the next stop. There are no priority seats visible nearby.",
+        context: "Canadian public space etiquette has very strong unwritten rules around deference to those who need more support.",
+        choices: [
+          { text: "Stand up immediately, make eye contact and gesture to your seat.", good: true },
+          { text: "Look around to see if someone else will get up first.", good: false },
+          { text: "Pretend to look at your phone — someone else will handle it.", good: false },
+          { text: "Move slightly to make space but stay seated.", good: false }
+        ],
+        feedback_good: "✅ Exactly right, and done with grace. In Canada, this kind of quiet, immediate consideration is deeply valued. No fanfare needed — the act speaks for itself.",
+        feedback_bad: "❌ The 'someone else will do it' instinct is surprisingly common — but in Toronto, people notice and internally judge hesitation on things like this. Collective responsibility is real here."
+      },
+      {
+        location: "🏢 9:30 AM — Arrival at a Toronto startup office, King West",
+        situation: "You're visiting a local innovation company for a meeting. You arrive 10 minutes early. The receptionist offers you coffee and says the team will be ready shortly.",
+        context: "Canadian professional culture values punctuality but also relaxed, warm pre-meeting interaction. You're being assessed from the moment you walk in.",
+        choices: [
+          { text: "Accept the coffee gratefully, make small talk with the receptionist, and stay off your phone.", good: true },
+          { text: "Decline the coffee, sit down and immediately open your laptop to look productive.", good: false },
+          { text: "Accept the coffee, then loudly take a phone call while you wait.", good: false },
+          { text: "Ask the receptionist to let the team know you've arrived and that you're ready when they are.", good: false }
+        ],
+        feedback_good: "✅ You read the room perfectly. In Canadian professional culture, the receptionist is not invisible — they often feed back impressions of visitors. Your warmth and presence (not your screen) made the right impression.",
+        feedback_bad: "❌ Canadian offices are less formally hierarchical than you might expect. How you treat the receptionist, whether you're present or distracted — all of it is noticed and talked about."
+      },
+      {
+        location: "💼 10:00 AM — Team meeting, open-plan office",
+        situation: "You're in a meeting with five Canadians. You have a strong opinion about the project direction being discussed. A junior team member has just proposed an idea you think is quite weak.",
+        context: "Canadian meeting culture is collaborative and consensus-driven. Direct criticism — even when accurate — needs to be framed carefully.",
+        choices: [
+          { text: ""That's an interesting angle — I wonder if we could build on it by also considering X? I think that might address the risk of Y."", good: true },
+          { text: ""I don't think that will work — here's why." (laying out your logic clearly)", good: false },
+          { text: "Stay quiet and raise your concerns privately with the team lead after the meeting.", good: false },
+          { text: ""That's a great idea!" (you don't mean it — but you don't want conflict)", good: false }
+        ],
+        feedback_good: "✅ Beautiful. You were honest, you contributed substance, AND you preserved the junior person's dignity. This is the Canadian meeting superpower: disagreement wrapped in generosity. People remember this.",
+        feedback_bad: "❌ Blunt criticism (even accurate), complete silence, or empty praise all miss the mark in different ways. The Canadian art form is constructive redirection — adding to ideas rather than defeating them."
+      },
+      {
+        location: "🌮 12:30 PM — Lunch at a Scarborough food court",
+        situation: "A colleague has brought you to a busy multicultural food court. He's Sri Lankan-Canadian and orders Tamil food. He asks what you'd like to try.",
+        context: "Toronto's food culture is a point of intense local pride. The right attitude here goes a long way.",
+        choices: [
+          { text: ""I'd love to try something I've never had — what would you recommend? You know this better than I do."", good: true },
+          { text: ""I'll just grab a sandwich — I'm not great with spicy food."", good: false },
+          { text: ""Ooh is that safe to eat? I have a sensitive stomach."", good: false },
+          { text: ""Is this like Indian food? I had a curry once."", good: false }
+        ],
+        feedback_good: "✅ Handing over the expertise to someone who genuinely has it — and showing real curiosity — is one of the best things you can do in a multicultural setting. You just made your colleague's day.",
+        feedback_bad: "❌ Declining, asking if it's 'safe', or reducing one culture's cuisine to another's are all forms of (probably unintentional) cultural dismissal. In Toronto, food is identity. Treat it accordingly."
+      },
+      {
+        location: "🏙️ 2:00 PM — Walking through Chinatown",
+        situation: "You're walking with your colleague through Chinatown. A market vendor calls out to you in Cantonese. You don't understand a word.",
+        context: "Over 160 languages are spoken in Toronto. Being navigated by language is completely normal — and how you respond matters.",
+        choices: [
+          { text: "Smile, shake your head gently, and say "Sorry, I only speak English — beautiful market though!"", good: true },
+          { text: "Ignore them and keep walking.", good: false },
+          { text: "Speak loudly and slowly in English as if that will help.", good: false },
+          { text: "Point at things and shout "How much?! HOW MUCH?!"", good: false }
+        ],
+        feedback_good: "✅ Graceful. You acknowledged the person, communicated clearly without condescension, and threw in a genuine compliment. That's cultural intelligence in a two-second interaction.",
+        feedback_bad: "❌ Ignoring people or speaking loudly-and-slowly are both forms of cultural clumsiness Torontonians wince at. A warm smile and honest "I only speak English" is always enough."
+      },
+      {
+        location: "📋 3:30 PM — Back at the office, feedback session",
+        situation: "The team lead asks for your honest assessment of their current innovation process. You have some real criticisms — their feedback loops are too slow and they avoid hard decisions.",
+        context: "Canadians value honest feedback — but the delivery matters enormously. Bluntness without warmth can damage the relationship permanently.",
+        choices: [
+          { text: ""I think the process has real strengths — especially the collaborative culture. One thing I'd explore is whether the feedback loops could be tightened — I've seen it make a big difference in faster iteration."", good: true },
+          { text: ""Honestly? Your feedback loops are too slow and you're avoiding hard calls. It's holding you back."", good: false },
+          { text: ""Everything looks really great — I wouldn't change much!" (not true)", good: false },
+          { text: "Give very vague, non-committal feedback to avoid any awkwardness.", good: false }
+        ],
+        feedback_good: "✅ You led with genuine appreciation, then delivered real insight with a constructive frame. This is exactly how Canadians want feedback delivered — and you'll be invited back.",
+        feedback_bad: "❌ Pure bluntness lands badly; pure flattery is useless; vagueness is insulting. The sweet spot — real insight, generous framing — is a skill that pays dividends everywhere, not just in Canada."
+      },
+      {
+        location: "🛒 5:15 PM — Supermarket queue, The Annex",
+        situation: "You're buying drinks for later. The cashier looks exhausted — it's clearly been a long shift. The queue is moving slowly. The person behind you sighs loudly.",
+        context: "How people treat service workers under pressure is a reliable signal of character in Canadian culture.",
+        choices: [
+          { text: "When you reach the cashier, make genuine eye contact: "Long day? Thanks for keeping the queue moving." Pay, pack your bags, and say "Have a good evening."", good: true },
+          { text: "Rush through your transaction as quickly as possible to relieve the queue pressure.", good: false },
+          { text: "Comment to the cashier about how slow things are moving today.", good: false },
+          { text: "Join in the visible irritation — sigh, check your watch, make it known you're waiting.", good: false }
+        ],
+        feedback_good: "✅ Perfect. That brief moment of acknowledgement costs nothing and means everything to someone who's been on their feet all day. This is quintessential Canadian decency — and people around you noticed.",
+        feedback_bad: "❌ Impatience, rushing, or commenting on slowness all add to the stress of an already hard moment. Canadian public culture has a very low tolerance for making service workers feel worse."
+      },
+      {
+        location: "🍺 6:30 PM — Patio bar on Queen Street West",
+        situation: "You're meeting your colleague and two of his friends — one is Punjabi-Canadian, one is second-generation Chinese-Canadian. Someone asks where you're from.",
+        context: "In Toronto, "where are you from?" is loaded — especially when asked to visible minorities. But as a visitor, the question directed at you is simple.",
+        choices: [
+          { text: ""I'm from the Netherlands — Sittard, actually, near Maastricht. First time in Canada and already obsessed with this city."", good: true },
+          { text: ""Europe." (and leave it at that)", good: false },
+          { text: ""Where are YOU guys from originally?" (immediately redirecting)", good: false },
+          { text: ""Holland! Do you guys know Amsterdam?" (assuming they're impressed)", good: false }
+        ],
+        feedback_good: "✅ Specific, warm, enthusiastic. You invited follow-up conversation naturally and showed genuine excitement about Toronto. The group is already warming to you.",
+        feedback_bad: "❌ Vagueness feels evasive; deflecting with "where are YOU from?" can be offensive in a multicultural city where that question carries baggage; and assuming everyone knows or cares about Amsterdam is a bit self-centred."
+      },
+      {
+        location: "🗣️ 7:00 PM — Conversation deepens at the bar",
+        situation: "The Punjabi-Canadian friend mentions he's experienced racism in Toronto — "the most multicultural city in the world," he says with a wry smile. There's a pause.",
+        context: "This is a moment where many visitors either over-correct (performatively outraged) or under-correct (uncomfortable silence). Neither works.",
+        choices: [
+          { text: ""That's really important to hear — especially from someone who's lived it. I'd actually love to understand more about how that plays out here, if you're open to it."", good: true },
+          { text: ""Oh my god, that's terrible! Canada is supposed to be so progressive!"", good: false },
+          { text: ""That must be hard." (and quickly change the subject)", good: false },
+          { text: ""Wow, really? But everyone here seems so nice and welcoming…"", good: false }
+        ],
+        feedback_good: "✅ You didn't project emotions, you didn't dismiss it, and you didn't make it about your own surprise. You asked to learn. That's the rarest and most respectful response — and it will lead to a real conversation.",
+        feedback_bad: "❌ Performing shock, changing the subject, or expressing disbelief ('but everyone seems so nice!') are all ways of centring your own discomfort rather than the other person's experience. Ask, listen, learn."
+      },
+      {
+        location: "🍽️ 8:30 PM — Dinner at an Ethiopian restaurant, Little Ethiopia",
+        situation: "Your colleague's choice: a communal Ethiopian meal eaten with injera bread — no cutlery. You've never eaten this way before. The dishes are placed in the centre of the table.",
+        context: "Toronto's restaurant culture celebrates the full experience of other food traditions, not a watered-down version of them.",
+        choices: [
+          { text: ""I've never eaten like this before — can you show me how?" and dive in enthusiastically, even if you're a bit messy.", good: true },
+          { text: "Ask the waiter quietly if they have a fork.", good: false },
+          { text: "Watch what everyone else does and copy exactly, saying nothing.", good: false },
+          { text: ""Is this hygienic? Everyone's eating from the same plate?"", good: false }
+        ],
+        feedback_good: "✅ Asking to be shown how is the most culturally intelligent thing you can do — it's humble, it honours the tradition, and it invites connection. Your willingness to be a beginner is a leadership quality.",
+        feedback_bad: "❌ Asking for cutlery, questioning hygiene, or silent copying without engagement all signal discomfort with the cultural experience. In Toronto, food is an invitation — accept it fully."
+      },
+      {
+        location: "🌃 10:00 PM — Walking home through Little Portugal",
+        situation: "You walk past a large group of young people having a loud, joyful street party with music spilling out of a house. One of them waves you over.",
+        context: "Toronto neighbourhoods have a spontaneous communal energy that's very different from many European cities.",
+        choices: [
+          { text: "Wave back with a grin and, if you have time, walk over and say hi — even for five minutes.", good: true },
+          { text: "Wave back but keep walking — you don't want to intrude.", good: false },
+          { text: "Look confused and cross the street.", good: false },
+          { text: "Smile politely from a safe distance and hurry past.", good: false }
+        ],
+        feedback_good: "✅ You leaned in. This is how the best Toronto moments happen — unplanned, cross-cultural, joyful. Your openness to spontaneity is exactly what this city rewards.",
+        feedback_bad: "❌ Toronto's community warmth often comes in unscripted moments. Staying behind the invisible wall of politeness means missing the best of what the city offers. Say yes more."
+      },
+      {
+        location: "🌙 11:00 PM — Back at your Airbnb, texting your colleague",
+        situation: "You want to thank your colleague for the day. You're typing a message. What do you send?",
+        context: "Canadian communication — even casually — tends to be warm and specific rather than brief and functional.",
+        choices: [
+          { text: ""Today was genuinely one of the best days I've had in a long time. Thank you for all of it — the food, the conversations, showing me the real Toronto. You made this trip."", good: true },
+          { text: ""Thanks for today, was good."", good: false },
+          { text: ""👍"", good: false },
+          { text: ""Great day! Let's do it again sometime."", good: false }
+        ],
+        feedback_good: "✅ Specific, warm, genuine. You named what mattered and why. In Canadian culture — and in good human culture — this kind of gratitude lands deeply and sustains relationships.",
+        feedback_bad: "❌ Brief or emoji-only thanks can feel transactional after a day of genuine connection. Take thirty extra seconds to say what you actually mean. It's worth it."
+      },
+      {
+        location: "📖 11:30 PM — Reflection before sleep",
+        situation: "You think back on the day. What's your biggest takeaway about Toronto's culture?",
+        context: "This is a reflection moment — there's no wrong answer, but one response shows the deepest cultural insight.",
+        choices: [
+          { text: ""The mosaic is real — and it only works because everyone is actively maintaining it through small daily choices."", good: true },
+          { text: ""Toronto is basically a nicer, cleaner New York."", good: false },
+          { text: ""Canadians are really polite — it's kind of cute."", good: false },
+          { text: ""It's very multicultural but I'm not sure how deep it actually goes."", good: false }
+        ],
+        feedback_good: "✅ Exactly. Toronto's diversity isn't passive — it's actively created and maintained through millions of daily interactions exactly like the ones you had today. You got it. That's the real takeaway.",
+        feedback_bad: "❌ Reducing Toronto to 'a nicer NYC', 'cute politeness', or surface-level diversity misses the depth of what you actually experienced today. The mosaic requires effort — from everyone. That's the insight."
+      }
+    ],
+
+    nyc: [
+      {
+        location: "☀️ 7:00 AM — Your Airbnb, Brooklyn",
+        situation: "You're heading out early. In the lift, a man in a sharp suit is already inside, eyes on his phone, earbuds in. You make eye contact briefly as you get in.",
+        context: "New York elevator culture is famously silent. Eye contact is acknowledged — but small talk is not expected.",
+        choices: [
+          { text: "Give a quick upward nod of acknowledgement and look at the lift buttons. Stay quiet.", good: true },
+          { text: ""Good morning! Lovely day isn't it?" (cheerfully)", good: false },
+          { text: "Look at your phone and ignore him entirely.", good: false },
+          { text: "Ask him what floor he's going to and make conversation.", good: false }
+        ],
+        feedback_good: "✅ The New York nod. Brief, respectful, non-intrusive. You signalled you're a person without demanding anything from him. In NYC, this is the gold standard of lift behaviour.",
+        feedback_bad: "❌ Enthusiastic small talk in a NYC lift is genuinely jarring — New Yorkers protect their inner space fiercely in transit. A nod is enough. Anything more reads as tourist."
+      },
+      {
+        location: "☕ 7:30 AM — Bodega, Lower East Side",
+        situation: "You're at a classic NYC bodega. There's a line. The man behind the counter is working fast — egg and cheese sandwiches flying out. It's your turn.",
+        context: "Bodega speed and efficiency is a New York art form. Hesitation is a social crime.",
+        choices: [
+          { text: ""Egg and cheese on a roll, please. Coffee — milk, two sugars." Exact, fast, ready.", good: true },
+          { text: ""Hmm, what do you recommend? What's good here?" (looking at the menu)", good: false },
+          { text: ""Could I get… uhh… what do you have for breakfast?"", good: false },
+          { text: ""Sorry, I haven't been here before — give me a second to look…"", good: false }
+        ],
+        feedback_good: "✅ You came prepared. The bodega man appreciated your efficiency, the line moved, and you got a great sandwich. Knowing what you want before you reach the counter is a core New York social skill.",
+        feedback_bad: "❌ Deliberating at the bodega counter is one of the small things that marks you as out-of-town immediately. New Yorkers decide before they queue. Efficiency is respect for everyone's time."
+      },
+      {
+        location: "🚇 8:15 AM — Subway, A Train",
+        situation: "The subway is crowded. You find a pole to hold. A busker enters the carriage — he's extraordinary, playing jazz trumpet with real skill. He finishes, walks the carriage for tips.",
+        context: "NYC subway busking is a real cultural institution. How you respond says something about you.",
+        choices: [
+          { text: "Make eye contact, give a genuine nod of appreciation, and put a dollar in his cup.", good: true },
+          { text: "Look at your phone throughout and pretend he's not there.", good: false },
+          { text: "Clap enthusiastically and take a video for Instagram.", good: false },
+          { text: "Wait until he passes and give nothing — you weren't that impressed.", good: false }
+        ],
+        feedback_good: "✅ Real acknowledgement, real appreciation, real participation. NYC busking culture is a living, breathing creative ecosystem. You just became part of it rather than just passing through it.",
+        feedback_bad: "❌ Ignoring artistry entirely, treating performers as content for your feed, or withholding tip because they 'weren't that good' all miss the point. The tip is participation in a city institution."
+      },
+      {
+        location: "🏢 9:30 AM — Midtown Manhattan office tower lobby",
+        situation: "You arrive at a sleek Manhattan office for a meeting. Security requires sign-in. The guard asks your name and who you're visiting. He's businesslike — no smile.",
+        context: "NYC professional culture is efficient and direct. Warmth is earned, not given at the door.",
+        choices: [
+          { text: "Give your name clearly, the company and person you're meeting, produce your ID immediately. Brief and efficient.", good: true },
+          { text: "Try to make small talk with the guard while searching for your ID.", good: false },
+          { text: "Act confused and ask what you need to sign in.", good: false },
+          { text: "Be charming: "Hi! Great building — how long have you worked here?"", good: false }
+        ],
+        feedback_good: "✅ You were prepared, clear, and efficient. The guard clocked you as professional and low-maintenance. In NYC, competent brevity is a form of respect.",
+        feedback_bad: "❌ Unnecessary small talk, unpreparedness, or performed charm in transactional NYC moments reads as either inexperienced or performative. Have your ducks in a row."
+      },
+      {
+        location: "💼 10:00 AM — Conference room, Midtown startup",
+        situation: "You're in a fast-moving pitch meeting. The founder presents confidently. She pauses and asks: "So — what do you think? Be honest."",
+        context: "New Yorkers genuinely mean 'be honest'. A vague, overly diplomatic answer will lose respect fast.",
+        choices: [
+          { text: ""The market thesis is strong and your energy is compelling. My concern is your burn rate doesn't match your 18-month runway claim — I'd want to dig into that before going further."", good: true },
+          { text: ""Really impressive — lots to think about. We'll be in touch!"", good: false },
+          { text: ""Great presentation! A few small thoughts but overall very exciting."", good: false },
+          { text: ""I'm not sure this is the right fit for us." (and leave it at that)", good: false }
+        ],
+        feedback_good: "✅ Specific, substantive, honest — with respect for her intelligence. This is exactly how New York business conversations work. She now knows you're serious. You'll hear from her again.",
+        feedback_bad: "❌ Vague enthusiasm, hollow compliments, or dismissiveness without explanation are all weak in NYC business culture. Direct, substantive honesty is the currency. Spend it."
+      },
+      {
+        location: "🥯 12:30 PM — Deli lunch, Midtown",
+        situation: "Classic NYC deli. You're building your sandwich at the counter. The server is fast and rattling off options: "White, rye, sourdough or whole wheat? Mustard, mayo, both? Lettuce, tomato, onion?"",
+        context: "The NYC deli sandwich build is a speed test and a confidence test. Hesitation slows everyone down.",
+        choices: [
+          { text: "Match his pace: "Rye. Mustard. Lettuce and tomato, no onion." Confident, clear, quick.", good: true },
+          { text: ""Oh um… what do most people get?"", good: false },
+          { text: ""Can I just see all the options again?"", good: false },
+          { text: ""Sorry, I'm not sure — what comes with it?"", good: false }
+        ],
+        feedback_good: "✅ You kept the rhythm. The counter guy gave you a micro-nod of approval. This is New York: know what you want, say it clearly, move along. The sandwich will be perfect.",
+        feedback_bad: "❌ Uncertainty at a NYC deli counter creates a small but real social jam. The rule is simple: decide before you're asked. If you're not sure, pick the first option that sounds good and commit."
+      },
+      {
+        location: "🦮 2:00 PM — Central Park, afternoon walk",
+        situation: "You're cutting through Central Park. You accidentally bump into a jogger who's wearing headphones — she stumbles slightly but is fine. She pulls out one earbud and looks at you.",
+        context: "Even in a bump, how you handle it reveals a lot. NYC directness applies to apologies too — they should be real, not performative.",
+        choices: [
+          { text: ""Oh — my fault, sorry about that. You okay?" — brief, genuine, eye contact.", good: true },
+          { text: "Over-apologise: "Oh my god I'm SO sorry, are you hurt? I'm so clumsy, I'm really sorry—"", good: false },
+          { text: "Keep walking — you barely touched her.", good: false },
+          { text: "Blame the path: "These walkways are so crowded, what can you do!"", good: false }
+        ],
+        feedback_good: "✅ Clean, direct, genuine. One real apology is worth ten performative ones. She nodded, put her earbud back in, and kept running. Perfectly handled.",
+        feedback_bad: "❌ Over-apologising reads as anxious and attention-seeking; ignoring it is rude; deflecting blame is worse. NYC respects the clean, quick, honest acknowledgement. Keep it brief and keep it real."
+      },
+      {
+        location: "☕ 3:30 PM — Coffee with a New Yorker, West Village",
+        situation: "You're having coffee with a contact you met at the morning meeting. She asks what you think of New York so far. You've found it slightly overwhelming.",
+        context: "New Yorkers love their city fiercely — but they also love genuine, specific observations more than generic praise.",
+        choices: [
+          { text: ""It's overwhelming in the best way — the density of it, the energy. I walked past five different micro-worlds in one block this morning and I couldn't stop looking."", good: true },
+          { text: ""It's amazing! I love it. So much to see." (vague tourist answer)", good: false },
+          { text: ""It's a bit much honestly — very loud, very rushed. I prefer somewhere calmer."", good: false },
+          { text: ""Honestly? Kind of scary. Everyone seems so intense."", good: false }
+        ],
+        feedback_good: "✅ Specific and honest. You captured something real about the city and she knows you actually looked at it. New Yorkers are proud of their city's intensity — showing you've genuinely absorbed it is the highest compliment.",
+        feedback_bad: "❌ Generic praise, dismissal, or expressing fear are all weak. New Yorkers want to know you engaged with the city on its own terms — the madness, the density, the energy. See it. Name it."
+      },
+      {
+        location: "🍕 6:00 PM — Pizza by the slice, Greenwich Village",
+        situation: "First New York slice. The crucial moment: do you fold it?",
+        context: "This is not a serious cultural moment — but it's a delightful one. New York pizza is eaten folded, one hand, standing up or walking.",
+        choices: [
+          { text: "Fold it lengthways into a U-shape, hold from the crust end, take a confident bite.", good: true },
+          { text: "Use a knife and fork at a table.", good: false },
+          { text: "Try to eat it flat and watch it flop, losing all the cheese.", good: false },
+          { text: "Ask if they have a plate.", good: false }
+        ],
+        feedback_good: "✅ You folded. The guy behind the counter gave you an approving look. It's a small thing — but in New York, knowing how to eat a slice is a rite of passage. You passed.",
+        feedback_bad: "❌ Knife and fork at a New York pizza counter is genuinely a cultural moment — and not in a good way. When in Rome. Or in this case: when in New York, fold."
+      },
+      {
+        location: "🍷 7:30 PM — Dinner in the East Village, lively restaurant",
+        situation: "Dinner with your contact and two of her friends — both lifelong New Yorkers. The conversation is fast, loud, and overlapping. Someone makes a strong, controversial take about European cities.",
+        context: "New York dinner table culture is verbal, fast, and treats a good argument as a sign of engagement — not disrespect.",
+        choices: [
+          { text: "Jump in with your counterpoint directly: "Actually I'd push back on that—" and make your case with confidence and a grin.", good: true },
+          { text: "Wait politely for a gap in the conversation that never comes, and say nothing.", good: false },
+          { text: "Say "Interesting point" and diplomatically hedge.", good: false },
+          { text: "Agree with everything — you don't want to cause conflict.", good: false }
+        ],
+        feedback_good: "✅ You got in the ring. New York conversation rewards confidence, directness, and the willingness to hold a position. They're not fighting — they're thinking out loud together. You just joined the band.",
+        feedback_bad: "❌ Waiting politely, hedging, or agreeing to avoid conflict all make you disappear from a New York dinner table conversation. That's fine socially — but you miss the best part of the evening."
+      },
+      {
+        location: "🌆 9:00 PM — Rooftop bar, Lower East Side",
+        situation: "You're on a rooftop with Manhattan spread out below you. A stranger next to you at the bar nods at the skyline and says: "Hell of a city, right?"",
+        context: "New Yorkers occasionally have spontaneous, genuine moments of civic pride. This is one.",
+        choices: [
+          { text: ""Genuinely one of the most extraordinary things I've ever seen. I get it now." — warm, direct, specific.", good: true },
+          { text: ""Yeah it's pretty cool."", good: false },
+          { text: ""It's beautiful — though I prefer Amsterdam personally." (can't help it)", good: false },
+          { text: ""Which borough do you live in?" (deflect to safe territory)", good: false }
+        ],
+        feedback_good: "✅ "I get it now" — three words that made a New Yorker feel seen. This is how you make a friend in thirty seconds in this city. You meant it, they felt it.",
+        feedback_bad: "❌ Understatement, comparisons to other cities, or deflection all deflate the moment. A New Yorker offering a genuine moment of shared wonder deserves a genuine response."
+      },
+      {
+        location: "🛍️ 10:00 PM — Brooklyn vintage shop, still open",
+        situation: "A tiny Brooklyn vintage shop is still open. The owner — a tattooed woman in her 40s — is clearly passionate about the pieces. She starts explaining the history of a jacket you touched.",
+        context: "Brooklyn's independent retail culture is built on authentic passion and expertise. How you engage with it matters.",
+        choices: [
+          { text: "Put your phone away, make eye contact, and actually listen. Ask one genuine question about the jacket.", good: true },
+          { text: "Half-listen while scrolling Instagram.", good: false },
+          { text: "Interrupt to ask how much it costs before she finishes.", good: false },
+          { text: "Say "that's so cool!" repeatedly without engaging with the actual content.", good: false }
+        ],
+        feedback_good: "✅ You gave her your full attention — which is rare and precious in a city full of distracted people. She'll tell you the real history of the jacket now, and maybe give you a fair price.",
+        feedback_bad: "❌ Brooklyn's independent creative community is built on real expertise and passion. Distraction, interruption, or hollow enthusiasm all signal that you don't actually care. And they notice."
+      },
+      {
+        location: "🌙 11:30 PM — Subway home, Brooklyn-bound",
+        situation: "Late-night subway. A woman gets on who looks distressed — she's crying quietly and seems lost, checking her phone repeatedly.",
+        context: "The 'NYC bystander effect' is real — but so is the city's deep underlying humanity. What do you do?",
+        choices: [
+          { text: "Catch her eye gently and ask quietly: "Are you okay? Do you need help finding somewhere?"", good: true },
+          { text: "Look away — it's not your business and she probably wants space.", good: false },
+          { text: "Stare — you're concerned but not sure what to do.", good: false },
+          { text: "Wait to see if someone else steps in first.", good: false }
+        ],
+        feedback_good: "✅ You broke through the bystander effect. In a city famous for people minding their own business, a quiet, non-intrusive offer of help is one of the most genuinely New York things you can do. The city has extraordinary hidden kindness — you just contributed to it.",
+        feedback_bad: "❌ The bystander effect — waiting for someone else to act — is strongest in cities. But NYC has a deep streak of underground humanity. A quiet, respectful offer of help is rarely wrong."
+      },
+      {
+        location: "📱 Midnight — Airbnb, Brooklyn",
+        situation: "You text your contact to thank her for a great evening. What do you send?",
+        context: "New York communication is efficient but also warm when the relationship warrants it. Don't underplay a good evening.",
+        choices: [
+          { text: ""Tonight was exactly what I needed — real conversation, great food, a view that made me understand why people are obsessed with this city. Thank you for showing me that side of it."", good: true },
+          { text: ""Thanks — fun night!"", good: false },
+          { text: ""Great evening. Very New York 😄"", good: false },
+          { text: ""Let's do it again next time I'm in town." (without the thanks)", good: false }
+        ],
+        feedback_good: "✅ Specific and warm. You named what made it good. New Yorkers appreciate directness — including the directness of telling someone they made your night. She'll reply immediately.",
+        feedback_bad: "❌ Breezy thanks, vague emojis, or scheduling future plans without acknowledging the present moment all undersell a real evening. Be as direct with appreciation as you are with everything else."
+      },
+      {
+        location: "📖 12:30 AM — Reflection before sleep",
+        situation: "You think back on your New York day. What did the city actually teach you?",
+        context: "One response here shows genuine cultural insight beyond the stereotypes.",
+        choices: [
+          { text: ""New York's directness isn't rudeness — it's a form of respect. It assumes you can handle the truth, keep up with the pace, and mean what you say. That's actually a compliment."", good: true },
+          { text: ""New Yorkers are kind of rude but in an endearing way."", good: false },
+          { text: ""It's exhausting. I get why people love it but I couldn't live here."", good: false },
+          { text: ""It's basically just a big, fast, expensive version of every city."", good: false }
+        ],
+        feedback_good: "✅ That's the insight. New York's pace and directness is a form of egalitarianism — it treats everyone as capable. Once you understand that, the whole city unlocks. You got it.",
+        feedback_bad: "❌ 'Endearing rudeness', 'exhausting', or generic city-comparisons all stay on the surface. The real insight about NYC is that its directness is a form of respect. Once you see that, everything else makes sense."
+      }
+    ]
+  };
+
+  const results = {
+    toronto: [
+      { min: 13, emoji: "🍁", title: "Honorary Torontonian", subtitle: "You've earned your toque.", desc: "You moved through Toronto with genuine warmth, cultural curiosity, and remarkable awareness. You didn't just observe the mosaic — you actively participated in it. Torontonians felt seen, respected, and heard in your presence. You treated everyone from the barista to the security guard as a full human being, and that is the city's highest value.", insight: "<strong>Cultural insight:</strong> Toronto's famous politeness isn't passive — it's an active, daily, collective maintenance of a shared civic contract. You understood this and lived it. This is the leadership quality that translates everywhere." },
+      { min: 10, emoji: "😊", title: "Well-Adapted Visitor", subtitle: "Toronto liked you. Quite a lot.", desc: "You navigated most situations with real sensitivity and good instincts. A few moments where your default mode slipped through — but you corrected course quickly and people noticed the effort. The city left you with good impressions and real connections.", insight: "<strong>Cultural insight:</strong> The gap between 'well-intentioned' and 'culturally fluent' is usually just a little more self-awareness and a little less autopilot. You're closer than you think." },
+      { min: 7, emoji: "🙂", title: "Friendly but Still Finding Your Feet", subtitle: "Tomorrow is a new day, eh?", desc: "You had good intentions throughout but your cultural defaults — whether that's directness, efficiency-over-warmth, or a few unexamined assumptions — showed at key moments. Toronto was patient with you, as it tends to be. The mosaic doesn't need you to be perfect; it needs you to keep trying.", insight: "<strong>Cultural insight:</strong> Cultural adjustment isn't a test you pass — it's a practice. The moments where you felt unsure were actually your most important learning moments. Sit with them." },
+      { min: 4, emoji: "😬", title: "Bit Rough Around the Edges", subtitle: "You meant well. Mostly.", desc: "You moved through Toronto a little too much on your own terms — missing warmth cues, defaulting to efficiency, and occasionally treating people as background rather than participants. No one was offended. But you also didn't quite unlock what the city can offer when you let it.", insight: "<strong>Cultural insight:</strong> The core of Toronto's culture is that everyone is actively making the mosaic work. Opting out — even passively — means missing the whole experience. Slow down, look up, and say yes more." },
+      { min: 0, emoji: "🛫", title: "Did You Actually Land in Toronto?", subtitle: "Let's try that again.", desc: "You navigated the day almost entirely on your own cultural autopilot, and Toronto politely accepted you while feeling fairly invisible to you. The good news: the city is endlessly forgiving and deeply curious about people who want to try again. Which you clearly do.", insight: "<strong>Cultural insight:</strong> Cultural intelligence starts with one thing: noticing the moments where your defaults don't fit. Go back through the choices and ask: what was I optimising for? Then ask: what was the situation actually asking for?" }
+    ],
+    nyc: [
+      { min: 13, emoji: "🗽", title: "Born-Again New Yorker", subtitle: "The city respects you.", desc: "You matched New York's pace, met its directness with your own, brought genuine substance to every interaction, and — crucially — didn't lose your humanity in the process. The city's best quality is that it rewards people who show up fully. You did. You'll be back.", insight: "<strong>Cultural insight:</strong> New York's speed and directness is not aggression — it's efficiency-as-respect. When you assume everyone around you is capable and pressed for time, you treat them as equals. That's the real insight underneath all the hustle." },
+      { min: 10, emoji: "😎", title: "Street-Smart Visitor", subtitle: "You held your own.", desc: "New York took you seriously, which is high praise. You were direct when it mattered, prepared when you needed to be, and genuine in the moments that called for it. A few hesitations and a bit of over-politeness in the wrong moments — but you read the room most of the time.", insight: "<strong>Cultural insight:</strong> The thing about New York is that its rudeness and its warmth come from the same place: authenticity. The city respects real. You were mostly real." },
+      { min: 7, emoji: "🙂", title: "Tourist With Potential", subtitle: "You survived. That's something.", desc: "You had good instincts in some moments and defaulted to over-caution or over-politeness in others. New York isn't unkind to people who are clearly trying — but it does move on fast if you hesitate. You got to see parts of the city most tourists miss. That's a start.", insight: "<strong>Cultural insight:</strong> New York rewards preparation and decisiveness. The city isn't cold — it's impatient with uncertainty. The more you know what you want and say it clearly, the more the city opens up." },
+      { min: 4, emoji: "😅", title: "Overwhelmed but Intact", subtitle: "The city is a lot. You'll get there.", desc: "New York moved faster than your reactions in most moments today. You were too hesitant where directness was called for, too polite where efficiency was expected, and occasionally too cautious to jump into conversations that were actively inviting you. You're still standing though — that counts.", insight: "<strong>Cultural insight:</strong> The adjustment to NYC's pace is partly practical (know your order, have your MetroCard ready) and partly psychological (trust that directness is welcome, that jumping in is expected, that imperfection is fine)." },
+      { min: 0, emoji: "🗺️", title: "Lost Tourist Found", subtitle: "The city tried to tell you something.", desc: "You and New York operated on completely different frequencies today. The city's directness felt abrasive; its pace felt overwhelming; its lack of small talk felt cold. None of that was personal — it was just New York being New York. The city has extraordinary things to offer, but it needs you to meet it on its terms first.", insight: "<strong>Cultural insight:</strong> New York is not trying to be difficult. It's a city of 8 million people moving at maximum speed. The culture that looks like rudeness is actually a massive collective efficiency agreement. Once you join the agreement, the city becomes a completely different place." }
+    ]
+  };
+
+  let currentCity = null;
+  let currentStep = 0;
+  let score = 0;
+  let answered = false;
+
+  function startAdventure(city) {
+    currentCity = city;
+    currentStep = 0;
+    score = 0;
+    answered = false;
+    document.getElementById('adv-picker').style.display = 'none';
+    document.getElementById('adv-result').style.display = 'none';
+    document.getElementById('adv-game').style.display = 'block';
+    buildPips();
+    renderStep();
+  }
+
+  function buildPips() {
+    const container = document.getElementById('score-pips');
+    container.innerHTML = '';
+    for (let i = 0; i < 15; i++) {
+      const pip = document.createElement('div');
+      pip.className = 'score-pip';
+      pip.id = 'pip-' + i;
+      container.appendChild(pip);
+    }
+  }
+
+  function renderStep() {
+    const steps = adventures[currentCity];
+    const step = steps[currentStep];
+    answered = false;
+
+    document.getElementById('adv-step-label').textContent = `Step ${currentStep + 1} of 15`;
+    document.getElementById('adv-location').textContent = step.location;
+    document.getElementById('adv-situation').textContent = step.situation;
+    document.getElementById('adv-context').textContent = step.context;
+
+    const choicesEl = document.getElementById('adv-choices');
+    choicesEl.innerHTML = '';
+    // Shuffle choices
+    const shuffled = step.choices.map((c, i) => ({...c, origIndex: i})).sort(() => Math.random() - 0.5);
+    shuffled.forEach(choice => {
+      const btn = document.createElement('button');
+      btn.className = 'adv-choice';
+      btn.textContent = choice.text;
+      btn.onclick = () => makeChoice(btn, choice.good, step);
+      choicesEl.appendChild(btn);
+    });
+
+    const fb = document.getElementById('adv-feedback');
+    fb.className = 'adv-feedback';
+    fb.innerHTML = '';
+
+    const nextBtn = document.getElementById('adv-next');
+    nextBtn.className = 'adv-next-btn';
+    nextBtn.textContent = currentStep < 14 ? 'Next →' : 'See My Result →';
+  }
+
+  function makeChoice(btn, isGood, step) {
+    if (answered) return;
+    answered = true;
+
+    const allBtns = document.getElementById('adv-choices').querySelectorAll('.adv-choice');
+    allBtns.forEach(b => {
+      b.disabled = true;
+      if (b !== btn) b.classList.add('unchosen');
+    });
+    btn.classList.add(isGood ? 'chosen-good' : 'chosen-bad');
+
+    if (isGood) score++;
+    document.getElementById('pip-' + currentStep).classList.add(isGood ? 'good' : 'bad');
+
+    const fb = document.getElementById('adv-feedback');
+    fb.className = 'adv-feedback ' + (isGood ? 'good' : 'bad') + ' show';
+    fb.innerHTML = isGood ? step.feedback_good : step.feedback_bad;
+
+    document.getElementById('adv-next').classList.add('show');
+  }
+
+  function nextStep() {
+    currentStep++;
+    if (currentStep >= 15) {
+      showResult();
+    } else {
+      renderStep();
+      document.querySelector('.adv-scene').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function showResult() {
+    document.getElementById('adv-game').style.display = 'none';
+    const resultList = results[currentCity];
+    const result = resultList.find(r => score >= r.min) || resultList[resultList.length - 1];
+
+    document.getElementById('res-emoji').textContent = result.emoji;
+    document.getElementById('res-title').textContent = result.title;
+    document.getElementById('res-subtitle').textContent = result.subtitle;
+    document.getElementById('res-score').textContent = `Your score: ${score} / 15 cultural points`;
+    document.getElementById('res-desc').textContent = result.desc;
+    document.getElementById('res-insight').innerHTML = result.insight;
+
+    document.getElementById('adv-result').style.display = 'block';
+    document.getElementById('adv-result').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function resetAdventure() {
+    document.getElementById('adv-result').style.display = 'none';
+    document.getElementById('adv-game').style.display = 'none';
+    document.getElementById('adv-picker').style.display = 'block';
+  }
 </script>
 </body>
-</html>
