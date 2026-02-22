@@ -9,748 +9,206 @@
   :root {
     --ca-red: #D52B1E;
     --us-blue: #3C3B6E;
-    --us-red: #B22234;
     --cream: #F5F0E8;
     --dark: #1A1A2E;
     --warm-gray: #8A8A7A;
     --gold: #C8A951;
     --leaf: #2D5016;
     --toronto-teal: #007A87;
-    --ny-orange: #E35205;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--dark);
-    overflow-x: hidden;
-  }
-
-  /* ===================== COVER ===================== */
-  #cover {
-    min-height: 100vh;
-    background: var(--dark);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    padding: 40px;
-  }
-
-  .cover-bg {
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(ellipse 60% 50% at 20% 50%, rgba(213,43,30,0.15) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(60,59,110,0.25) 0%, transparent 60%);
-  }
-
-  .flag-stripe {
-    position: absolute;
-    top: 0; bottom: 0;
-    width: 4px;
-    left: 50%;
-    background: linear-gradient(180deg, var(--ca-red), var(--us-blue));
-    opacity: 0.4;
-  }
-
-  .cover-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 24px;
-    position: relative;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.2s forwards;
-  }
-
-  .cover-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(42px, 8vw, 88px);
-    font-weight: 900;
-    line-height: 1.0;
-    color: var(--cream);
-    position: relative;
-    opacity: 0;
-    animation: fadeUp 0.9s ease 0.5s forwards;
-  }
-
-  .cover-title span { color: var(--ca-red); }
-  .cover-title .blue { color: #7B8FD4; }
-
-  .cover-subtitle {
-    font-size: 18px;
-    color: rgba(245,240,232,0.6);
-    margin-top: 20px;
-    max-width: 500px;
-    line-height: 1.6;
-    position: relative;
-    opacity: 0;
-    animation: fadeUp 0.9s ease 0.8s forwards;
-  }
-
-  .cover-meta {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--warm-gray);
-    margin-top: 32px;
-    letter-spacing: 1px;
-    opacity: 0;
-    animation: fadeUp 0.9s ease 1s forwards;
-  }
-
-  .start-btn {
-    margin-top: 48px;
-    padding: 16px 48px;
-    background: var(--ca-red);
-    color: white;
-    border: none;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    opacity: 0;
-    animation: fadeUp 0.9s ease 1.2s forwards;
-  }
-  .start-btn:hover { background: #B52318; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(213,43,30,0.4); }
-
-  @keyframes fadeUp {
-    from { opacity:0; transform: translateY(20px); }
-    to { opacity:1; transform: translateY(0); }
-  }
-
-  /* ===================== NAV ===================== */
-  #nav {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(26,26,46,0.95);
-    backdrop-filter: blur(10px);
-    padding: 12px 32px;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
-    color: var(--cream);
-    font-style: italic;
-  }
-
-  .nav-sections {
-    display: flex;
-    gap: 4px;
-  }
-
-  .nav-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    cursor: pointer;
-    transition: all 0.3s;
-    border: none;
-  }
-  .nav-dot.active { background: var(--ca-red); transform: scale(1.4); }
-  .nav-dot:hover { background: var(--gold); }
-
-  .nav-timer {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--gold);
-  }
-
-  /* ===================== MAIN SECTIONS ===================== */
-  #main { display: none; }
-
-  .section {
-    min-height: 100vh;
-    padding: 100px 32px 60px;
-    display: none;
-    flex-direction: column;
-  }
-  .section.active { display: flex; }
-
-  .section-header {
-    max-width: 900px;
-    margin: 0 auto 64px;
-    width: 100%;
-  }
-
-  .section-number {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--ca-red);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 5vw, 56px);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 16px;
-  }
-
-  .section-desc {
-    font-size: 17px;
-    color: var(--warm-gray);
-    line-height: 1.7;
-    max-width: 620px;
-  }
-
-  .content-block {
-    max-width: 900px;
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  /* ===================== SECTION 1: ICEBREAKER ===================== */
-  #s1 { background: var(--cream); }
-
-  .quiz-card {
-    background: white;
-    border-radius: 8px;
-    padding: 40px;
-    margin-bottom: 24px;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-    border-left: 4px solid var(--gold);
-    animation: cardIn 0.5s ease forwards;
-  }
-
-  @keyframes cardIn {
-    from { opacity:0; transform: translateX(-20px); }
-    to { opacity:1; transform: translateX(0); }
-  }
-
-  .quiz-q {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    line-height: 1.4;
-  }
-
-  .quiz-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .quiz-opt {
-    padding: 14px 18px;
-    border: 2px solid #E8E4DC;
-    border-radius: 6px;
-    cursor: pointer;
-    background: white;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.2s;
-    text-align: left;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .quiz-opt:hover { border-color: var(--ca-red); background: #FFF5F5; }
-  .quiz-opt.correct { border-color: var(--leaf); background: #F0F7EB; color: var(--leaf); }
-  .quiz-opt.wrong { border-color: var(--ca-red); background: #FFF0EF; color: var(--ca-red); }
-
-  .quiz-reveal {
-    margin-top: 16px;
-    padding: 16px 20px;
-    background: var(--dark);
-    color: var(--cream);
-    border-radius: 6px;
-    font-size: 14px;
-    line-height: 1.6;
-    display: none;
-  }
-  .quiz-reveal.show { display: block; }
-  .quiz-reveal strong { color: var(--gold); }
-
-  /* ===================== SECTION 2: COMPARE ===================== */
-  #s2 { background: #F7F4EE; }
-
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 40px 1fr;
-    gap: 0;
-    margin-bottom: 32px;
-  }
-
-  .compare-col {
-    padding: 32px;
-    border-radius: 8px;
-  }
-
-  .compare-col.canada {
-    background: linear-gradient(135deg, #D52B1E 0%, #9B1D14 100%);
-    color: white;
-    border-radius: 8px 0 0 8px;
-  }
-
-  .compare-col.usa {
-    background: linear-gradient(135deg, #3C3B6E 0%, #1E1D40 100%);
-    color: white;
-    border-radius: 0 8px 8px 0;
-  }
-
-  .compare-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--dark);
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    writing-mode: vertical-rl;
-    color: var(--gold);
-  }
-
-  .compare-flag {
-    font-size: 28px;
-    margin-bottom: 12px;
-  }
-
-  .compare-col h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    margin-bottom: 20px;
-    font-weight: 700;
-  }
-
-  .compare-items { list-style: none; }
-  .compare-items li {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
-    font-size: 14px;
-    line-height: 1.5;
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-  }
-  .compare-items li:last-child { border-bottom: none; }
-  .compare-items li::before {
-    content: '→';
-    opacity: 0.6;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .tab-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-  }
-
-  .tab-btn {
-    padding: 10px 20px;
-    border: 2px solid var(--dark);
-    background: white;
-    border-radius: 4px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  .tab-btn:hover, .tab-btn.active { background: var(--dark); color: white; }
-
-  /* ===================== SECTION 3: CITY COMPARE ===================== */
-  #s3 { background: var(--cream); }
-
-  .city-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-bottom: 40px;
-  }
-
-  .city-card {
-    padding: 40px 32px;
-    border-radius: 10px;
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .city-card.toronto {
-    background: linear-gradient(135deg, var(--toronto-teal) 0%, #004F58 100%);
-  }
-
-  .city-card.nyc {
-    background: linear-gradient(135deg, #1A1A2E 0%, var(--us-blue) 100%);
-  }
-
-  .city-card::before {
-    content: attr(data-city);
-    position: absolute;
-    bottom: -20px; right: -10px;
-    font-family: 'Playfair Display', serif;
-    font-size: 100px;
-    font-weight: 900;
-    opacity: 0.07;
-    line-height: 1;
-    white-space: nowrap;
-  }
-
-  .city-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .city-card .tagline {
-    font-size: 13px;
-    opacity: 0.7;
-    margin-bottom: 28px;
-    font-style: italic;
-  }
-
-  .city-stat {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-    font-size: 13px;
-    align-items: center;
-  }
-  .city-stat:last-child { border-bottom: none; }
-  .city-stat .label { opacity: 0.7; }
-  .city-stat .value { font-weight: 600; font-size: 14px; }
-
-  .venn-area {
-    background: white;
-    border-radius: 10px;
-    padding: 40px;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-  }
-
-  .venn-area h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .venn-area p { color: var(--warm-gray); font-size: 14px; margin-bottom: 24px; }
-
-  .venn-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 16px;
-  }
-
-  .venn-col h4 {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid;
-  }
-
-  .venn-col.toronto-only h4 { color: var(--toronto-teal); border-color: var(--toronto-teal); }
-  .venn-col.shared h4 { color: var(--gold); border-color: var(--gold); text-align: center; }
-  .venn-col.nyc-only h4 { color: var(--us-blue); border-color: var(--us-blue); text-align: right; }
-
-  .venn-tag {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 500;
-    margin: 3px 3px 3px 0;
-  }
-  .toronto-only .venn-tag { background: rgba(0,122,135,0.1); color: var(--toronto-teal); }
-  .shared .venn-tag { background: rgba(200,169,81,0.15); color: #8A6800; }
-  .nyc-only .venn-tag { background: rgba(60,59,110,0.1); color: var(--us-blue); }
-
-  /* ===================== SECTION 4: CULTURAL DIMENSIONS ===================== */
-  #s4 { background: #F7F4EE; }
-
-  .dimension-card {
-    background: white;
-    border-radius: 10px;
-    padding: 36px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-  }
-
-  .dim-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .dim-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  .dim-emoji { font-size: 28px; }
-
-  .dim-spectrum {
-    margin-bottom: 16px;
-  }
-
-  .spectrum-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    letter-spacing: 0.5px;
-  }
-
-  .spectrum-labels .ca-label { color: var(--ca-red); }
-  .spectrum-labels .us-label { color: var(--us-blue); }
-
-  .spectrum-bar {
-    height: 8px;
-    background: linear-gradient(90deg, var(--ca-red), #B0B0C8, var(--us-blue));
-    border-radius: 4px;
-    position: relative;
-    margin-bottom: 12px;
-  }
-
-  .spectrum-marker {
-    position: absolute;
-    top: -5px;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 3px solid white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    transform: translateX(-50%);
-    font-size: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .spectrum-marker.ca { background: var(--ca-red); left: 25%; }
-  .spectrum-marker.us { background: var(--us-blue); left: 75%; }
-
-  .dim-desc {
-    font-size: 14px;
-    line-height: 1.7;
-    color: #555;
-  }
-
-  /* ===================== SECTION 5: REFLECTION ===================== */
-  #s5 { background: var(--dark); color: var(--cream); }
-
-  #s5 .section-title { color: var(--cream); }
-  #s5 .section-number { color: var(--gold); }
-  #s5 .section-desc { color: rgba(245,240,232,0.6); }
-
-  .reflection-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 40px;
-  }
-
-  .reflection-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 10px;
-    padding: 32px;
-  }
-
-  .reflection-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    margin-bottom: 16px;
-    color: var(--gold);
-  }
-
-  .reflection-card p {
-    font-size: 14px;
-    line-height: 1.7;
-    color: rgba(245,240,232,0.75);
-  }
-
-  .activity-prompt {
-    background: var(--ca-red);
-    border-radius: 10px;
-    padding: 40px;
-    margin-bottom: 24px;
-  }
-
-  .activity-prompt h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: white;
-  }
-
-  .activity-prompt ol {
-    padding-left: 20px;
-    color: rgba(255,255,255,0.9);
-    font-size: 15px;
-    line-height: 2;
-  }
-
-  .takeaway-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
-  .takeaway-item {
-    background: rgba(255,255,255,0.08);
-    border-radius: 8px;
-    padding: 24px;
-    text-align: center;
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .takeaway-item .icon { font-size: 32px; margin-bottom: 12px; }
-  .takeaway-item p { font-size: 13px; line-height: 1.6; color: rgba(245,240,232,0.8); }
-
-  /* ===================== NAVIGATION BUTTONS ===================== */
-  .section-nav {
-    max-width: 900px;
-    margin: 40px auto 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .nav-btn {
-    padding: 14px 32px;
-    border: 2px solid;
-    border-radius: 4px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .nav-btn.prev { border-color: var(--warm-gray); color: var(--warm-gray); background: transparent; }
-  .nav-btn.prev:hover { border-color: var(--dark); color: var(--dark); }
-  .nav-btn.next { border-color: var(--ca-red); color: var(--ca-red); background: transparent; }
-  .nav-btn.next:hover { background: var(--ca-red); color: white; }
-
-  .section-progress {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--warm-gray);
-  }
-
-  #s5 .nav-btn.prev { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.5); }
-  #s5 .nav-btn.prev:hover { border-color: white; color: white; }
-
-  /* ===================== TIMER MODAL ===================== */
-  .timer-bar {
-    height: 3px;
-    background: rgba(255,255,255,0.1);
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 200;
-  }
-  .timer-fill {
-    height: 100%;
-    background: var(--gold);
-    transition: width 1s linear;
-  }
-
-  /* ===================== ACCORDION ===================== */
-  .accordion-item {
-    border: 2px solid #E8E4DC;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    overflow: hidden;
-  }
-
-  .accordion-header {
-    padding: 20px 24px;
-    background: white;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 500;
-    font-size: 15px;
-    transition: background 0.2s;
-  }
-  .accordion-header:hover { background: #FAFAF7; }
-  .accordion-arrow { font-size: 12px; transition: transform 0.3s; color: var(--warm-gray); }
-  .accordion-item.open .accordion-arrow { transform: rotate(180deg); }
-
-  .accordion-body {
-    padding: 0 24px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s;
-    font-size: 14px;
-    line-height: 1.8;
-    color: #555;
-    background: white;
-  }
-  .accordion-item.open .accordion-body { max-height: 500px; padding: 0 24px 24px; }
-
-  /* ===================== FUN FACT ===================== */
-  .fun-fact {
-    background: var(--gold);
-    border-radius: 8px;
-    padding: 20px 24px;
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    margin: 24px 0;
-  }
-  .fun-fact .ff-icon { font-size: 24px; flex-shrink: 0; }
-  .fun-fact p { font-size: 14px; line-height: 1.6; color: var(--dark); }
-  .fun-fact strong { font-weight: 700; }
-
-  /* Responsive */
-  @media (max-width: 700px) {
-    .compare-grid { grid-template-columns: 1fr; }
-    .compare-divider { writing-mode: horizontal-tb; padding: 8px; }
-    .city-split { grid-template-columns: 1fr; }
-    .venn-grid { grid-template-columns: 1fr; }
-    .reflection-grid { grid-template-columns: 1fr; }
-    .takeaway-row { grid-template-columns: 1fr; }
-    .quiz-options { grid-template-columns: 1fr; }
-    .compare-col.canada, .compare-col.usa { border-radius: 8px; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+  /* COVER */
+  #cover { min-height:100vh; background:var(--dark); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; position:relative; overflow:hidden; padding:40px; }
+  .cover-bg { position:absolute; inset:0; background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(213,43,30,0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 50%, rgba(60,59,110,0.25) 0%, transparent 60%); }
+  .flag-stripe { position:absolute; top:0; bottom:0; width:4px; left:50%; background:linear-gradient(180deg, var(--ca-red), var(--us-blue)); opacity:0.4; }
+  .cover-eyebrow { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:24px; position:relative; opacity:0; animation:fadeUp 0.8s ease 0.2s forwards; }
+  .cover-title { font-family:'Playfair Display',serif; font-size:clamp(42px,8vw,88px); font-weight:900; line-height:1.0; color:var(--cream); position:relative; opacity:0; animation:fadeUp 0.9s ease 0.5s forwards; }
+  .cover-title span { color:var(--ca-red); }
+  .cover-title .blue { color:#7B8FD4; }
+  .cover-subtitle { font-size:18px; color:rgba(245,240,232,0.6); margin-top:20px; max-width:500px; line-height:1.6; position:relative; opacity:0; animation:fadeUp 0.9s ease 0.8s forwards; }
+  .cover-meta { font-family:'DM Mono',monospace; font-size:12px; color:var(--warm-gray); margin-top:32px; letter-spacing:1px; opacity:0; animation:fadeUp 0.9s ease 1s forwards; }
+  .start-btn { margin-top:48px; padding:16px 48px; background:var(--ca-red); color:white; border:none; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; letter-spacing:1px; cursor:pointer; border-radius:2px; transition:all 0.3s; text-transform:uppercase; opacity:0; animation:fadeUp 0.9s ease 1.2s forwards; }
+  .start-btn:hover { background:#B52318; transform:translateY(-2px); box-shadow:0 8px 24px rgba(213,43,30,0.4); }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+  /* NAV */
+  #nav { display:none; position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(26,26,46,0.95); backdrop-filter:blur(10px); padding:12px 32px; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); }
+  .nav-logo { font-family:'Playfair Display',serif; font-size:16px; color:var(--cream); font-style:italic; }
+  .nav-sections { display:flex; gap:4px; }
+  .nav-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.2); cursor:pointer; transition:all 0.3s; border:none; }
+  .nav-dot.active { background:var(--ca-red); transform:scale(1.4); }
+  .nav-dot:hover { background:var(--gold); }
+  .nav-timer { font-family:'DM Mono',monospace; font-size:13px; color:var(--gold); }
+  .timer-bar { height:3px; background:rgba(255,255,255,0.1); position:fixed; top:0; left:0; right:0; z-index:200; }
+  .timer-fill { height:100%; background:var(--gold); transition:width 1s linear; }
+
+  /* SECTIONS */
+  #main { display:none; }
+  .section { min-height:100vh; padding:100px 32px 60px; display:none; flex-direction:column; }
+  .section.active { display:flex; }
+  .section-header { max-width:900px; margin:0 auto 64px; width:100%; }
+  .section-number { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:3px; color:var(--ca-red); text-transform:uppercase; margin-bottom:12px; }
+  .section-title { font-family:'Playfair Display',serif; font-size:clamp(32px,5vw,56px); font-weight:700; line-height:1.1; margin-bottom:16px; }
+  .section-desc { font-size:17px; color:var(--warm-gray); line-height:1.7; max-width:620px; }
+  .content-block { max-width:900px; margin:0 auto; width:100%; }
+  .section-nav { max-width:900px; margin:40px auto 0; width:100%; display:flex; justify-content:space-between; align-items:center; }
+  .nav-btn { padding:14px 32px; border:2px solid; border-radius:4px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500; cursor:pointer; transition:all 0.2s; text-transform:uppercase; letter-spacing:1px; }
+  .nav-btn.prev { border-color:var(--warm-gray); color:var(--warm-gray); background:transparent; }
+  .nav-btn.prev:hover { border-color:var(--dark); color:var(--dark); }
+  .nav-btn.next { border-color:var(--ca-red); color:var(--ca-red); background:transparent; }
+  .nav-btn.next:hover { background:var(--ca-red); color:white; }
+  .section-progress { font-family:'DM Mono',monospace; font-size:12px; color:var(--warm-gray); }
+
+  /* S1 QUIZ */
+  #s1 { background:var(--cream); }
+  .quiz-card { background:white; border-radius:8px; padding:40px; margin-bottom:24px; box-shadow:0 2px 20px rgba(0,0,0,0.06); border-left:4px solid var(--gold); }
+  .quiz-q { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; margin-bottom:20px; line-height:1.4; }
+  .quiz-options { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .quiz-opt { padding:14px 18px; border:2px solid #E8E4DC; border-radius:6px; cursor:pointer; background:white; font-size:14px; font-weight:500; transition:all 0.2s; text-align:left; font-family:'DM Sans',sans-serif; }
+  .quiz-opt:hover { border-color:var(--ca-red); background:#FFF5F5; }
+  .quiz-opt.correct { border-color:var(--leaf); background:#F0F7EB; color:var(--leaf); }
+  .quiz-opt.wrong { border-color:var(--ca-red); background:#FFF0EF; color:var(--ca-red); }
+  .quiz-reveal { margin-top:16px; padding:16px 20px; background:var(--dark); color:var(--cream); border-radius:6px; font-size:14px; line-height:1.6; display:none; }
+  .quiz-reveal.show { display:block; }
+  .quiz-reveal strong { color:var(--gold); }
+  .fun-fact { background:var(--gold); border-radius:8px; padding:20px 24px; display:flex; gap:16px; align-items:flex-start; margin:24px 0; }
+  .fun-fact .ff-icon { font-size:24px; flex-shrink:0; }
+  .fun-fact p { font-size:14px; line-height:1.6; color:var(--dark); }
+
+  /* S2 COMPARE */
+  #s2 { background:#F7F4EE; }
+  .compare-grid { display:grid; grid-template-columns:1fr 40px 1fr; gap:0; margin-bottom:32px; }
+  .compare-col { padding:32px; }
+  .compare-col.canada { background:linear-gradient(135deg,#D52B1E 0%,#9B1D14 100%); color:white; border-radius:8px 0 0 8px; }
+  .compare-col.usa { background:linear-gradient(135deg,#3C3B6E 0%,#1E1D40 100%); color:white; border-radius:0 8px 8px 0; }
+  .compare-divider { display:flex; align-items:center; justify-content:center; background:var(--dark); font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; writing-mode:vertical-rl; color:var(--gold); }
+  .compare-flag { font-size:28px; margin-bottom:12px; }
+  .compare-col h3 { font-family:'Playfair Display',serif; font-size:22px; margin-bottom:20px; font-weight:700; }
+  .compare-items { list-style:none; }
+  .compare-items li { padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.15); font-size:14px; line-height:1.5; display:flex; gap:10px; align-items:flex-start; }
+  .compare-items li:last-child { border-bottom:none; }
+  .compare-items li::before { content:'→'; opacity:0.6; flex-shrink:0; margin-top:1px; }
+  .tab-row { display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap; }
+  .tab-btn { padding:10px 20px; border:2px solid var(--dark); background:white; border-radius:4px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; transition:all 0.2s; text-transform:uppercase; letter-spacing:1px; }
+  .tab-btn:hover, .tab-btn.active { background:var(--dark); color:white; }
+
+  /* S3 CITIES */
+  #s3 { background:var(--cream); }
+  .city-split { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:40px; }
+  .city-card { padding:40px 32px; border-radius:10px; color:white; position:relative; overflow:hidden; }
+  .city-card.toronto { background:linear-gradient(135deg, var(--toronto-teal) 0%, #004F58 100%); }
+  .city-card.nyc { background:linear-gradient(135deg, #1A1A2E 0%, var(--us-blue) 100%); }
+  .city-card::before { content:attr(data-city); position:absolute; bottom:-20px; right:-10px; font-family:'Playfair Display',serif; font-size:100px; font-weight:900; opacity:0.07; line-height:1; white-space:nowrap; }
+  .city-card h3 { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; margin-bottom:8px; }
+  .city-card .tagline { font-size:13px; opacity:0.7; margin-bottom:28px; font-style:italic; }
+  .city-stat { display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.12); font-size:13px; align-items:center; }
+  .city-stat:last-child { border-bottom:none; }
+  .city-stat .label { opacity:0.7; }
+  .city-stat .value { font-weight:600; font-size:14px; }
+  .venn-area { background:white; border-radius:10px; padding:40px; box-shadow:0 2px 20px rgba(0,0,0,0.06); }
+  .venn-area h3 { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; margin-bottom:8px; }
+  .venn-area > p { color:var(--warm-gray); font-size:14px; margin-bottom:24px; }
+  .venn-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  .venn-col h4 { font-size:12px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid; }
+  .venn-col.toronto-only h4 { color:var(--toronto-teal); border-color:var(--toronto-teal); }
+  .venn-col.shared h4 { color:var(--gold); border-color:var(--gold); text-align:center; }
+  .venn-col.nyc-only h4 { color:var(--us-blue); border-color:var(--us-blue); text-align:right; }
+  .venn-tag { display:inline-block; padding:5px 10px; border-radius:4px; font-size:12px; font-weight:500; margin:3px 3px 3px 0; }
+  .toronto-only .venn-tag { background:rgba(0,122,135,0.1); color:var(--toronto-teal); }
+  .shared .venn-tag { background:rgba(200,169,81,0.15); color:#8A6800; }
+  .nyc-only .venn-tag { background:rgba(60,59,110,0.1); color:var(--us-blue); }
+  .accordion-item { border:2px solid #E8E4DC; border-radius:8px; margin-bottom:12px; overflow:hidden; }
+  .accordion-header { padding:20px 24px; background:white; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-weight:500; font-size:15px; transition:background 0.2s; }
+  .accordion-header:hover { background:#FAFAF7; }
+  .accordion-arrow { font-size:12px; transition:transform 0.3s; color:var(--warm-gray); }
+  .accordion-item.open .accordion-arrow { transform:rotate(180deg); }
+  .accordion-body { padding:0 24px; max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.3s; font-size:14px; line-height:1.8; color:#555; background:white; }
+  .accordion-item.open .accordion-body { max-height:500px; padding:0 24px 24px; }
+
+  /* S4 DIMENSIONS */
+  #s4 { background:#F7F4EE; }
+  .dimension-card { background:white; border-radius:10px; padding:36px; margin-bottom:20px; box-shadow:0 2px 12px rgba(0,0,0,0.05); }
+  .dim-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px; gap:20px; flex-wrap:wrap; }
+  .dim-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; }
+  .dim-emoji { font-size:28px; }
+  .spectrum-labels { display:flex; justify-content:space-between; font-size:12px; font-weight:600; margin-bottom:8px; letter-spacing:0.5px; }
+  .spectrum-labels .ca-label { color:var(--ca-red); }
+  .spectrum-labels .us-label { color:var(--us-blue); }
+  .spectrum-bar { height:8px; background:linear-gradient(90deg, var(--ca-red), #B0B0C8, var(--us-blue)); border-radius:4px; position:relative; margin-bottom:12px; }
+  .spectrum-marker { position:absolute; top:-5px; width:18px; height:18px; border-radius:50%; border:3px solid white; box-shadow:0 2px 8px rgba(0,0,0,0.2); transform:translateX(-50%); font-size:8px; display:flex; align-items:center; justify-content:center; }
+  .spectrum-marker.ca { background:var(--ca-red); left:25%; }
+  .spectrum-marker.us { background:var(--us-blue); left:75%; }
+  .dim-desc { font-size:14px; line-height:1.7; color:#555; }
+
+  /* S5 ADVENTURE */
+  #s5 { background:var(--dark); color:var(--cream); padding-bottom:80px; }
+  #s5 .section-title { color:var(--cream); }
+  #s5 .section-number { color:var(--gold); }
+  #s5 .section-desc { color:rgba(245,240,232,0.6); }
+  #s5 .section-progress { color:rgba(245,240,232,0.4); }
+
+  .city-picker { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:16px; }
+  .city-pick-btn { padding:48px 32px; border-radius:12px; border:3px solid transparent; cursor:pointer; text-align:center; transition:all 0.3s; font-family:'DM Sans',sans-serif; }
+  .city-pick-btn.toronto-pick { background:linear-gradient(135deg,#004F58 0%, var(--toronto-teal) 100%); color:white; }
+  .city-pick-btn.nyc-pick { background:linear-gradient(135deg,#1A1A2E 0%, var(--us-blue) 100%); color:white; }
+  .city-pick-btn:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.4); border-color:var(--gold); }
+  .city-pick-btn .pick-emoji { font-size:48px; margin-bottom:16px; display:block; }
+  .city-pick-btn h3 { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; margin-bottom:8px; }
+  .city-pick-btn p { font-size:13px; opacity:0.75; line-height:1.5; }
+
+  .adv-scene { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:40px; margin-bottom:24px; }
+  .adv-meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; flex-wrap:wrap; gap:12px; }
+  .adv-step-badge { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:2px; color:var(--gold); text-transform:uppercase; }
+  .adv-score-bar { display:flex; gap:6px; align-items:center; font-family:'DM Mono',monospace; font-size:12px; color:rgba(255,255,255,0.5); }
+  .score-pip { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.15); transition:background 0.4s; }
+  .score-pip.good { background:rgba(255,255,255,0.5); }
+  .score-pip.bad { background:rgba(255,255,255,0.5); }
+  .adv-location { font-size:12px; color:var(--gold); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:12px; }
+  .adv-situation { font-family:'Playfair Display',serif; font-size:20px; line-height:1.5; margin-bottom:8px; color:var(--cream); }
+  .adv-context { font-size:14px; color:rgba(245,240,232,0.6); line-height:1.7; margin-bottom:28px; }
+  .adv-choices { display:flex; flex-direction:column; gap:12px; }
+  .adv-choice { padding:16px 22px; border:2px solid rgba(255,255,255,0.15); border-radius:8px; background:rgba(255,255,255,0.04); color:var(--cream); cursor:pointer; font-family:'DM Sans',sans-serif; font-size:14px; line-height:1.5; text-align:left; transition:all 0.2s; }
+  .adv-choice:hover { border-color:var(--gold); background:rgba(200,169,81,0.1); }
+  .adv-choice:disabled { cursor:default; }
+  .adv-choice.chosen-good { border-color:var(--gold); background:rgba(200,169,81,0.12); }
+  .adv-choice.chosen-bad { border-color:var(--gold); background:rgba(200,169,81,0.12); }
+  .adv-choice.unchosen { opacity:0.25; }
+  .adv-feedback { margin-top:20px; padding:20px 24px; border-radius:8px; font-size:14px; line-height:1.7; display:none; }
+  .adv-feedback.good { background:rgba(200,169,81,0.12); border-left:4px solid var(--gold); }
+  .adv-feedback.bad { background:rgba(200,169,81,0.12); border-left:4px solid var(--gold); }
+  .adv-feedback.show { display:block; }
+  .adv-next-btn { margin-top:20px; padding:14px 36px; background:var(--gold); color:var(--dark); border:none; border-radius:6px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s; display:none; text-transform:uppercase; letter-spacing:1px; }
+  .adv-next-btn:hover { background:#B8933D; }
+  .adv-next-btn.show { display:inline-block; }
+
+  .adv-result-box { text-align:center; padding:60px 40px; background:rgba(255,255,255,0.05); border-radius:12px; border:1px solid rgba(255,255,255,0.12); }
+  .result-emoji { font-size:72px; margin-bottom:20px; display:block; }
+  .result-title { font-family:'Playfair Display',serif; font-size:36px; font-weight:900; color:var(--gold); margin-bottom:8px; }
+  .result-subtitle { font-size:16px; color:rgba(245,240,232,0.6); margin-bottom:28px; font-style:italic; }
+  .result-score-display { font-family:'DM Mono',monospace; font-size:14px; color:var(--gold); margin-bottom:24px; letter-spacing:2px; }
+  .result-desc { font-size:15px; line-height:1.8; color:rgba(245,240,232,0.85); max-width:560px; margin:0 auto 32px; }
+  .result-insight { background:rgba(200,169,81,0.12); border:1px solid rgba(200,169,81,0.3); border-radius:8px; padding:20px 24px; font-size:14px; line-height:1.7; color:rgba(245,240,232,0.8); max-width:560px; margin:0 auto 32px; text-align:left; }
+  .result-insight strong { color:var(--gold); }
+  .result-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .result-btn { padding:14px 32px; border-radius:6px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s; text-transform:uppercase; letter-spacing:1px; border:2px solid; }
+  .result-btn.primary { background:var(--ca-red); color:white; border-color:var(--ca-red); }
+  .result-btn.primary:hover { background:#B52318; }
+  .result-btn.secondary { background:transparent; color:var(--gold); border-color:var(--gold); }
+  .result-btn.secondary:hover { background:rgba(200,169,81,0.15); }
+
+  @media (max-width:700px) {
+    .compare-grid { grid-template-columns:1fr; }
+    .compare-divider { writing-mode:horizontal-tb; padding:8px; }
+    .city-split, .city-picker, .venn-grid, .quiz-options { grid-template-columns:1fr; }
+    .compare-col.canada, .compare-col.usa { border-radius:8px; }
   }
 </style>
 </head>
 <body>
-
-<!-- Timer bar -->
 <div class="timer-bar"><div class="timer-fill" id="timerFill" style="width:0%"></div></div>
 
-<!-- COVER -->
 <div id="cover">
   <div class="cover-bg"></div>
   <div class="flag-stripe"></div>
@@ -758,253 +216,229 @@
   <h1 class="cover-title">Two Nations,<br><span>One</span> <span class="blue">Continent</span></h1>
   <p class="cover-subtitle">A cultural deep-dive into Canada & the USA — and why the differences matter more than you think</p>
   <p class="cover-meta">~60 minutes · Interactive · Toronto Field Trip Prep</p>
-  <button class="start-btn" onclick="startMasterclass()">Begin Masterclass →</button>
+  <button class="start-btn" onclick="startMasterclass()">Begin Masterclass &rarr;</button>
 </div>
 
-<!-- NAV -->
 <nav id="nav">
   <div class="nav-logo">Two Nations, One Continent</div>
   <div class="nav-sections" id="navDots"></div>
   <div class="nav-timer" id="navTimer">00:00</div>
 </nav>
 
-<!-- MAIN -->
 <div id="main">
 
-  <!-- SECTION 1: ICEBREAKER -->
+  <!-- S1: ICEBREAKER -->
   <div class="section active" id="s1">
     <div class="section-header">
-      <p class="section-number">01 / 05 · Warm-Up</p>
+      <p class="section-number">01 / 05 &middot; Warm-Up</p>
       <h2 class="section-title">Think You Know North America?</h2>
       <p class="section-desc">Before we compare cultures, let's test your assumptions. Answer instinctively — there are no wrong answers, only interesting ones.</p>
     </div>
     <div class="content-block">
-
       <div class="quiz-card">
-        <p class="quiz-q">🍁 Q1. Canada and the USA share the world's longest border. How long is it?</p>
+        <p class="quiz-q">&#127809; Q1. Canada and the USA share the world's longest border. How long is it?</p>
         <div class="quiz-options">
-          <button class="quiz-opt" onclick="answer(this, false, 'r1')">4,000 km</button>
-          <button class="quiz-opt" onclick="answer(this, true, 'r1')">8,891 km</button>
-          <button class="quiz-opt" onclick="answer(this, false, 'r1')">6,400 km</button>
-          <button class="quiz-opt" onclick="answer(this, false, 'r1')">12,000 km</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r1')">4,000 km</button>
+          <button class="quiz-opt" onclick="answer(this,true,'r1')">8,891 km</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r1')">6,400 km</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r1')">12,000 km</button>
         </div>
         <div class="quiz-reveal" id="r1"><strong>8,891 km</strong> — the longest undefended international border in the world. And yet, despite this closeness, the two countries are culturally more different than most people expect.</div>
       </div>
-
-      <div class="quiz-card" style="animation-delay:0.1s">
-        <p class="quiz-q">🌍 Q2. What percentage of Toronto's population was born outside Canada?</p>
+      <div class="quiz-card">
+        <p class="quiz-q">&#127757; Q2. What percentage of Toronto's population was born outside Canada?</p>
         <div class="quiz-options">
-          <button class="quiz-opt" onclick="answer(this, false, 'r2')">~25%</button>
-          <button class="quiz-opt" onclick="answer(this, false, 'r2')">~35%</button>
-          <button class="quiz-opt" onclick="answer(this, true, 'r2')">~50%</button>
-          <button class="quiz-opt" onclick="answer(this, false, 'r2')">~65%</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r2')">~25%</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r2')">~35%</button>
+          <button class="quiz-opt" onclick="answer(this,true,'r2')">~50%</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r2')">~65%</button>
         </div>
-        <div class="quiz-reveal" id="r2"><strong>Around 50%</strong> of Toronto residents were born outside Canada — making it one of the most immigrant-majority cities on Earth. For context, NYC's figure is around 37%. Toronto is on another level entirely.</div>
+        <div class="quiz-reveal" id="r2"><strong>Around 50%</strong> of Toronto residents were born outside Canada — making it one of the most immigrant-majority cities on Earth. For context, NYC's figure is around 37%.</div>
       </div>
-
-      <div class="quiz-card" style="animation-delay:0.2s">
-        <p class="quiz-q">💬 Q3. Which phrase is most stereotypically Canadian?</p>
+      <div class="quiz-card">
+        <p class="quiz-q">&#128172; Q3. Which phrase is most stereotypically Canadian?</p>
         <div class="quiz-options">
-          <button class="quiz-opt" onclick="answer(this, false, 'r3')">"Let's get this done!"</button>
-          <button class="quiz-opt" onclick="answer(this, true, 'r3')">"Sorry, eh?"</button>
-          <button class="quiz-opt" onclick="answer(this, false, 'r3')">"You're welcome, sir."</button>
-          <button class="quiz-opt" onclick="answer(this, false, 'r3')">"No problem at all, buddy."</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r3')">Let's get this done!</button>
+          <button class="quiz-opt" onclick="answer(this,true,'r3')">Sorry, eh?</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r3')">You're welcome, sir.</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r3')">No problem at all, buddy.</button>
         </div>
-        <div class="quiz-reveal" id="r3"><strong>"Sorry, eh?"</strong> — Canadians famously apologize even when they're not at fault, and the filler word "eh" is genuinely embedded in everyday Canadian speech. These aren't just jokes — they reflect deeper cultural values of politeness, deference, and community harmony.</div>
+        <div class="quiz-reveal" id="r3"><strong>"Sorry, eh?"</strong> — Canadians famously apologize even when not at fault, and "eh" is genuinely embedded in everyday speech. These reflect deeper values of politeness, deference, and community harmony.</div>
       </div>
-
-      <div class="quiz-card" style="animation-delay:0.3s">
-        <p class="quiz-q">🏙️ Q4. Toronto is sometimes called "New York City's little brother." How does its population compare to NYC?</p>
+      <div class="quiz-card">
+        <p class="quiz-q">&#127961;&#65039; Q4. How does Toronto's population compare to NYC?</p>
         <div class="quiz-options">
-          <button class="quiz-opt" onclick="answer(this, false, 'r4')">About the same size</button>
-          <button class="quiz-opt" onclick="answer(this, false, 'r4')">Half the size</button>
-          <button class="quiz-opt" onclick="answer(this, true, 'r4')">About one-third the size</button>
-          <button class="quiz-opt" onclick="answer(this, false, 'r4')">About one-fifth the size</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r4')">About the same size</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r4')">Half the size</button>
+          <button class="quiz-opt" onclick="answer(this,true,'r4')">About one-third the size</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r4')">About one-fifth the size</button>
         </div>
-        <div class="quiz-reveal" id="r4">NYC has <strong>~8.2 million</strong> residents; Toronto has <strong>~2.9 million</strong> — roughly one-third. Yet Toronto punches far above its weight in diversity, culture, and innovation. Size isn't everything.</div>
+        <div class="quiz-reveal" id="r4">NYC has <strong>~8.2 million</strong> residents; Toronto has <strong>~2.9 million</strong> — roughly one-third. Yet Toronto punches far above its weight in diversity, culture, and innovation.</div>
       </div>
-
       <div class="fun-fact">
-        <div class="ff-icon">💡</div>
-        <p><strong>Discussion starter for the group:</strong> Before we go deeper — what's your gut feeling about Canada vs the USA? Do you expect them to be more similar or more different? Vote with your hands and keep that intuition in mind as we go.</p>
+        <div class="ff-icon">&#128161;</div>
+        <p><strong>Discussion starter:</strong> What's your gut feeling about Canada vs the USA? Do you expect them to be more similar or more different? Vote with your hands and keep that intuition in mind as we go.</p>
       </div>
-
     </div>
     <div class="section-nav">
       <div></div>
       <span class="section-progress">Section 1 of 5</span>
-      <button class="nav-btn next" onclick="goSection(2)">National Cultures →</button>
+      <button class="nav-btn next" onclick="goSection(2)">National Cultures &rarr;</button>
     </div>
   </div>
 
-  <!-- SECTION 2: NATIONAL CULTURE COMPARE -->
+  <!-- S2: COMPARE -->
   <div class="section" id="s2">
     <div class="section-header">
-      <p class="section-number">02 / 05 · National Cultures</p>
+      <p class="section-number">02 / 05 &middot; National Cultures</p>
       <h2 class="section-title">Canada vs the USA — The Big Picture</h2>
-      <p class="section-desc">Two countries that speak the same language, share a continent, and yet have profoundly different values, systems, and identities. Let's go dimension by dimension.</p>
+      <p class="section-desc">Two countries that speak the same language, share a continent, and yet have profoundly different values, systems, and identities.</p>
     </div>
     <div class="content-block">
-
       <div class="tab-row">
         <button class="tab-btn active" onclick="showTab('identity')">Identity</button>
-        <button class="tab-btn" onclick="showTab('politics')">Politics & Society</button>
+        <button class="tab-btn" onclick="showTab('politics')">Politics &amp; Society</button>
         <button class="tab-btn" onclick="showTab('work')">Work Culture</button>
-        <button class="tab-btn" onclick="showTab('language')">Language & Tone</button>
+        <button class="tab-btn" onclick="showTab('language')">Language &amp; Tone</button>
       </div>
-
       <div id="tab-identity">
         <div class="compare-grid">
           <div class="compare-col canada">
-            <div class="compare-flag">🍁</div>
+            <div class="compare-flag">&#127809;</div>
             <h3>Canada — "The Mosaic"</h3>
             <ul class="compare-items">
-              <li>National identity is built on <strong>celebrating difference</strong> — multiculturalism is official government policy since 1971</li>
-              <li>The goal is a <strong>cultural mosaic</strong>: newcomers keep their language and traditions</li>
-              <li>"Canadian-ness" is often defined by what it is <em>not</em> — not American, not British — rather than one dominant narrative</li>
-              <li>Strong sense of collective responsibility: healthcare, education, social safety net</li>
+              <li>National identity built on <strong>celebrating difference</strong> — multiculturalism is official policy since 1971</li>
+              <li>Goal is a <strong>cultural mosaic</strong>: newcomers keep their language and traditions</li>
+              <li>"Canadian-ness" often defined by what it is not — not American, not British</li>
+              <li>Strong collective responsibility: healthcare, education, social safety net</li>
               <li>National pride is quieter, less performative — but deeply felt</li>
-              <li>The concept of "peace, order, and good government" vs the American "life, liberty, pursuit of happiness"</li>
+              <li>"Peace, order, and good government" vs "life, liberty, pursuit of happiness"</li>
             </ul>
           </div>
           <div class="compare-divider">vs</div>
           <div class="compare-col usa">
-            <div class="compare-flag">🇺🇸</div>
+            <div class="compare-flag">&#127482;&#127480;</div>
             <h3>USA — "The Melting Pot"</h3>
             <ul class="compare-items">
               <li>The <strong>American Dream</strong>: individual effort leads to success regardless of origin</li>
-              <li>The ideal is <strong>assimilation</strong>: different backgrounds blend into one shared American identity</li>
-              <li>National identity is strongly and loudly expressed — flags, pledges, patriotic rituals</li>
-              <li>Individual rights and freedoms are paramount — government interference is viewed skeptically</li>
-              <li>Exceptionalism: the belief that America is uniquely great with a global mission</li>
+              <li>Ideal is <strong>assimilation</strong>: backgrounds blend into one shared American identity</li>
+              <li>National identity strongly and loudly expressed — flags, pledges, patriotic rituals</li>
+              <li>Individual rights paramount — government interference viewed skeptically</li>
+              <li>Exceptionalism: belief that America is uniquely great with a global mission</li>
               <li>Entrepreneurship, competition, and self-reliance are core virtues</li>
             </ul>
           </div>
         </div>
-        <div class="fun-fact">
-          <div class="ff-icon">🧠</div>
-          <p><strong>Leadership reflection:</strong> Think about your own organisation. Is it more of a "mosaic" (celebrating individual differences) or a "melting pot" (building a shared culture)? Which approach works better — and when?</p>
-        </div>
+        <div class="fun-fact"><div class="ff-icon">&#129504;</div><p><strong>Leadership reflection:</strong> Is your organisation more of a "mosaic" or a "melting pot"? Which approach works better — and when?</p></div>
       </div>
-
       <div id="tab-politics" style="display:none">
         <div class="compare-grid">
           <div class="compare-col canada">
-            <div class="compare-flag">🍁</div>
-            <h3>Canada — Consensus & Care</h3>
+            <div class="compare-flag">&#127809;</div>
+            <h3>Canada — Consensus &amp; Care</h3>
             <ul class="compare-items">
               <li>Parliamentary democracy headed by a <strong>Prime Minister</strong></li>
               <li>Five major political parties — a much broader political spectrum</li>
-              <li>Universal healthcare is not a debate — it's a <strong>national identity marker</strong></li>
-              <li>Relatively low political polarisation — 70% of Canadians are satisfied with their democracy</li>
-              <li>Trust in government and institutions is high and doesn't swing dramatically by election</li>
-              <li>Gun ownership is regulated; gun culture is not a defining cultural battle</li>
+              <li>Universal healthcare is a <strong>national identity marker</strong>, not a debate</li>
+              <li>Low political polarisation — 70% of Canadians satisfied with their democracy</li>
+              <li>High institutional trust, stable regardless of election outcomes</li>
+              <li>Gun ownership regulated; not a defining cultural battle</li>
             </ul>
           </div>
           <div class="compare-divider">vs</div>
           <div class="compare-col usa">
-            <div class="compare-flag">🇺🇸</div>
-            <h3>USA — Freedom & Fracture</h3>
+            <div class="compare-flag">&#127482;&#127480;</div>
+            <h3>USA — Freedom &amp; Fracture</h3>
             <ul class="compare-items">
-              <li>Presidential republic with a powerful <strong>two-party system</strong> (Democrat vs Republican)</li>
-              <li>Deeply polarised — political opponents are often seen as enemies, not rivals</li>
+              <li>Presidential republic with powerful <strong>two-party system</strong></li>
+              <li>Deeply polarised — opponents often seen as enemies, not rivals</li>
               <li>Healthcare, gun rights, abortion are existential culture-war battlegrounds</li>
-              <li>Only ~28% of Americans think the country is going in the right direction</li>
-              <li>Deep distrust of government and institutions across large segments of society</li>
-              <li>Religious identity plays a much stronger role in political and social life</li>
+              <li>Only ~28% of Americans think the country is heading in the right direction</li>
+              <li>Deep distrust of government across large segments of society</li>
+              <li>Religious identity plays a much stronger role in political life</li>
             </ul>
           </div>
         </div>
-        <div class="fun-fact">
-          <div class="ff-icon">💬</div>
-          <p><strong>Discussion:</strong> Canada is described as united despite celebrating differences; the USA aims for unity but is deeply divided. What does this tell us about the relationship between multiculturalism and social cohesion?</p>
-        </div>
+        <div class="fun-fact"><div class="ff-icon">&#128172;</div><p><strong>Discussion:</strong> Canada is united despite celebrating differences; the USA aims for unity but is divided. What does this tell us about multiculturalism and social cohesion?</p></div>
       </div>
-
       <div id="tab-work" style="display:none">
         <div class="compare-grid">
           <div class="compare-col canada">
-            <div class="compare-flag">🍁</div>
-            <h3>Canada — Collaborative & Balanced</h3>
+            <div class="compare-flag">&#127809;</div>
+            <h3>Canada — Collaborative &amp; Balanced</h3>
             <ul class="compare-items">
               <li>Polite, consensus-driven communication — building agreement before deciding</li>
-              <li><strong>Team contribution</strong> is valued over individual star performance</li>
-              <li>Strong employee protections — no "at-will" employment; termination requires documented cause</li>
-              <li>Mandatory paid breaks, statutory holidays, and at least 2 weeks' vacation by law</li>
-              <li>Parental leave is generous and widely used by both parents</li>
-              <li>After-hours disconnection is culturally normal — Canadians are less likely to identify with their job</li>
+              <li><strong>Team contribution</strong> valued over individual star performance</li>
+              <li>Strong employee protections — termination requires documented cause</li>
+              <li>Mandatory paid breaks, statutory holidays, minimum 2 weeks' vacation</li>
+              <li>Generous parental leave, widely used by both parents</li>
+              <li>After-hours disconnection is normal — Canadians don't over-identify with their job</li>
             </ul>
           </div>
           <div class="compare-divider">vs</div>
           <div class="compare-col usa">
-            <div class="compare-flag">🇺🇸</div>
-            <h3>USA — Driven & Direct</h3>
+            <div class="compare-flag">&#127482;&#127480;</div>
+            <h3>USA — Driven &amp; Direct</h3>
             <ul class="compare-items">
-              <li>Direct, assertive communication — "Let's cut to the chase", "What's your bottom line?"</li>
-              <li><strong>Individual achievement</strong> and visibility are rewarded and expected</li>
-              <li>Employment is largely "at-will" — easier to hire and fire</li>
+              <li>Direct, assertive communication — "Let's cut to the chase"</li>
+              <li><strong>Individual achievement</strong> and visibility rewarded and expected</li>
+              <li>Employment largely "at-will" — easier to hire and fire</li>
               <li>Fewer legal protections around holidays and vacation — hustle culture is real</li>
               <li>Americans often strongly identify with their career and profession</li>
-              <li>Networking, self-promotion, and personal branding are essential professional skills</li>
+              <li>Networking, self-promotion, and personal branding are essential skills</li>
             </ul>
           </div>
         </div>
-        <div class="fun-fact">
-          <div class="ff-icon">🧠</div>
-          <p><strong>Leadership angle:</strong> As future leaders, which style is more effective in today's world — the assertive American directness or the Canadian consensus-building approach? Can they be combined? When would you choose one over the other?</p>
-        </div>
+        <div class="fun-fact"><div class="ff-icon">&#129504;</div><p><strong>Leadership angle:</strong> Which style is more effective today — assertive American directness or Canadian consensus-building? Can they be combined? When would you choose one over the other?</p></div>
       </div>
-
       <div id="tab-language" style="display:none">
         <div class="compare-grid">
           <div class="compare-col canada">
-            <div class="compare-flag">🍁</div>
-            <h3>Canada — Softened & Bilingual</h3>
+            <div class="compare-flag">&#127809;</div>
+            <h3>Canada — Softened &amp; Bilingual</h3>
             <ul class="compare-items">
               <li>Officially bilingual: English <em>and</em> French — shaped by a bicultural founding</li>
-              <li>Communication is softer — "Sorry, but…", "Would you mind if…?" are default openers</li>
-              <li>Canadian spelling blends British and American: <em>colour, centre, favourite</em></li>
-              <li>"Eh?" functions as a social invitation — checking for agreement, keeping conversation open</li>
-              <li>Over <strong>160 languages</strong> spoken in Toronto alone; multilingualism is the norm</li>
-              <li>Politeness on social media — Canadian Twitter was found to be measurably more civil than American Twitter in studies</li>
+              <li>Communication is softer — "Sorry, but..." are default openers</li>
+              <li>Spelling blends British and American: <em>colour, centre, favourite</em></li>
+              <li>"Eh?" as a social invitation — checking for agreement, keeping conversation open</li>
+              <li>Over <strong>160 languages</strong> spoken in Toronto alone</li>
+              <li>Canadian Twitter measurably more civil than American Twitter in studies</li>
             </ul>
           </div>
           <div class="compare-divider">vs</div>
           <div class="compare-col usa">
-            <div class="compare-flag">🇺🇸</div>
-            <h3>USA — Casual & Confident</h3>
+            <div class="compare-flag">&#127482;&#127480;</div>
+            <h3>USA — Casual &amp; Confident</h3>
             <ul class="compare-items">
               <li>English-only as de facto standard, though Spanish is widely spoken</li>
-              <li>Communication is casual and direct even with strangers or in business: "Hi!" vs "Good morning"</li>
-              <li>American English spelling is the global pop-culture default: <em>color, center, favorite</em></li>
-              <li>Filler phrases lean toward affirmation: "Awesome!", "Absolutely!", "For sure!"</li>
-              <li>NYC alone hosts speakers of <strong>~800 languages</strong> — the most linguistically diverse city on Earth</li>
-              <li>American slang spreads globally through film, TV, and social media far faster than Canadian equivalents</li>
+              <li>Casual and direct even with strangers: "Hi!" vs "Good morning"</li>
+              <li>American English spelling is the global pop-culture default</li>
+              <li>Filler phrases lean toward affirmation: "Awesome!", "Absolutely!"</li>
+              <li>NYC alone hosts speakers of <strong>~800 languages</strong></li>
+              <li>American slang spreads globally through film, TV, and social media</li>
             </ul>
           </div>
         </div>
       </div>
-
     </div>
     <div class="section-nav">
-      <button class="nav-btn prev" onclick="goSection(1)">← Warm-Up</button>
+      <button class="nav-btn prev" onclick="goSection(1)">&larr; Warm-Up</button>
       <span class="section-progress">Section 2 of 5</span>
-      <button class="nav-btn next" onclick="goSection(3)">Toronto vs NYC →</button>
+      <button class="nav-btn next" onclick="goSection(3)">Toronto vs NYC &rarr;</button>
     </div>
   </div>
 
-  <!-- SECTION 3: TORONTO vs NYC -->
+  <!-- S3: TORONTO vs NYC -->
   <div class="section" id="s3">
     <div class="section-header">
-      <p class="section-number">03 / 05 · City Deep-Dive</p>
-      <h2 class="section-title">Toronto & New York:<br>Sister Cities, Different Souls</h2>
-      <p class="section-desc">Often compared, occasionally rivalrous, Toronto and NYC share DNA — but their personalities tell two very different stories about what makes a great city.</p>
+      <p class="section-number">03 / 05 &middot; City Deep-Dive</p>
+      <h2 class="section-title">Toronto &amp; New York:<br>Sister Cities, Different Souls</h2>
+      <p class="section-desc">Often compared, occasionally rivalrous — Toronto and NYC share DNA, but their personalities tell two very different stories.</p>
     </div>
     <div class="content-block">
-
       <div class="city-split">
         <div class="city-card toronto" data-city="YYZ">
-          <h3>🍁 Toronto</h3>
+          <h3>&#127809; Toronto</h3>
           <p class="tagline">"The city that works"</p>
           <div class="city-stat"><span class="label">Population</span><span class="value">~2.9M city / 6.7M metro</span></div>
           <div class="city-stat"><span class="label">Born outside Canada</span><span class="value">~50%</span></div>
@@ -1015,7 +449,7 @@
           <div class="city-stat"><span class="label">Safety ranking</span><span class="value">Among world's safest</span></div>
         </div>
         <div class="city-card nyc" data-city="NYC">
-          <h3>🗽 New York City</h3>
+          <h3>&#127961; New York City</h3>
           <p class="tagline">"The city that never sleeps"</p>
           <div class="city-stat"><span class="label">Population</span><span class="value">~8.2M city / 20M metro</span></div>
           <div class="city-stat"><span class="label">Born outside USA</span><span class="value">~37%</span></div>
@@ -1026,241 +460,127 @@
           <div class="city-stat"><span class="label">Global prominence</span><span class="value">Finance, fashion, media capital</span></div>
         </div>
       </div>
-
       <div class="venn-area">
         <h3>What they share — and what sets them apart</h3>
         <p>Two world-class cities, radically different personalities</p>
         <div class="venn-grid">
           <div class="venn-col toronto-only">
-            <h4>🍁 Toronto Only</h4>
-            <span class="venn-tag">Universal healthcare</span>
-            <span class="venn-tag">Safer streets</span>
-            <span class="venn-tag">Cheaper cost of living</span>
-            <span class="venn-tag">Kensington Market</span>
-            <span class="venn-tag">TIFF (film festival)</span>
-            <span class="venn-tag">Distillery District</span>
-            <span class="venn-tag">More polite culture</span>
-            <span class="venn-tag">Mosaic philosophy</span>
-            <span class="venn-tag">High Park & The Islands</span>
+            <h4>&#127809; Toronto Only</h4>
+            <span class="venn-tag">Universal healthcare</span><span class="venn-tag">Safer streets</span><span class="venn-tag">Cheaper living</span><span class="venn-tag">Kensington Market</span><span class="venn-tag">TIFF</span><span class="venn-tag">Distillery District</span><span class="venn-tag">Polite culture</span><span class="venn-tag">Mosaic philosophy</span><span class="venn-tag">High Park &amp; Islands</span>
           </div>
           <div class="venn-col shared">
             <h4>Both Cities</h4>
-            <span class="venn-tag">World-class diversity</span>
-            <span class="venn-tag">Immigrant-majority</span>
-            <span class="venn-tag">Finance hubs</span>
-            <span class="venn-tag">Arts & theater</span>
-            <span class="venn-tag">Chinatown, Little Italy</span>
-            <span class="venn-tag">Thriving food scenes</span>
-            <span class="venn-tag">Major sports teams</span>
-            <span class="venn-tag">Lakefront / waterfront</span>
-            <span class="venn-tag">Public transit</span>
+            <span class="venn-tag">World-class diversity</span><span class="venn-tag">Immigrant-majority</span><span class="venn-tag">Finance hubs</span><span class="venn-tag">Arts &amp; theater</span><span class="venn-tag">Chinatown, Little Italy</span><span class="venn-tag">Food scenes</span><span class="venn-tag">Sports teams</span><span class="venn-tag">Waterfront</span><span class="venn-tag">Public transit</span>
           </div>
           <div class="venn-col nyc-only">
-            <h4>🗽 NYC Only</h4>
-            <span class="venn-tag">Broadway</span>
-            <span class="venn-tag">Wall Street</span>
-            <span class="venn-tag">MoMA / The Met</span>
-            <span class="venn-tag">24/7 subway</span>
-            <span class="venn-tag">Fashion Week</span>
-            <span class="venn-tag">Central Park</span>
-            <span class="venn-tag">Extreme hustle culture</span>
-            <span class="venn-tag">Global media capital</span>
-            <span class="venn-tag">Unrivalled nightlife</span>
+            <h4>&#127961; NYC Only</h4>
+            <span class="venn-tag">Broadway</span><span class="venn-tag">Wall Street</span><span class="venn-tag">MoMA / The Met</span><span class="venn-tag">24/7 subway</span><span class="venn-tag">Fashion Week</span><span class="venn-tag">Central Park</span><span class="venn-tag">Hustle culture</span><span class="venn-tag">Global media capital</span><span class="venn-tag">Legendary nightlife</span>
           </div>
         </div>
       </div>
-
-      <div class="fun-fact" style="margin-top:24px">
-        <div class="ff-icon">🏙️</div>
-        <p><strong>Toronto is sometimes called "New York without the attitude" or "New York run by the Swiss."</strong> Some Torontonians love the comparison; others find it reductive. As you visit, form your own opinion — what makes Toronto uniquely itself, beyond the NYC shadow?</p>
-      </div>
-
-      <!-- Accordion: neighbourhood spotlights -->
-      <h3 style="font-family:'Playfair Display',serif; font-size:22px; margin: 32px 0 16px;">Toronto Neighbourhood Spotlights</h3>
-      <p style="color:var(--warm-gray); font-size:14px; margin-bottom:20px;">Toronto is really a city of neighbourhoods — each one a distinct cultural world. Click to explore.</p>
-
+      <div class="fun-fact" style="margin-top:24px"><div class="ff-icon">&#127961;&#65039;</div><p><strong>Toronto is sometimes called "New York without the attitude."</strong> Some Torontonians love the comparison; others find it reductive. As you visit, form your own opinion.</p></div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:22px;margin:32px 0 16px;">Toronto Neighbourhood Spotlights</h3>
+      <p style="color:var(--warm-gray);font-size:14px;margin-bottom:20px;">Click to explore each distinct cultural world.</p>
       <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>🌿 Kensington Market — The Bohemian Heart</span>
-          <span class="accordion-arrow">▼</span>
-        </div>
-        <div class="accordion-body">A historic, eclectic neighbourhood that has been home to waves of immigrants — Jewish, Portuguese, Caribbean, Chinese, and more. Today it's Toronto's most bohemian spot: vintage shops, global street food, murals, and an almost defiant resistance to gentrification. It embodies Toronto's mosaic identity in a single square kilometre. Compare this to NYC's Williamsburg — similar creative energy, but significantly more gentrified and expensive.</div>
+        <div class="accordion-header" onclick="toggleAccordion(this)"><span>&#127807; Kensington Market — The Bohemian Heart</span><span class="accordion-arrow">&#9660;</span></div>
+        <div class="accordion-body">A historic, eclectic neighbourhood home to waves of immigrants — Jewish, Portuguese, Caribbean, Chinese, and more. Today it's Toronto's most bohemian spot: vintage shops, global street food, murals, and an almost defiant resistance to gentrification. It embodies Toronto's mosaic identity in a single square kilometre.</div>
       </div>
-
       <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>🏭 The Distillery District — Industrial Chic</span>
-          <span class="accordion-arrow">▼</span>
-        </div>
-        <div class="accordion-body">A 13-acre preserved Victorian industrial complex turned cultural hub — galleries, boutiques, restaurants, and studios in stunning heritage brick buildings. Toronto has managed what many cities dream of: authentic adaptive reuse that serves culture rather than just luxury condos. The Christmas Market here is legendary.</div>
+        <div class="accordion-header" onclick="toggleAccordion(this)"><span>&#127981; The Distillery District — Industrial Chic</span><span class="accordion-arrow">&#9660;</span></div>
+        <div class="accordion-body">A 13-acre preserved Victorian industrial complex turned cultural hub — galleries, boutiques, restaurants, and studios in stunning heritage brick buildings. Authentic adaptive reuse that serves culture rather than just luxury condos. The Christmas Market here is legendary.</div>
       </div>
-
       <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>🌊 Waterfront & The Islands</span>
-          <span class="accordion-arrow">▼</span>
-        </div>
-        <div class="accordion-body">Toronto sits on Lake Ontario — one of the Great Lakes — and its waterfront is a genuine asset. The Toronto Islands (a short ferry ride away) offer a car-free escape with beaches, kayaking, and skyline views. This is something NYC's Manhattan simply can't match. Torontonians love the idea of being able to swim in a lake within sight of the city's skyscrapers.</div>
+        <div class="accordion-header" onclick="toggleAccordion(this)"><span>&#127754; Waterfront &amp; The Islands</span><span class="accordion-arrow">&#9660;</span></div>
+        <div class="accordion-body">Toronto sits on Lake Ontario and its waterfront is a genuine asset. The Toronto Islands offer a car-free escape with beaches, kayaking, and skyline views. Torontonians love being able to swim in a lake within sight of the city's skyscrapers — something Manhattan simply can't match.</div>
       </div>
-
       <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>🍜 Scarborough — The World in One Borough</span>
-          <span class="accordion-arrow">▼</span>
-        </div>
-        <div class="accordion-body">Often overlooked by tourists, Scarborough is where Toronto's true multicultural density lives — Sri Lankan, South Asian, East African, Caribbean, Chinese communities all thriving side by side. The food here — Tamil, Hakka-Chinese fusion, roti — is some of the best and most authentic in North America. No equivalent neighbourhood exists in NYC at the same scale and density.</div>
+        <div class="accordion-header" onclick="toggleAccordion(this)"><span>&#127837; Scarborough — The World in One Borough</span><span class="accordion-arrow">&#9660;</span></div>
+        <div class="accordion-body">Often overlooked by tourists, Scarborough is where Toronto's true multicultural density lives — Sri Lankan, South Asian, East African, Caribbean, Chinese communities thriving side by side. The food here — Tamil, Hakka-Chinese fusion, roti — is some of the best and most authentic in North America.</div>
       </div>
-
     </div>
     <div class="section-nav">
-      <button class="nav-btn prev" onclick="goSection(2)">← National Cultures</button>
+      <button class="nav-btn prev" onclick="goSection(2)">&larr; National Cultures</button>
       <span class="section-progress">Section 3 of 5</span>
-      <button class="nav-btn next" onclick="goSection(4)">Cultural Dimensions →</button>
+      <button class="nav-btn next" onclick="goSection(4)">Cultural Dimensions &rarr;</button>
     </div>
   </div>
 
-  <!-- SECTION 4: HOFSTEDE + LEADERSHIP -->
+  <!-- S4: DIMENSIONS -->
   <div class="section" id="s4">
     <div class="section-header">
-      <p class="section-number">04 / 05 · Leadership Lens</p>
+      <p class="section-number">04 / 05 &middot; Leadership Lens</p>
       <h2 class="section-title">Cultural Dimensions for Leaders</h2>
       <p class="section-desc">Using frameworks from cultural psychology, let's see where Canada and the USA actually sit — and what that means for how you lead across borders.</p>
     </div>
     <div class="content-block">
-
       <div class="dimension-card">
-        <div class="dim-header">
-          <div>
-            <div class="dim-title">Individualism vs Collectivism</div>
-            <div style="font-size:13px;color:var(--warm-gray);margin-top:4px;">How much do people prioritise personal goals vs group harmony?</div>
-          </div>
-          <div class="dim-emoji">👤</div>
-        </div>
-        <div class="dim-spectrum">
-          <div class="spectrum-labels"><span class="ca-label">Canada — High Individualism (but with guardrails)</span><span class="us-label">USA — Extreme Individualism</span></div>
-          <div class="spectrum-bar">
-            <div class="spectrum-marker ca" title="Canada">🍁</div>
-            <div class="spectrum-marker us" title="USA">🇺🇸</div>
-          </div>
-        </div>
-        <p class="dim-desc">Both countries are individualist — but the USA scores among the highest in the world (91/100), while Canada (80/100) is more comfortable with collective solutions like public healthcare. In Canada, individual ambition is tempered by a "we're all in this together" spirit. In the USA, the individual hero narrative is dominant. <strong>For leaders visiting Toronto:</strong> Expect collaboration and consensus-seeking — but don't mistake politeness for passivity.</p>
+        <div class="dim-header"><div><div class="dim-title">Individualism vs Collectivism</div><div style="font-size:13px;color:var(--warm-gray);margin-top:4px;">How much do people prioritise personal goals vs group harmony?</div></div><div class="dim-emoji">&#128100;</div></div>
+        <div class="dim-spectrum"><div class="spectrum-labels"><span class="ca-label">Canada — High Individualism (with guardrails)</span><span class="us-label">USA — Extreme Individualism</span></div><div class="spectrum-bar"><div class="spectrum-marker ca">&#127809;</div><div class="spectrum-marker us">&#127482;&#127480;</div></div></div>
+        <p class="dim-desc">Both are individualist — but the USA scores among the world's highest (91/100). Canada (80/100) is more comfortable with collective solutions. <strong>For leaders in Toronto:</strong> Expect collaboration and consensus — but don't mistake politeness for passivity.</p>
       </div>
-
       <div class="dimension-card">
-        <div class="dim-header">
-          <div>
-            <div class="dim-title">Power Distance</div>
-            <div style="font-size:13px;color:var(--warm-gray);margin-top:4px;">How much do people accept hierarchy and unequal power?</div>
-          </div>
-          <div class="dim-emoji">👑</div>
-        </div>
-        <div class="dim-spectrum">
-          <div class="spectrum-labels"><span class="ca-label">Canada — Lower Power Distance</span><span class="us-label">USA — Moderate Power Distance</span></div>
-          <div class="spectrum-bar">
-            <div class="spectrum-marker ca" style="left:20%">🍁</div>
-            <div class="spectrum-marker us" style="left:40%">🇺🇸</div>
-          </div>
-        </div>
-        <p class="dim-desc">Canada is relatively egalitarian — managers and employees communicate more openly, decisions often involve input from multiple levels, and challenging authority politely is acceptable. American workplaces can be more hierarchical than they appear — the CEO culture is strong. <strong>Practical tip:</strong> In Toronto meetings, expect juniors to speak up; don't interpret silence as disagreement.</p>
+        <div class="dim-header"><div><div class="dim-title">Power Distance</div><div style="font-size:13px;color:var(--warm-gray);margin-top:4px;">How much do people accept hierarchy and unequal power?</div></div><div class="dim-emoji">&#128081;</div></div>
+        <div class="dim-spectrum"><div class="spectrum-labels"><span class="ca-label">Canada — Lower Power Distance</span><span class="us-label">USA — Moderate Power Distance</span></div><div class="spectrum-bar"><div class="spectrum-marker ca" style="left:20%">&#127809;</div><div class="spectrum-marker us" style="left:40%">&#127482;&#127480;</div></div></div>
+        <p class="dim-desc">Canada is relatively egalitarian — managers and employees communicate openly, and challenging authority politely is acceptable. <strong>Practical tip:</strong> In Toronto meetings, expect juniors to speak up; don't interpret silence as disagreement.</p>
       </div>
-
       <div class="dimension-card">
-        <div class="dim-header">
-          <div>
-            <div class="dim-title">Uncertainty Avoidance</div>
-            <div style="font-size:13px;color:var(--warm-gray);margin-top:4px;">How comfortable are people with ambiguity and risk?</div>
-          </div>
-          <div class="dim-emoji">🎲</div>
-        </div>
-        <div class="dim-spectrum">
-          <div class="spectrum-labels"><span class="ca-label">Canada — Moderate (comfort with ambiguity)</span><span class="us-label">USA — Lower (risk-tolerant)</span></div>
-          <div class="spectrum-bar">
-            <div class="spectrum-marker ca" style="left:50%">🍁</div>
-            <div class="spectrum-marker us" style="left:30%">🇺🇸</div>
-          </div>
-        </div>
-        <p class="dim-desc">American entrepreneurial culture celebrates taking risks and failing fast — Silicon Valley mythology. Canada is more cautious — regulation is welcome, safety nets matter, and decisions are more measured. Interestingly, Toronto has a thriving startup scene that blends both: the ambition of the American model with more social support underneath.</p>
+        <div class="dim-header"><div><div class="dim-title">Uncertainty Avoidance</div><div style="font-size:13px;color:var(--warm-gray);margin-top:4px;">How comfortable are people with ambiguity and risk?</div></div><div class="dim-emoji">&#127922;</div></div>
+        <div class="dim-spectrum"><div class="spectrum-labels"><span class="ca-label">Canada — Moderate (comfort with ambiguity)</span><span class="us-label">USA — Lower (risk-tolerant)</span></div><div class="spectrum-bar"><div class="spectrum-marker ca" style="left:50%">&#127809;</div><div class="spectrum-marker us" style="left:30%">&#127482;&#127480;</div></div></div>
+        <p class="dim-desc">American culture celebrates taking risks and failing fast. Canada is more cautious — regulation is welcome, safety nets matter. Toronto's startup scene blends both: American ambition with more social support underneath.</p>
       </div>
-
       <div class="dimension-card">
-        <div class="dim-header">
-          <div>
-            <div class="dim-title">Long-Term vs Short-Term Orientation</div>
-            <div style="font-size:13px;color:var(--warm-gray);margin-top:4px;">Do people plan for the future or focus on immediate results?</div>
-          </div>
-          <div class="dim-emoji">🔭</div>
-        </div>
-        <div class="dim-spectrum">
-          <div class="spectrum-labels"><span class="ca-label">Canada — Slightly more long-term</span><span class="us-label">USA — Shorter-term (quarterly thinking)</span></div>
-          <div class="spectrum-bar">
-            <div class="spectrum-marker ca" style="left:55%">🍁</div>
-            <div class="spectrum-marker us" style="left:35%">🇺🇸</div>
-          </div>
-        </div>
-        <p class="dim-desc">American business culture is famously short-termist — quarterly earnings, shareholder returns, fast exits. Canadian business culture, while competitive, tends toward more measured, long-term relationship building. This shows up in negotiation: Canadian business partners often invest more time in building trust before the deal.</p>
+        <div class="dim-header"><div><div class="dim-title">Long-Term vs Short-Term Orientation</div><div style="font-size:13px;color:var(--warm-gray);margin-top:4px;">Do people plan for the future or focus on immediate results?</div></div><div class="dim-emoji">&#128301;</div></div>
+        <div class="dim-spectrum"><div class="spectrum-labels"><span class="ca-label">Canada — Slightly more long-term</span><span class="us-label">USA — Shorter-term (quarterly thinking)</span></div><div class="spectrum-bar"><div class="spectrum-marker ca" style="left:55%">&#127809;</div><div class="spectrum-marker us" style="left:35%">&#127482;&#127480;</div></div></div>
+        <p class="dim-desc">American business culture is famously short-termist. Canadian culture tends toward more measured, long-term relationship building. Canadian partners often invest more time building trust before the deal.</p>
       </div>
-
-      <div class="fun-fact">
-        <div class="ff-icon">🌍</div>
-        <p><strong>The Dutch connection:</strong> Where does the Netherlands fit on these dimensions? You come from a low power-distance, relatively individualist culture — which means you may find Canada's communication style more familiar than you expect. But Canada's multicultural workplace may still surprise you in other ways. What cultural adjustment will you need to make?</p>
-      </div>
-
+      <div class="fun-fact"><div class="ff-icon">&#127757;</div><p><strong>The Dutch connection:</strong> You come from a low power-distance, relatively individualist culture — you may find Canada's communication style more familiar than expected. But Canada's multicultural workplace will still surprise you. What adjustment will you need to make?</p></div>
     </div>
     <div class="section-nav">
-      <button class="nav-btn prev" onclick="goSection(3)">← Toronto vs NYC</button>
+      <button class="nav-btn prev" onclick="goSection(3)">&larr; Toronto vs NYC</button>
       <span class="section-progress">Section 4 of 5</span>
-      <button class="nav-btn next" onclick="goSection(5)">Reflection & Takeaways →</button>
+      <button class="nav-btn next" onclick="goSection(5)">City Adventure &rarr;</button>
     </div>
   </div>
 
-  <!-- SECTION 5: CHOOSE YOUR OWN ADVENTURE -->
+  <!-- S5: ADVENTURE -->
   <div class="section" id="s5">
     <div class="section-header">
-      <p class="section-number">05 / 05 · Your Day, Your Choices</p>
+      <p class="section-number">05 / 05 &middot; Your Day, Your Choices</p>
       <h2 class="section-title">Choose Your City. Live the Culture.</h2>
-      <p class="section-desc">Play alone or with a partner. Navigate a full day — from waking up to drinks after dinner — making cultural choices at every turn. Your decisions shape how people see you. Good luck. 🎮</p>
+      <p class="section-desc">Play alone or with a partner. Navigate a full day — from waking up to drinks after dinner — making cultural choices at every turn. Your decisions shape how people see you. Good luck. &#127918;</p>
     </div>
     <div class="content-block">
-
-      <!-- City Picker -->
       <div id="adv-picker">
         <div class="city-picker">
           <button class="city-pick-btn toronto-pick" onclick="startAdventure('toronto')">
-            <span class="pick-emoji">🍁</span>
+            <span class="pick-emoji">&#127809;</span>
             <h3>Toronto</h3>
             <p>Canada's most multicultural city. Polite, curious, innovative — but don't mistake calm for pushover.</p>
           </button>
           <button class="city-pick-btn nyc-pick" onclick="startAdventure('nyc')">
-            <span class="pick-emoji">🗽</span>
+            <span class="pick-emoji">&#127961;</span>
             <h3>New York City</h3>
             <p>The city that never sleeps. Direct, ambitious, electric — where everyone's in a hurry and opinions are free.</p>
           </button>
         </div>
-        <p style="text-align:center; color:rgba(245,240,232,0.4); font-size:13px; font-style:italic;">You can replay with the other city afterwards!</p>
+        <p style="text-align:center;color:rgba(245,240,232,0.4);font-size:13px;font-style:italic;margin-top:12px;">You can replay with the other city afterwards!</p>
       </div>
-
-      <!-- Adventure Area -->
       <div id="adv-game" style="display:none">
         <div class="adv-scene">
           <div class="adv-meta">
             <span class="adv-step-badge" id="adv-step-label">Step 1 of 15</span>
-            <div class="adv-score-bar">
-              <span>Cultural fit: </span>
-              <div id="score-pips"></div>
-            </div>
+            <div class="adv-score-bar"><span>Cultural fit:&nbsp;</span><div id="score-pips"></div></div>
           </div>
           <div class="adv-location" id="adv-location"></div>
           <div class="adv-situation" id="adv-situation"></div>
           <div class="adv-context" id="adv-context"></div>
           <div class="adv-choices" id="adv-choices"></div>
           <div class="adv-feedback" id="adv-feedback"></div>
-          <button class="adv-next-btn" id="adv-next" onclick="nextStep()">Next →</button>
+          <button class="adv-next-btn" id="adv-next" onclick="nextStep()">Next &rarr;</button>
         </div>
       </div>
-
-      <!-- Result Area -->
       <div id="adv-result" style="display:none">
-        <div class="adv-result">
+        <div class="adv-result-box">
           <span class="result-emoji" id="res-emoji"></span>
           <div class="result-title" id="res-title"></div>
           <div class="result-subtitle" id="res-subtitle"></div>
@@ -1268,619 +588,631 @@
           <div class="result-desc" id="res-desc"></div>
           <div class="result-insight" id="res-insight"></div>
           <div class="result-btns">
-            <button class="result-btn primary" onclick="resetAdventure()">↺ Try the Other City</button>
+            <button class="result-btn primary" onclick="resetAdventure()">&#8635; Try the Other City</button>
             <button class="result-btn secondary" onclick="resetAdventure()">Play Again</button>
           </div>
         </div>
       </div>
-
     </div>
     <div class="section-nav">
-      <button class="nav-btn prev" onclick="goSection(4)" style="border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.5);">← Cultural Dimensions</button>
-      <span class="section-progress" style="color:rgba(245,240,232,0.4)">Section 5 of 5</span>
-      <button class="nav-btn next" onclick="goSection(1)" style="border-color:var(--gold);color:var(--gold);">↺ Start Over</button>
+      <button class="nav-btn prev" onclick="goSection(4)" style="border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.5);">&larr; Cultural Dimensions</button>
+      <span class="section-progress">Section 5 of 5</span>
+      <button class="nav-btn next" onclick="goSection(1)" style="border-color:var(--gold);color:var(--gold);">&#8635; Start Over</button>
     </div>
   </div>
 
 </div><!-- end #main -->
 
 <script>
-  // ===================== CORE NAV =====================
-  let currentSection = 1;
-  const totalSections = 5;
-  let startTime = null;
-  const sessionMinutes = 60;
+// ===================== CORE NAV =====================
+var currentSection = 1;
+var totalSections = 5;
+var startTime = null;
+var sessionMinutes = 60;
 
-  function startMasterclass() {
-    document.getElementById('cover').style.display = 'none';
-    document.getElementById('nav').style.display = 'flex';
-    document.getElementById('main').style.display = 'block';
-    startTime = Date.now();
-    buildNavDots();
-    startTimer();
+function startMasterclass() {
+  document.getElementById('cover').style.display = 'none';
+  document.getElementById('nav').style.display = 'flex';
+  document.getElementById('main').style.display = 'block';
+  startTime = Date.now();
+  buildNavDots();
+  startTimer();
+}
+
+function buildNavDots() {
+  var container = document.getElementById('navDots');
+  container.innerHTML = '';
+  var labels = ['Warm-Up','National Cultures','Toronto vs NYC','Cultural Dimensions','City Adventure'];
+  for (var i = 1; i <= totalSections; i++) {
+    var dot = document.createElement('button');
+    dot.className = 'nav-dot' + (i === 1 ? ' active' : '');
+    dot.title = labels[i-1];
+    dot.setAttribute('data-section', i);
+    dot.onclick = (function(n){ return function(){ goSection(n); }; })(i);
+    container.appendChild(dot);
   }
+}
 
-  function buildNavDots() {
-    const container = document.getElementById('navDots');
-    container.innerHTML = '';
-    for (let i = 1; i <= totalSections; i++) {
-      const dot = document.createElement('button');
-      dot.className = 'nav-dot' + (i === 1 ? ' active' : '');
-      dot.title = ['Warm-Up', 'National Cultures', 'Toronto vs NYC', 'Cultural Dimensions', 'City Adventure'][i-1];
-      dot.onclick = () => goSection(i);
-      container.appendChild(dot);
+function goSection(n) {
+  document.getElementById('s' + currentSection).classList.remove('active');
+  currentSection = n;
+  document.getElementById('s' + currentSection).classList.add('active');
+  window.scrollTo(0, 0);
+  updateNavDots();
+}
+
+function updateNavDots() {
+  document.querySelectorAll('.nav-dot').forEach(function(d, i) {
+    d.classList.toggle('active', i + 1 === currentSection);
+  });
+}
+
+function startTimer() {
+  setInterval(function() {
+    if (!startTime) return;
+    var elapsed = (Date.now() - startTime) / 1000;
+    var m = Math.floor(elapsed / 60), s = Math.floor(elapsed % 60);
+    document.getElementById('navTimer').textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    document.getElementById('timerFill').style.width = Math.min((elapsed / (sessionMinutes * 60)) * 100, 100) + '%';
+  }, 1000);
+}
+
+function answer(btn, isCorrect, revealId) {
+  var opts = btn.closest('.quiz-options').querySelectorAll('.quiz-opt');
+  opts.forEach(function(o) { o.disabled = true; });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) opts.forEach(function(o) { if (!o.classList.contains('wrong')) o.classList.add('correct'); });
+  document.getElementById(revealId).classList.add('show');
+}
+
+var tabIds = ['identity','politics','work','language'];
+function showTab(id) {
+  tabIds.forEach(function(t) {
+    var el = document.getElementById('tab-' + t);
+    if (el) el.style.display = (t === id) ? 'block' : 'none';
+  });
+  document.querySelectorAll('.tab-btn').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('onclick').indexOf(id) !== -1);
+  });
+}
+
+function toggleAccordion(header) {
+  var item = header.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.accordion-item').forEach(function(i) { i.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+// ===================== ADVENTURE GAME =====================
+var adventures = {
+  toronto: [
+    {
+      location: "7:30 AM — Your Airbnb, Kensington Market",
+      situation: "Heading out for your first full day. In the hallway you bump into your neighbour — an older Jamaican-Canadian woman carrying groceries. She makes eye contact and smiles.",
+      context: "In Toronto, brief warm exchanges with strangers are completely normal. Ignoring people in communal spaces can read as rude or cold.",
+      choices: [
+        { text: "Smile warmly and say: Good morning! Need a hand with those bags?", good: true },
+        { text: "Give a quick nod and head out — you don't want to bother her.", good: false },
+        { text: "Say Hey! and keep walking — you're already running late.", good: false },
+        { text: "Hold the door open silently without making eye contact.", good: false }
+      ],
+      feedback_good: "Perfect start. Torontonians appreciate warmth and genuine offers of help. You've already made a small but real connection — this is how the mosaic works, one interaction at a time.",
+      feedback_bad: "In Toronto's communal culture, small acts of acknowledgement matter more than you'd think. A simple warm exchange costs nothing and builds the social fabric that makes the city work."
+    },
+    {
+      location: "8:15 AM — Independent cafe, Kensington Market",
+      situation: "The cafe is busy. You order a flat white. The barista — who has a visible sleeve tattoo and speaks with a soft Trinidadian accent — asks how you're doing.",
+      context: "Toronto service culture is genuinely warm, not just scripted. The question is real. How you respond sets the tone.",
+      choices: [
+        { text: "Really well thanks, loving the neighbourhood so far! Is this place new? (and actually listen to the answer)", good: true },
+        { text: "Fine thanks. (already looking at your phone)", good: false },
+        { text: "Just a flat white please, oat milk if you have it. (ignoring the question)", good: false },
+        { text: "Great! And you? (without waiting for the answer)", good: false }
+      ],
+      feedback_good: "You treated the interaction as a real conversation — which is what it was. In Toronto, service workers are community members, not invisible. Your genuine curiosity is already earning you social credit.",
+      feedback_bad: "Toronto's warmth is real, not performative. Brushing off a genuine question — especially from someone of a visible minority in a diverse city — can read as dismissive or aloof. Slow down and connect."
+    },
+    {
+      location: "8:45 AM — TTC Subway, Line 1",
+      situation: "The subway is packed. You find a seat. An elderly man with a cane gets on at the next stop. There are no priority seats visible nearby.",
+      context: "Canadian public space etiquette has very strong unwritten rules around deference to those who need more support.",
+      choices: [
+        { text: "Stand up immediately, make eye contact and gesture to your seat.", good: true },
+        { text: "Look around to see if someone else will get up first.", good: false },
+        { text: "Pretend to look at your phone — someone else will handle it.", good: false },
+        { text: "Move slightly to make space but stay seated.", good: false }
+      ],
+      feedback_good: "Exactly right, and done with grace. In Canada, this kind of quiet, immediate consideration is deeply valued. No fanfare needed — the act speaks for itself.",
+      feedback_bad: "The 'someone else will do it' instinct is surprisingly common — but in Toronto, people notice and internally judge hesitation on things like this. Collective responsibility is real here."
+    },
+    {
+      location: "9:30 AM — Toronto startup office, King West",
+      situation: "You arrive 10 minutes early for a meeting. The receptionist offers you coffee and says the team will be ready shortly.",
+      context: "Canadian professional culture values punctuality but also relaxed, warm pre-meeting interaction. You're being assessed from the moment you walk in.",
+      choices: [
+        { text: "Accept the coffee gratefully, make small talk with the receptionist, and stay off your phone.", good: true },
+        { text: "Decline the coffee, sit down and immediately open your laptop to look productive.", good: false },
+        { text: "Accept the coffee, then loudly take a phone call while you wait.", good: false },
+        { text: "Ask the receptionist to let the team know you've arrived and that you're ready.", good: false }
+      ],
+      feedback_good: "You read the room perfectly. The receptionist is not invisible — they often feed back impressions of visitors. Your warmth and presence (not your screen) made the right impression.",
+      feedback_bad: "Canadian offices are less formally hierarchical than you might expect. How you treat the receptionist, whether you're present or distracted — all of it is noticed and talked about."
+    },
+    {
+      location: "10:00 AM — Team meeting, open-plan office",
+      situation: "You're in a meeting with five Canadians. A junior team member has just proposed an idea you think is quite weak.",
+      context: "Canadian meeting culture is collaborative and consensus-driven. Direct criticism — even when accurate — needs to be framed carefully.",
+      choices: [
+        { text: "That's an interesting angle — I wonder if we could build on it by also considering X? That might address the risk of Y.", good: true },
+        { text: "I don't think that will work — here's why. (laying out your logic clearly)", good: false },
+        { text: "Stay quiet and raise your concerns privately with the team lead after.", good: false },
+        { text: "That's a great idea! (you don't mean it — but you don't want conflict)", good: false }
+      ],
+      feedback_good: "Beautiful. You were honest, contributed substance, AND preserved the junior person's dignity. This is the Canadian meeting superpower: disagreement wrapped in generosity. People remember this.",
+      feedback_bad: "Blunt criticism (even accurate), complete silence, or empty praise all miss the mark in different ways. The Canadian art form is constructive redirection — adding to ideas rather than defeating them."
+    },
+    {
+      location: "12:30 PM — Scarborough food court",
+      situation: "A colleague has brought you to a busy multicultural food court. He's Sri Lankan-Canadian and orders Tamil food. He asks what you'd like to try.",
+      context: "Toronto's food culture is a point of intense local pride. The right attitude here goes a long way.",
+      choices: [
+        { text: "I'd love to try something I've never had — what would you recommend? You know this better than I do.", good: true },
+        { text: "I'll just grab a sandwich — I'm not great with spicy food.", good: false },
+        { text: "Ooh is that safe to eat? I have a sensitive stomach.", good: false },
+        { text: "Is this like Indian food? I had a curry once.", good: false }
+      ],
+      feedback_good: "Handing over the expertise to someone who genuinely has it — and showing real curiosity — is one of the best things you can do in a multicultural setting. You just made your colleague's day.",
+      feedback_bad: "Declining, asking if it's safe, or reducing one culture's cuisine to another's are all forms of (probably unintentional) cultural dismissal. In Toronto, food is identity. Treat it accordingly."
+    },
+    {
+      location: "2:00 PM — Walking through Chinatown",
+      situation: "A market vendor calls out to you in Cantonese. You don't understand a word.",
+      context: "Over 160 languages are spoken in Toronto. Being navigated by language is completely normal — and how you respond matters.",
+      choices: [
+        { text: "Smile, shake your head gently, and say: Sorry, I only speak English — beautiful market though!", good: true },
+        { text: "Ignore them and keep walking.", good: false },
+        { text: "Speak loudly and slowly in English as if that will help.", good: false },
+        { text: "Point at things and shout: How much?! HOW MUCH?!", good: false }
+      ],
+      feedback_good: "Graceful. You acknowledged the person, communicated clearly without condescension, and threw in a genuine compliment. That's cultural intelligence in a two-second interaction.",
+      feedback_bad: "Ignoring people or speaking loudly-and-slowly are both forms of cultural clumsiness Torontonians wince at. A warm smile and honest 'I only speak English' is always enough."
+    },
+    {
+      location: "3:30 PM — Back at the office, feedback session",
+      situation: "The team lead asks for your honest assessment of their innovation process. You have real criticisms — their feedback loops are too slow.",
+      context: "Canadians value honest feedback — but the delivery matters enormously. Bluntness without warmth can damage the relationship permanently.",
+      choices: [
+        { text: "The collaborative culture is a real strength. One thing I'd explore is tightening the feedback loops — I've seen it make a big difference in faster iteration.", good: true },
+        { text: "Honestly? Your feedback loops are too slow and you're avoiding hard calls. It's holding you back.", good: false },
+        { text: "Everything looks really great — I wouldn't change much! (not true)", good: false },
+        { text: "Give very vague, non-committal feedback to avoid any awkwardness.", good: false }
+      ],
+      feedback_good: "You led with genuine appreciation, then delivered real insight with a constructive frame. This is exactly how Canadians want feedback delivered — and you'll be invited back.",
+      feedback_bad: "Pure bluntness lands badly; pure flattery is useless; vagueness is insulting. The sweet spot — real insight, generous framing — is a skill that pays dividends everywhere, not just in Canada."
+    },
+    {
+      location: "5:15 PM — Supermarket queue, The Annex",
+      situation: "The cashier looks exhausted — clearly a long shift. The queue is moving slowly. The person behind you sighs loudly.",
+      context: "How people treat service workers under pressure is a reliable signal of character in Canadian culture.",
+      choices: [
+        { text: "When you reach the cashier, make genuine eye contact: Long day? Thanks for keeping the queue moving. Pay, pack your bags, say: Have a good evening.", good: true },
+        { text: "Rush through your transaction as quickly as possible to relieve queue pressure.", good: false },
+        { text: "Comment to the cashier about how slow things are moving today.", good: false },
+        { text: "Join in the visible irritation — sigh, check your watch, make it known you're waiting.", good: false }
+      ],
+      feedback_good: "That brief moment of acknowledgement costs nothing and means everything to someone who's been on their feet all day. This is quintessential Canadian decency — and people around you noticed.",
+      feedback_bad: "Impatience, rushing, or commenting on slowness all add to the stress of an already hard moment. Canadian public culture has very low tolerance for making service workers feel worse."
+    },
+    {
+      location: "6:30 PM — Patio bar on Queen Street West",
+      situation: "You're meeting your colleague and two of his friends — one Punjabi-Canadian, one second-generation Chinese-Canadian. Someone asks where you're from.",
+      context: "In Toronto, 'where are you from?' is loaded when asked to visible minorities. But as a visitor, the question directed at you is simple.",
+      choices: [
+        { text: "I'm from the Netherlands — Sittard, near Maastricht. First time in Canada and already obsessed with this city.", good: true },
+        { text: "Europe. (and leave it at that)", good: false },
+        { text: "Where are YOU guys from originally? (immediately redirecting)", good: false },
+        { text: "Holland! Do you guys know Amsterdam? (assuming they're impressed)", good: false }
+      ],
+      feedback_good: "Specific, warm, enthusiastic. You invited follow-up conversation naturally and showed genuine excitement about Toronto. The group is already warming to you.",
+      feedback_bad: "Vagueness feels evasive; redirecting with 'where are YOU from?' can be offensive in a multicultural city; assuming everyone knows or cares about Amsterdam is a bit self-centred."
+    },
+    {
+      location: "7:00 PM — Conversation deepens at the bar",
+      situation: "The Punjabi-Canadian friend mentions he's experienced racism in Toronto — 'the most multicultural city in the world,' he says with a wry smile. There's a pause.",
+      context: "This is a moment where many visitors either over-correct (performatively outraged) or under-correct (uncomfortable silence). Neither works.",
+      choices: [
+        { text: "That's really important to hear — especially from someone who's lived it. I'd love to understand more about how that plays out here, if you're open to it.", good: true },
+        { text: "Oh my god, that's terrible! Canada is supposed to be so progressive!", good: false },
+        { text: "That must be hard. (and quickly change the subject)", good: false },
+        { text: "Wow, really? But everyone here seems so nice and welcoming...", good: false }
+      ],
+      feedback_good: "You didn't project emotions, didn't dismiss it, and didn't make it about your own surprise. You asked to learn. That's the rarest and most respectful response — and it will lead to a real conversation.",
+      feedback_bad: "Performing shock, changing the subject, or expressing disbelief are all ways of centring your own discomfort rather than the other person's experience. Ask, listen, learn."
+    },
+    {
+      location: "8:30 PM — Ethiopian restaurant, Little Ethiopia",
+      situation: "A communal Ethiopian meal eaten with injera bread — no cutlery. You've never eaten this way before.",
+      context: "Toronto's restaurant culture celebrates the full experience of other food traditions, not a watered-down version of them.",
+      choices: [
+        { text: "I've never eaten like this before — can you show me how? (and dive in enthusiastically, even if a bit messy)", good: true },
+        { text: "Ask the waiter quietly if they have a fork.", good: false },
+        { text: "Watch what everyone else does and copy exactly, saying nothing.", good: false },
+        { text: "Is this hygienic? Everyone's eating from the same plate?", good: false }
+      ],
+      feedback_good: "Asking to be shown how is the most culturally intelligent thing you can do — it's humble, it honours the tradition, and it invites connection. Your willingness to be a beginner is a leadership quality.",
+      feedback_bad: "Asking for cutlery, questioning hygiene, or silent copying without engagement all signal discomfort with the cultural experience. In Toronto, food is an invitation — accept it fully."
+    },
+    {
+      location: "10:00 PM — Walking home through Little Portugal",
+      situation: "You walk past a group of young people having a loud, joyful street party. One of them waves you over.",
+      context: "Toronto neighbourhoods have a spontaneous communal energy that's very different from many European cities.",
+      choices: [
+        { text: "Wave back with a grin and, if you have time, walk over and say hi — even for five minutes.", good: true },
+        { text: "Wave back but keep walking — you don't want to intrude.", good: false },
+        { text: "Look confused and cross the street.", good: false },
+        { text: "Smile politely from a safe distance and hurry past.", good: false }
+      ],
+      feedback_good: "You leaned in. This is how the best Toronto moments happen — unplanned, cross-cultural, joyful. Your openness to spontaneity is exactly what this city rewards.",
+      feedback_bad: "Toronto's community warmth often comes in unscripted moments. Staying behind the invisible wall of politeness means missing the best of what the city offers. Say yes more."
+    },
+    {
+      location: "11:00 PM — Back at your Airbnb, texting your colleague",
+      situation: "You want to thank your colleague for the day. You're typing a message. What do you send?",
+      context: "Canadian communication — even casually — tends to be warm and specific rather than brief and functional.",
+      choices: [
+        { text: "Today was genuinely one of the best days I've had in a long time. Thank you for all of it — the food, the conversations, showing me the real Toronto. You made this trip.", good: true },
+        { text: "Thanks for today, was good.", good: false },
+        { text: "(thumbs up emoji only)", good: false },
+        { text: "Great day! Let's do it again sometime.", good: false }
+      ],
+      feedback_good: "Specific, warm, genuine. You named what mattered and why. In Canadian culture — and in good human culture — this kind of gratitude lands deeply and sustains relationships.",
+      feedback_bad: "Brief or emoji-only thanks can feel transactional after a day of genuine connection. Take thirty extra seconds to say what you actually mean. It's worth it."
+    },
+    {
+      location: "11:30 PM — Reflection before sleep",
+      situation: "You think back on the day. What's your biggest takeaway about Toronto's culture?",
+      context: "This is a reflection moment — there's no wrong answer, but one response shows the deepest cultural insight.",
+      choices: [
+        { text: "The mosaic is real — and it only works because everyone is actively maintaining it through small daily choices.", good: true },
+        { text: "Toronto is basically a nicer, cleaner New York.", good: false },
+        { text: "Canadians are really polite — it's kind of cute.", good: false },
+        { text: "It's very multicultural but I'm not sure how deep it actually goes.", good: false }
+      ],
+      feedback_good: "Exactly. Toronto's diversity isn't passive — it's actively created and maintained through millions of daily interactions exactly like the ones you had today. You got it. That's the real takeaway.",
+      feedback_bad: "Reducing Toronto to 'a nicer NYC', 'cute politeness', or surface-level diversity misses the depth of what you actually experienced today. The mosaic requires effort — from everyone. That's the insight."
     }
+  ],
+  nyc: [
+    {
+      location: "7:00 AM — Your Airbnb, Brooklyn",
+      situation: "In the lift, a man in a sharp suit is inside, eyes on his phone, earbuds in. You make eye contact briefly as you get in.",
+      context: "New York elevator culture is famously silent. Eye contact is acknowledged — but small talk is not expected.",
+      choices: [
+        { text: "Give a quick upward nod of acknowledgement and look at the lift buttons. Stay quiet.", good: true },
+        { text: "Good morning! Lovely day isn't it? (cheerfully)", good: false },
+        { text: "Look at your phone and ignore him entirely.", good: false },
+        { text: "Ask him what floor he's going to and make conversation.", good: false }
+      ],
+      feedback_good: "The New York nod. Brief, respectful, non-intrusive. You signalled you're a person without demanding anything from him. In NYC, this is the gold standard of lift behaviour.",
+      feedback_bad: "Enthusiastic small talk in a NYC lift is genuinely jarring — New Yorkers protect their inner space fiercely in transit. A nod is enough. Anything more reads as tourist."
+    },
+    {
+      location: "7:30 AM — Bodega, Lower East Side",
+      situation: "You're at a classic NYC bodega. There's a line. The man behind the counter is working fast — egg and cheese sandwiches flying out. It's your turn.",
+      context: "Bodega speed and efficiency is a New York art form. Hesitation is a social crime.",
+      choices: [
+        { text: "Egg and cheese on a roll, please. Coffee — milk, two sugars. Exact, fast, ready.", good: true },
+        { text: "Hmm, what do you recommend? What's good here? (looking at the menu)", good: false },
+        { text: "Could I get... uhh... what do you have for breakfast?", good: false },
+        { text: "Sorry, I haven't been here before — give me a second to look...", good: false }
+      ],
+      feedback_good: "You came prepared. The bodega man appreciated your efficiency, the line moved, and you got a great sandwich. Knowing what you want before you reach the counter is a core New York social skill.",
+      feedback_bad: "Deliberating at the bodega counter marks you as out-of-town immediately. New Yorkers decide before they queue. Efficiency is respect for everyone's time."
+    },
+    {
+      location: "8:15 AM — Subway, A Train",
+      situation: "A busker enters the carriage — he's extraordinary, playing jazz trumpet with real skill. He finishes, walks the carriage for tips.",
+      context: "NYC subway busking is a real cultural institution. How you respond says something about you.",
+      choices: [
+        { text: "Make eye contact, give a genuine nod of appreciation, and put a dollar in his cup.", good: true },
+        { text: "Look at your phone throughout and pretend he's not there.", good: false },
+        { text: "Clap enthusiastically and take a video for Instagram.", good: false },
+        { text: "Wait until he passes and give nothing — you weren't that impressed.", good: false }
+      ],
+      feedback_good: "Real acknowledgement, real appreciation, real participation. NYC busking culture is a living creative ecosystem. You just became part of it rather than just passing through it.",
+      feedback_bad: "Ignoring artistry, treating performers as content for your feed, or withholding a tip all miss the point. The tip is participation in a city institution."
+    },
+    {
+      location: "9:30 AM — Midtown Manhattan office tower lobby",
+      situation: "Security requires sign-in. The guard asks your name and who you're visiting. He's businesslike — no smile.",
+      context: "NYC professional culture is efficient and direct. Warmth is earned, not given at the door.",
+      choices: [
+        { text: "Give your name clearly, the company and person you're meeting, produce your ID immediately. Brief and efficient.", good: true },
+        { text: "Try to make small talk with the guard while searching for your ID.", good: false },
+        { text: "Act confused and ask what you need to sign in.", good: false },
+        { text: "Be charming: Hi! Great building — how long have you worked here?", good: false }
+      ],
+      feedback_good: "You were prepared, clear, and efficient. The guard clocked you as professional and low-maintenance. In NYC, competent brevity is a form of respect.",
+      feedback_bad: "Unnecessary small talk, unpreparedness, or performed charm in transactional NYC moments reads as either inexperienced or performative. Have your ducks in a row."
+    },
+    {
+      location: "10:00 AM — Conference room, Midtown startup",
+      situation: "You're in a fast-moving pitch meeting. The founder pauses and asks: So — what do you think? Be honest.",
+      context: "New Yorkers genuinely mean 'be honest'. A vague, overly diplomatic answer will lose respect fast.",
+      choices: [
+        { text: "The market thesis is strong and your energy is compelling. My concern is your burn rate doesn't match your 18-month runway claim — I'd want to dig into that before going further.", good: true },
+        { text: "Really impressive — lots to think about. We'll be in touch!", good: false },
+        { text: "Great presentation! A few small thoughts but overall very exciting.", good: false },
+        { text: "I'm not sure this is the right fit for us. (and leave it at that)", good: false }
+      ],
+      feedback_good: "Specific, substantive, honest — with respect for her intelligence. This is exactly how New York business conversations work. She now knows you're serious. You'll hear from her again.",
+      feedback_bad: "Vague enthusiasm, hollow compliments, or dismissiveness without explanation are all weak in NYC business culture. Direct, substantive honesty is the currency. Spend it."
+    },
+    {
+      location: "12:30 PM — Deli lunch, Midtown",
+      situation: "Classic NYC deli. The server is fast and rattling off options: White, rye, sourdough or whole wheat? Mustard, mayo, both? Lettuce, tomato, onion?",
+      context: "The NYC deli sandwich build is a speed test and a confidence test. Hesitation slows everyone down.",
+      choices: [
+        { text: "Match his pace: Rye. Mustard. Lettuce and tomato, no onion. Confident, clear, quick.", good: true },
+        { text: "Oh um... what do most people get?", good: false },
+        { text: "Can I just see all the options again?", good: false },
+        { text: "Sorry, I'm not sure — what comes with it?", good: false }
+      ],
+      feedback_good: "You kept the rhythm. The counter guy gave you a micro-nod of approval. This is New York: know what you want, say it clearly, move along. The sandwich will be perfect.",
+      feedback_bad: "Uncertainty at a NYC deli counter creates a small but real social jam. Decide before you're asked. If you're not sure, pick the first option that sounds good and commit."
+    },
+    {
+      location: "2:00 PM — Central Park, afternoon walk",
+      situation: "You accidentally bump into a jogger wearing headphones — she stumbles slightly but is fine. She pulls out one earbud and looks at you.",
+      context: "NYC directness applies to apologies too — they should be real, not performative.",
+      choices: [
+        { text: "Oh — my fault, sorry about that. You okay? Brief, genuine, eye contact.", good: true },
+        { text: "Over-apologise: Oh my god I'm SO sorry, are you hurt? I'm so clumsy, I'm really sorry...", good: false },
+        { text: "Keep walking — you barely touched her.", good: false },
+        { text: "Blame the path: These walkways are so crowded, what can you do!", good: false }
+      ],
+      feedback_good: "Clean, direct, genuine. One real apology is worth ten performative ones. She nodded, put her earbud back in, and kept running. Perfectly handled.",
+      feedback_bad: "Over-apologising reads as anxious; ignoring it is rude; deflecting blame is worse. NYC respects the clean, quick, honest acknowledgement. Keep it brief and real."
+    },
+    {
+      location: "3:30 PM — Coffee with a New Yorker, West Village",
+      situation: "She asks what you think of New York so far. You've found it slightly overwhelming.",
+      context: "New Yorkers love their city fiercely — but they love genuine, specific observations more than generic praise.",
+      choices: [
+        { text: "It's overwhelming in the best way — the density of it, the energy. I walked past five different micro-worlds in one block this morning and I couldn't stop looking.", good: true },
+        { text: "It's amazing! I love it. So much to see. (vague tourist answer)", good: false },
+        { text: "It's a bit much honestly — very loud, very rushed. I prefer somewhere calmer.", good: false },
+        { text: "Honestly? Kind of scary. Everyone seems so intense.", good: false }
+      ],
+      feedback_good: "Specific and honest. You captured something real about the city and she knows you actually looked at it. New Yorkers are proud of their city's intensity — showing you've absorbed it is the highest compliment.",
+      feedback_bad: "Generic praise, dismissal, or expressing fear are all weak. New Yorkers want to know you engaged with the city on its own terms — the madness, the density, the energy. See it. Name it."
+    },
+    {
+      location: "6:00 PM — Pizza by the slice, Greenwich Village",
+      situation: "First New York slice. The crucial moment: do you fold it?",
+      context: "This is not a serious cultural moment — but it's a delightful one. New York pizza is eaten folded, one hand, standing up or walking.",
+      choices: [
+        { text: "Fold it lengthways into a U-shape, hold from the crust end, take a confident bite.", good: true },
+        { text: "Use a knife and fork at a table.", good: false },
+        { text: "Try to eat it flat and watch it flop, losing all the cheese.", good: false },
+        { text: "Ask if they have a plate.", good: false }
+      ],
+      feedback_good: "You folded. The guy behind the counter gave you an approving look. In New York, knowing how to eat a slice is a rite of passage. You passed.",
+      feedback_bad: "Knife and fork at a New York pizza counter is genuinely a cultural moment — and not in a good way. When in New York: fold."
+    },
+    {
+      location: "7:30 PM — Dinner in the East Village",
+      situation: "Dinner with your contact and two lifelong New Yorkers. The conversation is fast, loud, and overlapping. Someone makes a strong, controversial take about European cities.",
+      context: "New York dinner table culture treats a good argument as a sign of engagement — not disrespect.",
+      choices: [
+        { text: "Jump in directly: Actually I'd push back on that — and make your case with confidence and a grin.", good: true },
+        { text: "Wait politely for a gap in the conversation that never comes, and say nothing.", good: false },
+        { text: "Say: Interesting point. and diplomatically hedge.", good: false },
+        { text: "Agree with everything — you don't want to cause conflict.", good: false }
+      ],
+      feedback_good: "You got in the ring. New York conversation rewards confidence, directness, and the willingness to hold a position. They're not fighting — they're thinking out loud together. You just joined the band.",
+      feedback_bad: "Waiting politely, hedging, or agreeing to avoid conflict all make you disappear from a New York dinner table conversation. You miss the best part of the evening."
+    },
+    {
+      location: "9:00 PM — Rooftop bar, Lower East Side",
+      situation: "You're on a rooftop with Manhattan spread out below you. A stranger next to you at the bar nods at the skyline and says: Hell of a city, right?",
+      context: "New Yorkers occasionally have spontaneous, genuine moments of civic pride. This is one.",
+      choices: [
+        { text: "Genuinely one of the most extraordinary things I've ever seen. I get it now. — warm, direct, specific.", good: true },
+        { text: "Yeah it's pretty cool.", good: false },
+        { text: "It's beautiful — though I prefer Amsterdam personally. (can't help it)", good: false },
+        { text: "Which borough do you live in? (deflect to safe territory)", good: false }
+      ],
+      feedback_good: "'I get it now' — three words that made a New Yorker feel seen. This is how you make a friend in thirty seconds in this city. You meant it, they felt it.",
+      feedback_bad: "Understatement, comparisons to other cities, or deflection all deflate the moment. A New Yorker offering genuine shared wonder deserves a genuine response."
+    },
+    {
+      location: "10:00 PM — Brooklyn vintage shop, still open",
+      situation: "The owner — a tattooed woman in her 40s — is clearly passionate about the pieces. She starts explaining the history of a jacket you touched.",
+      context: "Brooklyn's independent retail culture is built on authentic passion and expertise. How you engage matters.",
+      choices: [
+        { text: "Put your phone away, make eye contact, and actually listen. Ask one genuine question about the jacket.", good: true },
+        { text: "Half-listen while scrolling Instagram.", good: false },
+        { text: "Interrupt to ask how much it costs before she finishes.", good: false },
+        { text: "Say: that's so cool! repeatedly without engaging with the actual content.", good: false }
+      ],
+      feedback_good: "You gave her your full attention — rare and precious in a city full of distracted people. She'll tell you the real history of the jacket now, and maybe give you a fair price.",
+      feedback_bad: "Brooklyn's independent creative community is built on real expertise and passion. Distraction, interruption, or hollow enthusiasm all signal you don't actually care. And they notice."
+    },
+    {
+      location: "11:30 PM — Subway home, Brooklyn-bound",
+      situation: "Late-night subway. A woman gets on who looks distressed — she's crying quietly and seems lost, checking her phone repeatedly.",
+      context: "The NYC bystander effect is real — but so is the city's deep underlying humanity.",
+      choices: [
+        { text: "Catch her eye gently and ask quietly: Are you okay? Do you need help finding somewhere?", good: true },
+        { text: "Look away — it's not your business and she probably wants space.", good: false },
+        { text: "Stare — you're concerned but not sure what to do.", good: false },
+        { text: "Wait to see if someone else steps in first.", good: false }
+      ],
+      feedback_good: "You broke through the bystander effect. In a city famous for minding its own business, a quiet, non-intrusive offer of help is one of the most genuinely New York things you can do. The city has extraordinary hidden kindness — you just contributed to it.",
+      feedback_bad: "The bystander effect is strongest in cities. But NYC has a deep streak of underground humanity. A quiet, respectful offer of help is rarely wrong."
+    },
+    {
+      location: "Midnight — Airbnb, Brooklyn",
+      situation: "You text your contact to thank her for a great evening. What do you send?",
+      context: "New York communication is efficient but also warm when the relationship warrants it. Don't underplay a good evening.",
+      choices: [
+        { text: "Tonight was exactly what I needed — real conversation, great food, a view that made me understand why people are obsessed with this city. Thank you for showing me that side of it.", good: true },
+        { text: "Thanks — fun night!", good: false },
+        { text: "Great evening. Very New York (with a smile emoji)", good: false },
+        { text: "Let's do it again next time I'm in town. (without the thanks)", good: false }
+      ],
+      feedback_good: "Specific and warm. You named what made it good. New Yorkers appreciate directness — including the directness of telling someone they made your night. She'll reply immediately.",
+      feedback_bad: "Breezy thanks, vague emojis, or scheduling future plans without acknowledging the present moment all undersell a real evening. Be as direct with appreciation as you are with everything else."
+    },
+    {
+      location: "12:30 AM — Reflection before sleep",
+      situation: "You think back on your New York day. What did the city actually teach you?",
+      context: "One response here shows genuine cultural insight beyond the stereotypes.",
+      choices: [
+        { text: "New York's directness isn't rudeness — it's a form of respect. It assumes you can handle the truth, keep up with the pace, and mean what you say. That's actually a compliment.", good: true },
+        { text: "New Yorkers are kind of rude but in an endearing way.", good: false },
+        { text: "It's exhausting. I get why people love it but I couldn't live here.", good: false },
+        { text: "It's basically just a big, fast, expensive version of every city.", good: false }
+      ],
+      feedback_good: "That's the insight. New York's pace and directness is a form of egalitarianism — it treats everyone as capable. Once you understand that, the whole city unlocks. You got it.",
+      feedback_bad: "'Endearing rudeness', 'exhausting', or generic city-comparisons all stay on the surface. The real insight about NYC is that its directness is a form of respect. Once you see that, everything else makes sense."
+    }
+  ]
+};
+
+var results = {
+  toronto: [
+    { min: 13, emoji: "&#127809;", title: "Honorary Torontonian", subtitle: "You've earned your toque.", desc: "You moved through Toronto with genuine warmth, cultural curiosity, and remarkable awareness. You didn't just observe the mosaic — you actively participated in it. Torontonians felt seen, respected, and heard in your presence. You treated everyone from the barista to the security guard as a full human being, and that is the city's highest value.", insight: "<strong>Cultural insight:</strong> Toronto's famous politeness isn't passive — it's an active, daily, collective maintenance of a shared civic contract. You understood this and lived it. This is the leadership quality that translates everywhere." },
+    { min: 10, emoji: "&#128522;", title: "Well-Adapted Visitor", subtitle: "Toronto liked you. Quite a lot.", desc: "You navigated most situations with real sensitivity and good instincts. A few moments where your default mode slipped through — but you corrected course quickly and people noticed the effort. The city left you with good impressions and real connections.", insight: "<strong>Cultural insight:</strong> The gap between 'well-intentioned' and 'culturally fluent' is usually just a little more self-awareness and a little less autopilot. You're closer than you think." },
+    { min: 7, emoji: "&#128578;", title: "Friendly but Still Finding Your Feet", subtitle: "Tomorrow is a new day, eh?", desc: "You had good intentions throughout but your cultural defaults — whether directness, efficiency-over-warmth, or a few unexamined assumptions — showed at key moments. Toronto was patient with you, as it tends to be. The mosaic doesn't need you to be perfect; it needs you to keep trying.", insight: "<strong>Cultural insight:</strong> Cultural adjustment isn't a test you pass — it's a practice. The moments where you felt unsure were actually your most important learning moments. Sit with them." },
+    { min: 4, emoji: "&#128556;", title: "Bit Rough Around the Edges", subtitle: "You meant well. Mostly.", desc: "You moved through Toronto a little too much on your own terms — missing warmth cues, defaulting to efficiency, and occasionally treating people as background rather than participants. No one was offended. But you also didn't quite unlock what the city can offer when you let it.", insight: "<strong>Cultural insight:</strong> The core of Toronto's culture is that everyone is actively making the mosaic work. Opting out — even passively — means missing the whole experience. Slow down, look up, and say yes more." },
+    { min: 0, emoji: "&#128747;", title: "Did You Actually Land in Toronto?", subtitle: "Let's try that again.", desc: "You navigated the day almost entirely on your own cultural autopilot, and Toronto politely accepted you while feeling fairly invisible to you. The good news: the city is endlessly forgiving and deeply curious about people who want to try again. Which you clearly do.", insight: "<strong>Cultural insight:</strong> Cultural intelligence starts with one thing: noticing the moments where your defaults don't fit. Go back through the choices and ask: what was I optimising for? Then ask: what was the situation actually asking for?" }
+  ],
+  nyc: [
+    { min: 13, emoji: "&#127961;", title: "Born-Again New Yorker", subtitle: "The city respects you.", desc: "You matched New York's pace, met its directness with your own, brought genuine substance to every interaction, and — crucially — didn't lose your humanity in the process. The city's best quality is that it rewards people who show up fully. You did. You'll be back.", insight: "<strong>Cultural insight:</strong> New York's speed and directness is not aggression — it's efficiency-as-respect. When you assume everyone around you is capable and pressed for time, you treat them as equals. That's the real insight underneath all the hustle." },
+    { min: 10, emoji: "&#128526;", title: "Street-Smart Visitor", subtitle: "You held your own.", desc: "New York took you seriously, which is high praise. You were direct when it mattered, prepared when you needed to be, and genuine in the moments that called for it. A few hesitations and a bit of over-politeness in the wrong moments — but you read the room most of the time.", insight: "<strong>Cultural insight:</strong> The thing about New York is that its rudeness and its warmth come from the same place: authenticity. The city respects real. You were mostly real." },
+    { min: 7, emoji: "&#128578;", title: "Tourist With Potential", subtitle: "You survived. That's something.", desc: "You had good instincts in some moments and defaulted to over-caution or over-politeness in others. New York isn't unkind to people who are clearly trying — but it does move on fast if you hesitate. You got to see parts of the city most tourists miss. That's a start.", insight: "<strong>Cultural insight:</strong> New York rewards preparation and decisiveness. The city isn't cold — it's impatient with uncertainty. The more you know what you want and say it clearly, the more the city opens up." },
+    { min: 4, emoji: "&#128517;", title: "Overwhelmed but Intact", subtitle: "The city is a lot. You'll get there.", desc: "New York moved faster than your reactions in most moments today. You were too hesitant where directness was called for, too polite where efficiency was expected, and occasionally too cautious to jump into conversations that were actively inviting you. You're still standing though — that counts.", insight: "<strong>Cultural insight:</strong> The adjustment to NYC's pace is partly practical (know your order, have your MetroCard ready) and partly psychological (trust that directness is welcome, that jumping in is expected, that imperfection is fine)." },
+    { min: 0, emoji: "&#128506;", title: "Lost Tourist Found", subtitle: "The city tried to tell you something.", desc: "You and New York operated on completely different frequencies today. The city's directness felt abrasive; its pace felt overwhelming; its lack of small talk felt cold. None of that was personal — it was just New York being New York. The city has extraordinary things to offer, but it needs you to meet it on its terms first.", insight: "<strong>Cultural insight:</strong> New York is not trying to be difficult. It's a city of 8 million people moving at maximum speed. The culture that looks like rudeness is actually a massive collective efficiency agreement. Once you join the agreement, the city becomes a completely different place." }
+  ]
+};
+
+var currentCity = null;
+var currentStep = 0;
+var score = 0;
+var answered = false;
+
+function startAdventure(city) {
+  currentCity = city;
+  currentStep = 0;
+  score = 0;
+  answered = false;
+  document.getElementById('adv-picker').style.display = 'none';
+  document.getElementById('adv-result').style.display = 'none';
+  document.getElementById('adv-game').style.display = 'block';
+  buildPips();
+  renderStep();
+}
+
+function buildPips() {
+  var container = document.getElementById('score-pips');
+  container.innerHTML = '';
+  for (var i = 0; i < 15; i++) {
+    var pip = document.createElement('div');
+    pip.className = 'score-pip';
+    pip.id = 'pip-' + i;
+    container.appendChild(pip);
   }
+}
 
-  function goSection(n) {
-    document.getElementById('s' + currentSection).classList.remove('active');
-    currentSection = n;
-    document.getElementById('s' + currentSection).classList.add('active');
-    window.scrollTo(0, 0);
-    updateNavDots();
-  }
+function renderStep() {
+  var steps = adventures[currentCity];
+  var step = steps[currentStep];
+  answered = false;
 
-  function updateNavDots() {
-    document.querySelectorAll('.nav-dot').forEach((d, i) => {
-      d.classList.toggle('active', i + 1 === currentSection);
-    });
-  }
+  document.getElementById('adv-step-label').textContent = 'Step ' + (currentStep + 1) + ' of 15';
+  document.getElementById('adv-location').textContent = step.location;
+  document.getElementById('adv-situation').textContent = step.situation;
+  document.getElementById('adv-context').textContent = step.context;
 
-  function startTimer() {
-    setInterval(() => {
-      const elapsed = (Date.now() - startTime) / 1000;
-      const m = Math.floor(elapsed / 60), s = Math.floor(elapsed % 60);
-      document.getElementById('navTimer').textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-      document.getElementById('timerFill').style.width = Math.min((elapsed / (sessionMinutes * 60)) * 100, 100) + '%';
-    }, 1000);
-  }
+  var choicesEl = document.getElementById('adv-choices');
+  choicesEl.innerHTML = '';
 
-  function answer(btn, isCorrect, revealId) {
-    const opts = btn.closest('.quiz-options').querySelectorAll('.quiz-opt');
-    opts.forEach(o => o.disabled = true);
-    btn.classList.add(isCorrect ? 'correct' : 'wrong');
-    if (!isCorrect) opts.forEach(o => { if (!o.classList.contains('wrong')) o.classList.add('correct'); });
-    document.getElementById(revealId).classList.add('show');
-  }
+  var shuffled = step.choices.slice().sort(function() { return Math.random() - 0.5; });
+  shuffled.forEach(function(choice) {
+    var btn = document.createElement('button');
+    btn.className = 'adv-choice';
+    btn.textContent = choice.text;
+    btn.onclick = (function(b, g, s) { return function() { makeChoice(b, g, s); }; })(btn, choice.good, step);
+    choicesEl.appendChild(btn);
+  });
 
-  const tabIds = ['identity', 'politics', 'work', 'language'];
-  function showTab(id) {
-    tabIds.forEach(t => { const el = document.getElementById('tab-' + t); if (el) el.style.display = (t === id) ? 'block' : 'none'; });
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.getAttribute('onclick').includes(id)));
-  }
+  var fb = document.getElementById('adv-feedback');
+  fb.className = 'adv-feedback';
+  fb.innerHTML = '';
 
-  function toggleAccordion(header) {
-    const item = header.parentElement, isOpen = item.classList.contains('open');
-    document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
+  var nextBtn = document.getElementById('adv-next');
+  nextBtn.className = 'adv-next-btn';
+  nextBtn.textContent = currentStep < 14 ? 'Next \u2192' : 'See My Result \u2192';
+}
 
-  // ===================== ADVENTURE GAME =====================
-  const adventures = {
-    toronto: [
-      {
-        location: "☀️ 7:30 AM — Your Airbnb, Kensington Market",
-        situation: "You're heading out for your first full day in Toronto. In the hallway you bump into your neighbour — an older Jamaican-Canadian woman carrying groceries. She makes eye contact and smiles.",
-        context: "In Toronto, brief warm exchanges with strangers are completely normal. Ignoring people in communal spaces can read as rude or cold.",
-        choices: [
-          { text: "Smile back warmly and say "Good morning! Need a hand with those bags?"", good: true },
-          { text: "Give a quick nod and head out — you don't want to bother her.", good: false },
-          { text: "Say "Hey!" and keep walking — you're already running late.", good: false },
-          { text: "Hold the door open silently without making eye contact.", good: false }
-        ],
-        feedback_good: "✅ Perfect start. Torontonians appreciate warmth and genuine offers of help. You've already made a small but real connection — this is how the mosaic works, one interaction at a time.",
-        feedback_bad: "❌ In Toronto's communal culture, small acts of acknowledgement matter more than you'd think. A simple warm exchange costs nothing and builds the social fabric that makes the city work."
-      },
-      {
-        location: "☕ 8:15 AM — Independent café, Kensington Market",
-        situation: "The café is busy. You order a flat white. The barista — who has a visible sleeve tattoo and speaks with a soft Trinidadian accent — asks how you're doing.",
-        context: "Toronto service culture is genuinely warm, not just scripted. The question is real. How you respond sets the tone.",
-        choices: [
-          { text: ""Really well thanks, loving the neighbourhood so far — is this place new?" (and actually listen to the answer)", good: true },
-          { text: ""Fine thanks." (already looking at your phone)", good: false },
-          { text: ""Just a flat white please, oat milk if you have it." (ignoring the question)", good: false },
-          { text: ""Great! And you?" (without waiting for the answer)", good: false }
-        ],
-        feedback_good: "✅ You treated the interaction as a real conversation — which is what it was. In Toronto, service workers are community members, not invisible. Your genuine curiosity is already earning you invisible social credit.",
-        feedback_bad: "❌ Toronto's warmth is real, not performative. Brushing off a genuine question — especially from someone of a visible minority in a diverse city — can read as dismissive or aloof. Slow down and connect."
-      },
-      {
-        location: "🚇 8:45 AM — TTC Subway, Line 1",
-        situation: "The subway is packed. You find a seat. An elderly man with a cane gets on at the next stop. There are no priority seats visible nearby.",
-        context: "Canadian public space etiquette has very strong unwritten rules around deference to those who need more support.",
-        choices: [
-          { text: "Stand up immediately, make eye contact and gesture to your seat.", good: true },
-          { text: "Look around to see if someone else will get up first.", good: false },
-          { text: "Pretend to look at your phone — someone else will handle it.", good: false },
-          { text: "Move slightly to make space but stay seated.", good: false }
-        ],
-        feedback_good: "✅ Exactly right, and done with grace. In Canada, this kind of quiet, immediate consideration is deeply valued. No fanfare needed — the act speaks for itself.",
-        feedback_bad: "❌ The 'someone else will do it' instinct is surprisingly common — but in Toronto, people notice and internally judge hesitation on things like this. Collective responsibility is real here."
-      },
-      {
-        location: "🏢 9:30 AM — Arrival at a Toronto startup office, King West",
-        situation: "You're visiting a local innovation company for a meeting. You arrive 10 minutes early. The receptionist offers you coffee and says the team will be ready shortly.",
-        context: "Canadian professional culture values punctuality but also relaxed, warm pre-meeting interaction. You're being assessed from the moment you walk in.",
-        choices: [
-          { text: "Accept the coffee gratefully, make small talk with the receptionist, and stay off your phone.", good: true },
-          { text: "Decline the coffee, sit down and immediately open your laptop to look productive.", good: false },
-          { text: "Accept the coffee, then loudly take a phone call while you wait.", good: false },
-          { text: "Ask the receptionist to let the team know you've arrived and that you're ready when they are.", good: false }
-        ],
-        feedback_good: "✅ You read the room perfectly. In Canadian professional culture, the receptionist is not invisible — they often feed back impressions of visitors. Your warmth and presence (not your screen) made the right impression.",
-        feedback_bad: "❌ Canadian offices are less formally hierarchical than you might expect. How you treat the receptionist, whether you're present or distracted — all of it is noticed and talked about."
-      },
-      {
-        location: "💼 10:00 AM — Team meeting, open-plan office",
-        situation: "You're in a meeting with five Canadians. You have a strong opinion about the project direction being discussed. A junior team member has just proposed an idea you think is quite weak.",
-        context: "Canadian meeting culture is collaborative and consensus-driven. Direct criticism — even when accurate — needs to be framed carefully.",
-        choices: [
-          { text: ""That's an interesting angle — I wonder if we could build on it by also considering X? I think that might address the risk of Y."", good: true },
-          { text: ""I don't think that will work — here's why." (laying out your logic clearly)", good: false },
-          { text: "Stay quiet and raise your concerns privately with the team lead after the meeting.", good: false },
-          { text: ""That's a great idea!" (you don't mean it — but you don't want conflict)", good: false }
-        ],
-        feedback_good: "✅ Beautiful. You were honest, you contributed substance, AND you preserved the junior person's dignity. This is the Canadian meeting superpower: disagreement wrapped in generosity. People remember this.",
-        feedback_bad: "❌ Blunt criticism (even accurate), complete silence, or empty praise all miss the mark in different ways. The Canadian art form is constructive redirection — adding to ideas rather than defeating them."
-      },
-      {
-        location: "🌮 12:30 PM — Lunch at a Scarborough food court",
-        situation: "A colleague has brought you to a busy multicultural food court. He's Sri Lankan-Canadian and orders Tamil food. He asks what you'd like to try.",
-        context: "Toronto's food culture is a point of intense local pride. The right attitude here goes a long way.",
-        choices: [
-          { text: ""I'd love to try something I've never had — what would you recommend? You know this better than I do."", good: true },
-          { text: ""I'll just grab a sandwich — I'm not great with spicy food."", good: false },
-          { text: ""Ooh is that safe to eat? I have a sensitive stomach."", good: false },
-          { text: ""Is this like Indian food? I had a curry once."", good: false }
-        ],
-        feedback_good: "✅ Handing over the expertise to someone who genuinely has it — and showing real curiosity — is one of the best things you can do in a multicultural setting. You just made your colleague's day.",
-        feedback_bad: "❌ Declining, asking if it's 'safe', or reducing one culture's cuisine to another's are all forms of (probably unintentional) cultural dismissal. In Toronto, food is identity. Treat it accordingly."
-      },
-      {
-        location: "🏙️ 2:00 PM — Walking through Chinatown",
-        situation: "You're walking with your colleague through Chinatown. A market vendor calls out to you in Cantonese. You don't understand a word.",
-        context: "Over 160 languages are spoken in Toronto. Being navigated by language is completely normal — and how you respond matters.",
-        choices: [
-          { text: "Smile, shake your head gently, and say "Sorry, I only speak English — beautiful market though!"", good: true },
-          { text: "Ignore them and keep walking.", good: false },
-          { text: "Speak loudly and slowly in English as if that will help.", good: false },
-          { text: "Point at things and shout "How much?! HOW MUCH?!"", good: false }
-        ],
-        feedback_good: "✅ Graceful. You acknowledged the person, communicated clearly without condescension, and threw in a genuine compliment. That's cultural intelligence in a two-second interaction.",
-        feedback_bad: "❌ Ignoring people or speaking loudly-and-slowly are both forms of cultural clumsiness Torontonians wince at. A warm smile and honest "I only speak English" is always enough."
-      },
-      {
-        location: "📋 3:30 PM — Back at the office, feedback session",
-        situation: "The team lead asks for your honest assessment of their current innovation process. You have some real criticisms — their feedback loops are too slow and they avoid hard decisions.",
-        context: "Canadians value honest feedback — but the delivery matters enormously. Bluntness without warmth can damage the relationship permanently.",
-        choices: [
-          { text: ""I think the process has real strengths — especially the collaborative culture. One thing I'd explore is whether the feedback loops could be tightened — I've seen it make a big difference in faster iteration."", good: true },
-          { text: ""Honestly? Your feedback loops are too slow and you're avoiding hard calls. It's holding you back."", good: false },
-          { text: ""Everything looks really great — I wouldn't change much!" (not true)", good: false },
-          { text: "Give very vague, non-committal feedback to avoid any awkwardness.", good: false }
-        ],
-        feedback_good: "✅ You led with genuine appreciation, then delivered real insight with a constructive frame. This is exactly how Canadians want feedback delivered — and you'll be invited back.",
-        feedback_bad: "❌ Pure bluntness lands badly; pure flattery is useless; vagueness is insulting. The sweet spot — real insight, generous framing — is a skill that pays dividends everywhere, not just in Canada."
-      },
-      {
-        location: "🛒 5:15 PM — Supermarket queue, The Annex",
-        situation: "You're buying drinks for later. The cashier looks exhausted — it's clearly been a long shift. The queue is moving slowly. The person behind you sighs loudly.",
-        context: "How people treat service workers under pressure is a reliable signal of character in Canadian culture.",
-        choices: [
-          { text: "When you reach the cashier, make genuine eye contact: "Long day? Thanks for keeping the queue moving." Pay, pack your bags, and say "Have a good evening."", good: true },
-          { text: "Rush through your transaction as quickly as possible to relieve the queue pressure.", good: false },
-          { text: "Comment to the cashier about how slow things are moving today.", good: false },
-          { text: "Join in the visible irritation — sigh, check your watch, make it known you're waiting.", good: false }
-        ],
-        feedback_good: "✅ Perfect. That brief moment of acknowledgement costs nothing and means everything to someone who's been on their feet all day. This is quintessential Canadian decency — and people around you noticed.",
-        feedback_bad: "❌ Impatience, rushing, or commenting on slowness all add to the stress of an already hard moment. Canadian public culture has a very low tolerance for making service workers feel worse."
-      },
-      {
-        location: "🍺 6:30 PM — Patio bar on Queen Street West",
-        situation: "You're meeting your colleague and two of his friends — one is Punjabi-Canadian, one is second-generation Chinese-Canadian. Someone asks where you're from.",
-        context: "In Toronto, "where are you from?" is loaded — especially when asked to visible minorities. But as a visitor, the question directed at you is simple.",
-        choices: [
-          { text: ""I'm from the Netherlands — Sittard, actually, near Maastricht. First time in Canada and already obsessed with this city."", good: true },
-          { text: ""Europe." (and leave it at that)", good: false },
-          { text: ""Where are YOU guys from originally?" (immediately redirecting)", good: false },
-          { text: ""Holland! Do you guys know Amsterdam?" (assuming they're impressed)", good: false }
-        ],
-        feedback_good: "✅ Specific, warm, enthusiastic. You invited follow-up conversation naturally and showed genuine excitement about Toronto. The group is already warming to you.",
-        feedback_bad: "❌ Vagueness feels evasive; deflecting with "where are YOU from?" can be offensive in a multicultural city where that question carries baggage; and assuming everyone knows or cares about Amsterdam is a bit self-centred."
-      },
-      {
-        location: "🗣️ 7:00 PM — Conversation deepens at the bar",
-        situation: "The Punjabi-Canadian friend mentions he's experienced racism in Toronto — "the most multicultural city in the world," he says with a wry smile. There's a pause.",
-        context: "This is a moment where many visitors either over-correct (performatively outraged) or under-correct (uncomfortable silence). Neither works.",
-        choices: [
-          { text: ""That's really important to hear — especially from someone who's lived it. I'd actually love to understand more about how that plays out here, if you're open to it."", good: true },
-          { text: ""Oh my god, that's terrible! Canada is supposed to be so progressive!"", good: false },
-          { text: ""That must be hard." (and quickly change the subject)", good: false },
-          { text: ""Wow, really? But everyone here seems so nice and welcoming…"", good: false }
-        ],
-        feedback_good: "✅ You didn't project emotions, you didn't dismiss it, and you didn't make it about your own surprise. You asked to learn. That's the rarest and most respectful response — and it will lead to a real conversation.",
-        feedback_bad: "❌ Performing shock, changing the subject, or expressing disbelief ('but everyone seems so nice!') are all ways of centring your own discomfort rather than the other person's experience. Ask, listen, learn."
-      },
-      {
-        location: "🍽️ 8:30 PM — Dinner at an Ethiopian restaurant, Little Ethiopia",
-        situation: "Your colleague's choice: a communal Ethiopian meal eaten with injera bread — no cutlery. You've never eaten this way before. The dishes are placed in the centre of the table.",
-        context: "Toronto's restaurant culture celebrates the full experience of other food traditions, not a watered-down version of them.",
-        choices: [
-          { text: ""I've never eaten like this before — can you show me how?" and dive in enthusiastically, even if you're a bit messy.", good: true },
-          { text: "Ask the waiter quietly if they have a fork.", good: false },
-          { text: "Watch what everyone else does and copy exactly, saying nothing.", good: false },
-          { text: ""Is this hygienic? Everyone's eating from the same plate?"", good: false }
-        ],
-        feedback_good: "✅ Asking to be shown how is the most culturally intelligent thing you can do — it's humble, it honours the tradition, and it invites connection. Your willingness to be a beginner is a leadership quality.",
-        feedback_bad: "❌ Asking for cutlery, questioning hygiene, or silent copying without engagement all signal discomfort with the cultural experience. In Toronto, food is an invitation — accept it fully."
-      },
-      {
-        location: "🌃 10:00 PM — Walking home through Little Portugal",
-        situation: "You walk past a large group of young people having a loud, joyful street party with music spilling out of a house. One of them waves you over.",
-        context: "Toronto neighbourhoods have a spontaneous communal energy that's very different from many European cities.",
-        choices: [
-          { text: "Wave back with a grin and, if you have time, walk over and say hi — even for five minutes.", good: true },
-          { text: "Wave back but keep walking — you don't want to intrude.", good: false },
-          { text: "Look confused and cross the street.", good: false },
-          { text: "Smile politely from a safe distance and hurry past.", good: false }
-        ],
-        feedback_good: "✅ You leaned in. This is how the best Toronto moments happen — unplanned, cross-cultural, joyful. Your openness to spontaneity is exactly what this city rewards.",
-        feedback_bad: "❌ Toronto's community warmth often comes in unscripted moments. Staying behind the invisible wall of politeness means missing the best of what the city offers. Say yes more."
-      },
-      {
-        location: "🌙 11:00 PM — Back at your Airbnb, texting your colleague",
-        situation: "You want to thank your colleague for the day. You're typing a message. What do you send?",
-        context: "Canadian communication — even casually — tends to be warm and specific rather than brief and functional.",
-        choices: [
-          { text: ""Today was genuinely one of the best days I've had in a long time. Thank you for all of it — the food, the conversations, showing me the real Toronto. You made this trip."", good: true },
-          { text: ""Thanks for today, was good."", good: false },
-          { text: ""👍"", good: false },
-          { text: ""Great day! Let's do it again sometime."", good: false }
-        ],
-        feedback_good: "✅ Specific, warm, genuine. You named what mattered and why. In Canadian culture — and in good human culture — this kind of gratitude lands deeply and sustains relationships.",
-        feedback_bad: "❌ Brief or emoji-only thanks can feel transactional after a day of genuine connection. Take thirty extra seconds to say what you actually mean. It's worth it."
-      },
-      {
-        location: "📖 11:30 PM — Reflection before sleep",
-        situation: "You think back on the day. What's your biggest takeaway about Toronto's culture?",
-        context: "This is a reflection moment — there's no wrong answer, but one response shows the deepest cultural insight.",
-        choices: [
-          { text: ""The mosaic is real — and it only works because everyone is actively maintaining it through small daily choices."", good: true },
-          { text: ""Toronto is basically a nicer, cleaner New York."", good: false },
-          { text: ""Canadians are really polite — it's kind of cute."", good: false },
-          { text: ""It's very multicultural but I'm not sure how deep it actually goes."", good: false }
-        ],
-        feedback_good: "✅ Exactly. Toronto's diversity isn't passive — it's actively created and maintained through millions of daily interactions exactly like the ones you had today. You got it. That's the real takeaway.",
-        feedback_bad: "❌ Reducing Toronto to 'a nicer NYC', 'cute politeness', or surface-level diversity misses the depth of what you actually experienced today. The mosaic requires effort — from everyone. That's the insight."
-      }
-    ],
+function makeChoice(btn, isGood, step) {
+  if (answered) return;
+  answered = true;
 
-    nyc: [
-      {
-        location: "☀️ 7:00 AM — Your Airbnb, Brooklyn",
-        situation: "You're heading out early. In the lift, a man in a sharp suit is already inside, eyes on his phone, earbuds in. You make eye contact briefly as you get in.",
-        context: "New York elevator culture is famously silent. Eye contact is acknowledged — but small talk is not expected.",
-        choices: [
-          { text: "Give a quick upward nod of acknowledgement and look at the lift buttons. Stay quiet.", good: true },
-          { text: ""Good morning! Lovely day isn't it?" (cheerfully)", good: false },
-          { text: "Look at your phone and ignore him entirely.", good: false },
-          { text: "Ask him what floor he's going to and make conversation.", good: false }
-        ],
-        feedback_good: "✅ The New York nod. Brief, respectful, non-intrusive. You signalled you're a person without demanding anything from him. In NYC, this is the gold standard of lift behaviour.",
-        feedback_bad: "❌ Enthusiastic small talk in a NYC lift is genuinely jarring — New Yorkers protect their inner space fiercely in transit. A nod is enough. Anything more reads as tourist."
-      },
-      {
-        location: "☕ 7:30 AM — Bodega, Lower East Side",
-        situation: "You're at a classic NYC bodega. There's a line. The man behind the counter is working fast — egg and cheese sandwiches flying out. It's your turn.",
-        context: "Bodega speed and efficiency is a New York art form. Hesitation is a social crime.",
-        choices: [
-          { text: ""Egg and cheese on a roll, please. Coffee — milk, two sugars." Exact, fast, ready.", good: true },
-          { text: ""Hmm, what do you recommend? What's good here?" (looking at the menu)", good: false },
-          { text: ""Could I get… uhh… what do you have for breakfast?"", good: false },
-          { text: ""Sorry, I haven't been here before — give me a second to look…"", good: false }
-        ],
-        feedback_good: "✅ You came prepared. The bodega man appreciated your efficiency, the line moved, and you got a great sandwich. Knowing what you want before you reach the counter is a core New York social skill.",
-        feedback_bad: "❌ Deliberating at the bodega counter is one of the small things that marks you as out-of-town immediately. New Yorkers decide before they queue. Efficiency is respect for everyone's time."
-      },
-      {
-        location: "🚇 8:15 AM — Subway, A Train",
-        situation: "The subway is crowded. You find a pole to hold. A busker enters the carriage — he's extraordinary, playing jazz trumpet with real skill. He finishes, walks the carriage for tips.",
-        context: "NYC subway busking is a real cultural institution. How you respond says something about you.",
-        choices: [
-          { text: "Make eye contact, give a genuine nod of appreciation, and put a dollar in his cup.", good: true },
-          { text: "Look at your phone throughout and pretend he's not there.", good: false },
-          { text: "Clap enthusiastically and take a video for Instagram.", good: false },
-          { text: "Wait until he passes and give nothing — you weren't that impressed.", good: false }
-        ],
-        feedback_good: "✅ Real acknowledgement, real appreciation, real participation. NYC busking culture is a living, breathing creative ecosystem. You just became part of it rather than just passing through it.",
-        feedback_bad: "❌ Ignoring artistry entirely, treating performers as content for your feed, or withholding tip because they 'weren't that good' all miss the point. The tip is participation in a city institution."
-      },
-      {
-        location: "🏢 9:30 AM — Midtown Manhattan office tower lobby",
-        situation: "You arrive at a sleek Manhattan office for a meeting. Security requires sign-in. The guard asks your name and who you're visiting. He's businesslike — no smile.",
-        context: "NYC professional culture is efficient and direct. Warmth is earned, not given at the door.",
-        choices: [
-          { text: "Give your name clearly, the company and person you're meeting, produce your ID immediately. Brief and efficient.", good: true },
-          { text: "Try to make small talk with the guard while searching for your ID.", good: false },
-          { text: "Act confused and ask what you need to sign in.", good: false },
-          { text: "Be charming: "Hi! Great building — how long have you worked here?"", good: false }
-        ],
-        feedback_good: "✅ You were prepared, clear, and efficient. The guard clocked you as professional and low-maintenance. In NYC, competent brevity is a form of respect.",
-        feedback_bad: "❌ Unnecessary small talk, unpreparedness, or performed charm in transactional NYC moments reads as either inexperienced or performative. Have your ducks in a row."
-      },
-      {
-        location: "💼 10:00 AM — Conference room, Midtown startup",
-        situation: "You're in a fast-moving pitch meeting. The founder presents confidently. She pauses and asks: "So — what do you think? Be honest."",
-        context: "New Yorkers genuinely mean 'be honest'. A vague, overly diplomatic answer will lose respect fast.",
-        choices: [
-          { text: ""The market thesis is strong and your energy is compelling. My concern is your burn rate doesn't match your 18-month runway claim — I'd want to dig into that before going further."", good: true },
-          { text: ""Really impressive — lots to think about. We'll be in touch!"", good: false },
-          { text: ""Great presentation! A few small thoughts but overall very exciting."", good: false },
-          { text: ""I'm not sure this is the right fit for us." (and leave it at that)", good: false }
-        ],
-        feedback_good: "✅ Specific, substantive, honest — with respect for her intelligence. This is exactly how New York business conversations work. She now knows you're serious. You'll hear from her again.",
-        feedback_bad: "❌ Vague enthusiasm, hollow compliments, or dismissiveness without explanation are all weak in NYC business culture. Direct, substantive honesty is the currency. Spend it."
-      },
-      {
-        location: "🥯 12:30 PM — Deli lunch, Midtown",
-        situation: "Classic NYC deli. You're building your sandwich at the counter. The server is fast and rattling off options: "White, rye, sourdough or whole wheat? Mustard, mayo, both? Lettuce, tomato, onion?"",
-        context: "The NYC deli sandwich build is a speed test and a confidence test. Hesitation slows everyone down.",
-        choices: [
-          { text: "Match his pace: "Rye. Mustard. Lettuce and tomato, no onion." Confident, clear, quick.", good: true },
-          { text: ""Oh um… what do most people get?"", good: false },
-          { text: ""Can I just see all the options again?"", good: false },
-          { text: ""Sorry, I'm not sure — what comes with it?"", good: false }
-        ],
-        feedback_good: "✅ You kept the rhythm. The counter guy gave you a micro-nod of approval. This is New York: know what you want, say it clearly, move along. The sandwich will be perfect.",
-        feedback_bad: "❌ Uncertainty at a NYC deli counter creates a small but real social jam. The rule is simple: decide before you're asked. If you're not sure, pick the first option that sounds good and commit."
-      },
-      {
-        location: "🦮 2:00 PM — Central Park, afternoon walk",
-        situation: "You're cutting through Central Park. You accidentally bump into a jogger who's wearing headphones — she stumbles slightly but is fine. She pulls out one earbud and looks at you.",
-        context: "Even in a bump, how you handle it reveals a lot. NYC directness applies to apologies too — they should be real, not performative.",
-        choices: [
-          { text: ""Oh — my fault, sorry about that. You okay?" — brief, genuine, eye contact.", good: true },
-          { text: "Over-apologise: "Oh my god I'm SO sorry, are you hurt? I'm so clumsy, I'm really sorry—"", good: false },
-          { text: "Keep walking — you barely touched her.", good: false },
-          { text: "Blame the path: "These walkways are so crowded, what can you do!"", good: false }
-        ],
-        feedback_good: "✅ Clean, direct, genuine. One real apology is worth ten performative ones. She nodded, put her earbud back in, and kept running. Perfectly handled.",
-        feedback_bad: "❌ Over-apologising reads as anxious and attention-seeking; ignoring it is rude; deflecting blame is worse. NYC respects the clean, quick, honest acknowledgement. Keep it brief and keep it real."
-      },
-      {
-        location: "☕ 3:30 PM — Coffee with a New Yorker, West Village",
-        situation: "You're having coffee with a contact you met at the morning meeting. She asks what you think of New York so far. You've found it slightly overwhelming.",
-        context: "New Yorkers love their city fiercely — but they also love genuine, specific observations more than generic praise.",
-        choices: [
-          { text: ""It's overwhelming in the best way — the density of it, the energy. I walked past five different micro-worlds in one block this morning and I couldn't stop looking."", good: true },
-          { text: ""It's amazing! I love it. So much to see." (vague tourist answer)", good: false },
-          { text: ""It's a bit much honestly — very loud, very rushed. I prefer somewhere calmer."", good: false },
-          { text: ""Honestly? Kind of scary. Everyone seems so intense."", good: false }
-        ],
-        feedback_good: "✅ Specific and honest. You captured something real about the city and she knows you actually looked at it. New Yorkers are proud of their city's intensity — showing you've genuinely absorbed it is the highest compliment.",
-        feedback_bad: "❌ Generic praise, dismissal, or expressing fear are all weak. New Yorkers want to know you engaged with the city on its own terms — the madness, the density, the energy. See it. Name it."
-      },
-      {
-        location: "🍕 6:00 PM — Pizza by the slice, Greenwich Village",
-        situation: "First New York slice. The crucial moment: do you fold it?",
-        context: "This is not a serious cultural moment — but it's a delightful one. New York pizza is eaten folded, one hand, standing up or walking.",
-        choices: [
-          { text: "Fold it lengthways into a U-shape, hold from the crust end, take a confident bite.", good: true },
-          { text: "Use a knife and fork at a table.", good: false },
-          { text: "Try to eat it flat and watch it flop, losing all the cheese.", good: false },
-          { text: "Ask if they have a plate.", good: false }
-        ],
-        feedback_good: "✅ You folded. The guy behind the counter gave you an approving look. It's a small thing — but in New York, knowing how to eat a slice is a rite of passage. You passed.",
-        feedback_bad: "❌ Knife and fork at a New York pizza counter is genuinely a cultural moment — and not in a good way. When in Rome. Or in this case: when in New York, fold."
-      },
-      {
-        location: "🍷 7:30 PM — Dinner in the East Village, lively restaurant",
-        situation: "Dinner with your contact and two of her friends — both lifelong New Yorkers. The conversation is fast, loud, and overlapping. Someone makes a strong, controversial take about European cities.",
-        context: "New York dinner table culture is verbal, fast, and treats a good argument as a sign of engagement — not disrespect.",
-        choices: [
-          { text: "Jump in with your counterpoint directly: "Actually I'd push back on that—" and make your case with confidence and a grin.", good: true },
-          { text: "Wait politely for a gap in the conversation that never comes, and say nothing.", good: false },
-          { text: "Say "Interesting point" and diplomatically hedge.", good: false },
-          { text: "Agree with everything — you don't want to cause conflict.", good: false }
-        ],
-        feedback_good: "✅ You got in the ring. New York conversation rewards confidence, directness, and the willingness to hold a position. They're not fighting — they're thinking out loud together. You just joined the band.",
-        feedback_bad: "❌ Waiting politely, hedging, or agreeing to avoid conflict all make you disappear from a New York dinner table conversation. That's fine socially — but you miss the best part of the evening."
-      },
-      {
-        location: "🌆 9:00 PM — Rooftop bar, Lower East Side",
-        situation: "You're on a rooftop with Manhattan spread out below you. A stranger next to you at the bar nods at the skyline and says: "Hell of a city, right?"",
-        context: "New Yorkers occasionally have spontaneous, genuine moments of civic pride. This is one.",
-        choices: [
-          { text: ""Genuinely one of the most extraordinary things I've ever seen. I get it now." — warm, direct, specific.", good: true },
-          { text: ""Yeah it's pretty cool."", good: false },
-          { text: ""It's beautiful — though I prefer Amsterdam personally." (can't help it)", good: false },
-          { text: ""Which borough do you live in?" (deflect to safe territory)", good: false }
-        ],
-        feedback_good: "✅ "I get it now" — three words that made a New Yorker feel seen. This is how you make a friend in thirty seconds in this city. You meant it, they felt it.",
-        feedback_bad: "❌ Understatement, comparisons to other cities, or deflection all deflate the moment. A New Yorker offering a genuine moment of shared wonder deserves a genuine response."
-      },
-      {
-        location: "🛍️ 10:00 PM — Brooklyn vintage shop, still open",
-        situation: "A tiny Brooklyn vintage shop is still open. The owner — a tattooed woman in her 40s — is clearly passionate about the pieces. She starts explaining the history of a jacket you touched.",
-        context: "Brooklyn's independent retail culture is built on authentic passion and expertise. How you engage with it matters.",
-        choices: [
-          { text: "Put your phone away, make eye contact, and actually listen. Ask one genuine question about the jacket.", good: true },
-          { text: "Half-listen while scrolling Instagram.", good: false },
-          { text: "Interrupt to ask how much it costs before she finishes.", good: false },
-          { text: "Say "that's so cool!" repeatedly without engaging with the actual content.", good: false }
-        ],
-        feedback_good: "✅ You gave her your full attention — which is rare and precious in a city full of distracted people. She'll tell you the real history of the jacket now, and maybe give you a fair price.",
-        feedback_bad: "❌ Brooklyn's independent creative community is built on real expertise and passion. Distraction, interruption, or hollow enthusiasm all signal that you don't actually care. And they notice."
-      },
-      {
-        location: "🌙 11:30 PM — Subway home, Brooklyn-bound",
-        situation: "Late-night subway. A woman gets on who looks distressed — she's crying quietly and seems lost, checking her phone repeatedly.",
-        context: "The 'NYC bystander effect' is real — but so is the city's deep underlying humanity. What do you do?",
-        choices: [
-          { text: "Catch her eye gently and ask quietly: "Are you okay? Do you need help finding somewhere?"", good: true },
-          { text: "Look away — it's not your business and she probably wants space.", good: false },
-          { text: "Stare — you're concerned but not sure what to do.", good: false },
-          { text: "Wait to see if someone else steps in first.", good: false }
-        ],
-        feedback_good: "✅ You broke through the bystander effect. In a city famous for people minding their own business, a quiet, non-intrusive offer of help is one of the most genuinely New York things you can do. The city has extraordinary hidden kindness — you just contributed to it.",
-        feedback_bad: "❌ The bystander effect — waiting for someone else to act — is strongest in cities. But NYC has a deep streak of underground humanity. A quiet, respectful offer of help is rarely wrong."
-      },
-      {
-        location: "📱 Midnight — Airbnb, Brooklyn",
-        situation: "You text your contact to thank her for a great evening. What do you send?",
-        context: "New York communication is efficient but also warm when the relationship warrants it. Don't underplay a good evening.",
-        choices: [
-          { text: ""Tonight was exactly what I needed — real conversation, great food, a view that made me understand why people are obsessed with this city. Thank you for showing me that side of it."", good: true },
-          { text: ""Thanks — fun night!"", good: false },
-          { text: ""Great evening. Very New York 😄"", good: false },
-          { text: ""Let's do it again next time I'm in town." (without the thanks)", good: false }
-        ],
-        feedback_good: "✅ Specific and warm. You named what made it good. New Yorkers appreciate directness — including the directness of telling someone they made your night. She'll reply immediately.",
-        feedback_bad: "❌ Breezy thanks, vague emojis, or scheduling future plans without acknowledging the present moment all undersell a real evening. Be as direct with appreciation as you are with everything else."
-      },
-      {
-        location: "📖 12:30 AM — Reflection before sleep",
-        situation: "You think back on your New York day. What did the city actually teach you?",
-        context: "One response here shows genuine cultural insight beyond the stereotypes.",
-        choices: [
-          { text: ""New York's directness isn't rudeness — it's a form of respect. It assumes you can handle the truth, keep up with the pace, and mean what you say. That's actually a compliment."", good: true },
-          { text: ""New Yorkers are kind of rude but in an endearing way."", good: false },
-          { text: ""It's exhausting. I get why people love it but I couldn't live here."", good: false },
-          { text: ""It's basically just a big, fast, expensive version of every city."", good: false }
-        ],
-        feedback_good: "✅ That's the insight. New York's pace and directness is a form of egalitarianism — it treats everyone as capable. Once you understand that, the whole city unlocks. You got it.",
-        feedback_bad: "❌ 'Endearing rudeness', 'exhausting', or generic city-comparisons all stay on the surface. The real insight about NYC is that its directness is a form of respect. Once you see that, everything else makes sense."
-      }
-    ]
-  };
+  var allBtns = document.getElementById('adv-choices').querySelectorAll('.adv-choice');
+  allBtns.forEach(function(b) {
+    b.disabled = true;
+    if (b !== btn) b.classList.add('unchosen');
+  });
+  btn.classList.add(isGood ? 'chosen-good' : 'chosen-bad');
 
-  const results = {
-    toronto: [
-      { min: 13, emoji: "🍁", title: "Honorary Torontonian", subtitle: "You've earned your toque.", desc: "You moved through Toronto with genuine warmth, cultural curiosity, and remarkable awareness. You didn't just observe the mosaic — you actively participated in it. Torontonians felt seen, respected, and heard in your presence. You treated everyone from the barista to the security guard as a full human being, and that is the city's highest value.", insight: "<strong>Cultural insight:</strong> Toronto's famous politeness isn't passive — it's an active, daily, collective maintenance of a shared civic contract. You understood this and lived it. This is the leadership quality that translates everywhere." },
-      { min: 10, emoji: "😊", title: "Well-Adapted Visitor", subtitle: "Toronto liked you. Quite a lot.", desc: "You navigated most situations with real sensitivity and good instincts. A few moments where your default mode slipped through — but you corrected course quickly and people noticed the effort. The city left you with good impressions and real connections.", insight: "<strong>Cultural insight:</strong> The gap between 'well-intentioned' and 'culturally fluent' is usually just a little more self-awareness and a little less autopilot. You're closer than you think." },
-      { min: 7, emoji: "🙂", title: "Friendly but Still Finding Your Feet", subtitle: "Tomorrow is a new day, eh?", desc: "You had good intentions throughout but your cultural defaults — whether that's directness, efficiency-over-warmth, or a few unexamined assumptions — showed at key moments. Toronto was patient with you, as it tends to be. The mosaic doesn't need you to be perfect; it needs you to keep trying.", insight: "<strong>Cultural insight:</strong> Cultural adjustment isn't a test you pass — it's a practice. The moments where you felt unsure were actually your most important learning moments. Sit with them." },
-      { min: 4, emoji: "😬", title: "Bit Rough Around the Edges", subtitle: "You meant well. Mostly.", desc: "You moved through Toronto a little too much on your own terms — missing warmth cues, defaulting to efficiency, and occasionally treating people as background rather than participants. No one was offended. But you also didn't quite unlock what the city can offer when you let it.", insight: "<strong>Cultural insight:</strong> The core of Toronto's culture is that everyone is actively making the mosaic work. Opting out — even passively — means missing the whole experience. Slow down, look up, and say yes more." },
-      { min: 0, emoji: "🛫", title: "Did You Actually Land in Toronto?", subtitle: "Let's try that again.", desc: "You navigated the day almost entirely on your own cultural autopilot, and Toronto politely accepted you while feeling fairly invisible to you. The good news: the city is endlessly forgiving and deeply curious about people who want to try again. Which you clearly do.", insight: "<strong>Cultural insight:</strong> Cultural intelligence starts with one thing: noticing the moments where your defaults don't fit. Go back through the choices and ask: what was I optimising for? Then ask: what was the situation actually asking for?" }
-    ],
-    nyc: [
-      { min: 13, emoji: "🗽", title: "Born-Again New Yorker", subtitle: "The city respects you.", desc: "You matched New York's pace, met its directness with your own, brought genuine substance to every interaction, and — crucially — didn't lose your humanity in the process. The city's best quality is that it rewards people who show up fully. You did. You'll be back.", insight: "<strong>Cultural insight:</strong> New York's speed and directness is not aggression — it's efficiency-as-respect. When you assume everyone around you is capable and pressed for time, you treat them as equals. That's the real insight underneath all the hustle." },
-      { min: 10, emoji: "😎", title: "Street-Smart Visitor", subtitle: "You held your own.", desc: "New York took you seriously, which is high praise. You were direct when it mattered, prepared when you needed to be, and genuine in the moments that called for it. A few hesitations and a bit of over-politeness in the wrong moments — but you read the room most of the time.", insight: "<strong>Cultural insight:</strong> The thing about New York is that its rudeness and its warmth come from the same place: authenticity. The city respects real. You were mostly real." },
-      { min: 7, emoji: "🙂", title: "Tourist With Potential", subtitle: "You survived. That's something.", desc: "You had good instincts in some moments and defaulted to over-caution or over-politeness in others. New York isn't unkind to people who are clearly trying — but it does move on fast if you hesitate. You got to see parts of the city most tourists miss. That's a start.", insight: "<strong>Cultural insight:</strong> New York rewards preparation and decisiveness. The city isn't cold — it's impatient with uncertainty. The more you know what you want and say it clearly, the more the city opens up." },
-      { min: 4, emoji: "😅", title: "Overwhelmed but Intact", subtitle: "The city is a lot. You'll get there.", desc: "New York moved faster than your reactions in most moments today. You were too hesitant where directness was called for, too polite where efficiency was expected, and occasionally too cautious to jump into conversations that were actively inviting you. You're still standing though — that counts.", insight: "<strong>Cultural insight:</strong> The adjustment to NYC's pace is partly practical (know your order, have your MetroCard ready) and partly psychological (trust that directness is welcome, that jumping in is expected, that imperfection is fine)." },
-      { min: 0, emoji: "🗺️", title: "Lost Tourist Found", subtitle: "The city tried to tell you something.", desc: "You and New York operated on completely different frequencies today. The city's directness felt abrasive; its pace felt overwhelming; its lack of small talk felt cold. None of that was personal — it was just New York being New York. The city has extraordinary things to offer, but it needs you to meet it on its terms first.", insight: "<strong>Cultural insight:</strong> New York is not trying to be difficult. It's a city of 8 million people moving at maximum speed. The culture that looks like rudeness is actually a massive collective efficiency agreement. Once you join the agreement, the city becomes a completely different place." }
-    ]
-  };
+  if (isGood) score++;
+  document.getElementById('pip-' + currentStep).classList.add(isGood ? 'good' : 'bad');
 
-  let currentCity = null;
-  let currentStep = 0;
-  let score = 0;
-  let answered = false;
+  var fb = document.getElementById('adv-feedback');
+  fb.className = 'adv-feedback ' + (isGood ? 'good' : 'bad') + ' show';
+  fb.textContent = (isGood ? step.feedback_good : step.feedback_bad);
 
-  function startAdventure(city) {
-    currentCity = city;
-    currentStep = 0;
-    score = 0;
-    answered = false;
-    document.getElementById('adv-picker').style.display = 'none';
-    document.getElementById('adv-result').style.display = 'none';
-    document.getElementById('adv-game').style.display = 'block';
-    buildPips();
+  document.getElementById('adv-next').classList.add('show');
+}
+
+function nextStep() {
+  currentStep++;
+  if (currentStep >= 15) {
+    showResult();
+  } else {
     renderStep();
+    document.querySelector('.adv-scene').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+}
 
-  function buildPips() {
-    const container = document.getElementById('score-pips');
-    container.innerHTML = '';
-    for (let i = 0; i < 15; i++) {
-      const pip = document.createElement('div');
-      pip.className = 'score-pip';
-      pip.id = 'pip-' + i;
-      container.appendChild(pip);
-    }
+function showResult() {
+  document.getElementById('adv-game').style.display = 'none';
+  var resultList = results[currentCity];
+  var result = null;
+  for (var i = 0; i < resultList.length; i++) {
+    if (score >= resultList[i].min) { result = resultList[i]; break; }
   }
+  if (!result) result = resultList[resultList.length - 1];
 
-  function renderStep() {
-    const steps = adventures[currentCity];
-    const step = steps[currentStep];
-    answered = false;
+  document.getElementById('res-emoji').innerHTML = result.emoji;
+  document.getElementById('res-title').textContent = result.title;
+  document.getElementById('res-subtitle').textContent = result.subtitle;
+  document.getElementById('res-score').textContent = 'Your score: ' + score + ' / 15 cultural points';
+  document.getElementById('res-desc').textContent = result.desc;
+  document.getElementById('res-insight').innerHTML = result.insight;
 
-    document.getElementById('adv-step-label').textContent = `Step ${currentStep + 1} of 15`;
-    document.getElementById('adv-location').textContent = step.location;
-    document.getElementById('adv-situation').textContent = step.situation;
-    document.getElementById('adv-context').textContent = step.context;
+  document.getElementById('adv-result').style.display = 'block';
+  document.getElementById('adv-result').scrollIntoView({ behavior: 'smooth' });
+}
 
-    const choicesEl = document.getElementById('adv-choices');
-    choicesEl.innerHTML = '';
-    // Shuffle choices
-    const shuffled = step.choices.map((c, i) => ({...c, origIndex: i})).sort(() => Math.random() - 0.5);
-    shuffled.forEach(choice => {
-      const btn = document.createElement('button');
-      btn.className = 'adv-choice';
-      btn.textContent = choice.text;
-      btn.onclick = () => makeChoice(btn, choice.good, step);
-      choicesEl.appendChild(btn);
-    });
-
-    const fb = document.getElementById('adv-feedback');
-    fb.className = 'adv-feedback';
-    fb.innerHTML = '';
-
-    const nextBtn = document.getElementById('adv-next');
-    nextBtn.className = 'adv-next-btn';
-    nextBtn.textContent = currentStep < 14 ? 'Next →' : 'See My Result →';
-  }
-
-  function makeChoice(btn, isGood, step) {
-    if (answered) return;
-    answered = true;
-
-    const allBtns = document.getElementById('adv-choices').querySelectorAll('.adv-choice');
-    allBtns.forEach(b => {
-      b.disabled = true;
-      if (b !== btn) b.classList.add('unchosen');
-    });
-    btn.classList.add(isGood ? 'chosen-good' : 'chosen-bad');
-
-    if (isGood) score++;
-    document.getElementById('pip-' + currentStep).classList.add(isGood ? 'good' : 'bad');
-
-    const fb = document.getElementById('adv-feedback');
-    fb.className = 'adv-feedback ' + (isGood ? 'good' : 'bad') + ' show';
-    fb.innerHTML = isGood ? step.feedback_good : step.feedback_bad;
-
-    document.getElementById('adv-next').classList.add('show');
-  }
-
-  function nextStep() {
-    currentStep++;
-    if (currentStep >= 15) {
-      showResult();
-    } else {
-      renderStep();
-      document.querySelector('.adv-scene').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  function showResult() {
-    document.getElementById('adv-game').style.display = 'none';
-    const resultList = results[currentCity];
-    const result = resultList.find(r => score >= r.min) || resultList[resultList.length - 1];
-
-    document.getElementById('res-emoji').textContent = result.emoji;
-    document.getElementById('res-title').textContent = result.title;
-    document.getElementById('res-subtitle').textContent = result.subtitle;
-    document.getElementById('res-score').textContent = `Your score: ${score} / 15 cultural points`;
-    document.getElementById('res-desc').textContent = result.desc;
-    document.getElementById('res-insight').innerHTML = result.insight;
-
-    document.getElementById('adv-result').style.display = 'block';
-    document.getElementById('adv-result').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  function resetAdventure() {
-    document.getElementById('adv-result').style.display = 'none';
-    document.getElementById('adv-game').style.display = 'none';
-    document.getElementById('adv-picker').style.display = 'block';
-  }
+function resetAdventure() {
+  document.getElementById('adv-result').style.display = 'none';
+  document.getElementById('adv-game').style.display = 'none';
+  document.getElementById('adv-picker').style.display = 'block';
+}
 </script>
 </body>
+</html>
