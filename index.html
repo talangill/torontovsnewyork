@@ -129,7 +129,10 @@
   .accordion-arrow { font-size:12px; transition:transform 0.3s; color:var(--warm-gray); }
   .accordion-item.open .accordion-arrow { transform:rotate(180deg); }
   .accordion-body { padding:0 24px; max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.3s; font-size:14px; line-height:1.8; color:#555; background:white; }
-  .accordion-item.open .accordion-body { max-height:500px; padding:0 24px 24px; }
+  .accordion-item.open .accordion-body { max-height:700px; padding:0 24px 24px; }
+  .accordion-body figure { margin:0; }
+  .accordion-body img { width:100%; border-radius:6px; display:block; object-fit:cover; }
+  .accordion-body figcaption { font-size:11px; color:#888; margin-top:6px; font-style:italic; line-height:1.5; }
 
   /* S4 DIMENSIONS */
   #s4 { background:#F7F4EE; }
@@ -261,20 +264,20 @@
   <!-- S1: ICEBREAKER -->
   <div class="section active" id="s1">
     <div class="section-header">
-      <p class="section-number">01 / 05 &middot; Warm-Up</p>
+      <p class="section-number">01 / 06 &middot; Warm-Up</p>
       <h2 class="section-title">Think You Know North America?</h2>
       <p class="section-desc">Before we compare cultures, let's test your assumptions. Answer instinctively — there are no wrong answers, only interesting ones.</p>
     </div>
     <div class="content-block">
       <div class="quiz-card">
-        <p class="quiz-q">&#127809; Q1. Canada serves a dish called a beaver tail. What is this?</p>
+        <p class="quiz-q">&#127809; Q1. Canada serves a dish called a beaver tail. What is it?</p>
         <div class="quiz-options">
-          <button class="quiz-opt" onclick="answer(this,false,'r1')">An actual beaver tail</button>
-          <button class="quiz-opt" onclick="answer(this,true,'r1')">A pastry with cinnamon sugar</button>
-          <button class="quiz-opt" onclick="answer(this,false,'r1')">A steak, grilled with grill marks</button>
-          <button class="quiz-opt" onclick="answer(this,false,'r1')">This is a stereotype</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r1')">An actual deep fried beaver tail</button>
+          <button class="quiz-opt" onclick="answer(this,true,'r1')">A flat cinnamon dusted pastry</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r1')">A steak with visible grill marks</button>
+          <button class="quiz-opt" onclick="answer(this,false,'r1')">A nickname for a sandwich at Tim Hortons</button>
         </div>
-        <div class="quiz-reveal" id="r1"><strong>A pastry with cinnamon sugar</strong> — Very popular at fairs, at ski resorts, or during festive holidays. It's not something generally sold in a cafe or shop.</div>
+        <div class="quiz-reveal" id="r1"><strong>A flat cinnamon dusted pastry</strong>It's commonly served during fairs and on ski hills. This is not a delicacy you will normally find in a cafe or grocery store. </div>
       </div>
       <div class="quiz-card">
         <p class="quiz-q">&#127757; Q2. What percentage of Toronto's population was born outside Canada?</p>
@@ -290,11 +293,11 @@
         <p class="quiz-q">&#128172; Q3. Which phrase is most stereotypically Canadian?</p>
         <div class="quiz-options">
           <button class="quiz-opt" onclick="answer(this,false,'r3')">Let's get this done!</button>
-          <button class="quiz-opt" onclick="answer(this,true,'r3')">Sorry, eh?</button>
+          <button class="quiz-opt" onclick="answer(this,true,'r3')">Sorry!</button>
           <button class="quiz-opt" onclick="answer(this,false,'r3')">You're welcome, sir.</button>
           <button class="quiz-opt" onclick="answer(this,false,'r3')">No problem at all, buddy.</button>
         </div>
-        <div class="quiz-reveal" id="r3"><strong>"Sorry, eh?"</strong> — Canadians famously apologize even when not at fault, and "eh" is genuinely embedded in everyday speech. These reflect deeper values of politeness, deference, and community harmony.</div>
+        <div class="quiz-reveal" id="r3"><strong>"Sorry!"</strong> — Canadians famously apologize even when not at fault. It is commonly used in place of phrases like "excuse me". </div>
       </div>
       <div class="quiz-card">
         <p class="quiz-q">&#127961;&#65039; Q4. How does Toronto's population compare to NYC?</p>
@@ -313,7 +316,7 @@
     </div>
     <div class="section-nav">
       <div></div>
-      <span class="section-progress">Section 1 of 5</span>
+      <span class="section-progress">Section 1 of 6</span>
       <button class="nav-btn next" onclick="goSection(2)">National Cultures &rarr;</button>
     </div>
   </div>
@@ -321,7 +324,7 @@
   <!-- S2: COMPARE -->
   <div class="section" id="s2">
     <div class="section-header">
-      <p class="section-number">02 / 05 &middot; National Cultures</p>
+      <p class="section-number">02 / 06 &middot; National Cultures</p>
       <h2 class="section-title">Canada vs the USA — The Big Picture</h2>
       <p class="section-desc">Two countries that speak the same language, share a continent, and yet have profoundly different values, systems, and identities.</p>
     </div>
@@ -331,6 +334,7 @@
         <button class="tab-btn" onclick="showTab('politics')">Politics &amp; Society</button>
         <button class="tab-btn" onclick="showTab('work')">Work Culture</button>
         <button class="tab-btn" onclick="showTab('language')">Language &amp; Tone</button>
+        <button class="tab-btn" onclick="showTab('indigenous')" style="border-color:#8B4513;color:#8B4513;" id="tab-btn-indigenous">Indigenous Canada</button>
       </div>
       <div id="tab-identity">
         <div class="compare-grid">
@@ -363,18 +367,214 @@
           <div class="compare-col usa"><div class="compare-flag">&#127482;&#127480;</div><h3>USA — Casual &amp; Confident</h3><ul class="compare-items"><li>English-only as de facto standard, though Spanish is widely spoken</li><li>Casual and direct even with strangers: "Hi!" vs "Good morning"</li><li>American English spelling is the global pop-culture default</li><li>Filler phrases lean toward affirmation: "Awesome!", "Absolutely!"</li><li>NYC alone hosts speakers of <strong>~800 languages</strong></li><li>American slang spreads globally through film, TV, and social media</li></ul></div>
         </div>
       </div>
+
+      <div id="tab-indigenous" style="display:none">
+        <div style="background:linear-gradient(135deg,#3D1C02 0%,#6B3A1F 100%);border-radius:8px;padding:32px;color:white;margin-bottom:24px;">
+          <div style="font-size:28px;margin-bottom:12px;">&#127795;</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:20px;">First Nations, Metis &amp; Inuit — The Foundation</h3>
+          <ul class="compare-items">
+            <li>Indigenous peoples have lived on the land now called Canada for <strong>over 15,000 years</strong> — long before any European arrived</li>
+            <li>There are <strong>630+ First Nations</strong> communities, plus Metis and Inuit peoples — each with distinct languages, governance systems, and cultures</li>
+            <li>Toronto sits on the traditional territory of the Haudenosaunee, Anishinaabe, and Huron-Wendat peoples — you will hear this acknowledged publicly when you arrive</li>
+            <li>The <strong>Indian Act (1876)</strong> placed Indigenous peoples under federal control — restricting movement, banning cultural practices, and dismantling self-governance</li>
+            <li><strong>Residential schools</strong> (1880s-1996) forcibly separated over 150,000 Indigenous children from their families. The last one closed in 1996. The 2015 Truth and Reconciliation Commission called it cultural genocide</li>
+            <li>In 2021, remains of hundreds of children were found at former residential school sites — prompting a national reckoning still underway</li>
+            <li>Today, <strong>reconciliation</strong> is a national conversation — government policy, corporate strategy, and individual responsibility are all implicated</li>
+            <li>Indigenous art, storytelling, architecture, and design are central to Canadian cultural identity — a living, evolving presence, not a historical artefact</li>
+          </ul>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;">
+          <div style="background:white;border-radius:8px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,0.06);border-top:4px solid #8B4513;">
+            <h4 style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:14px;color:#3D1C02;">Land Acknowledgements</h4>
+            <p style="font-size:14px;line-height:1.8;color:#555;">When you arrive in Toronto, you will hear something like: <em>"We acknowledge that we are on the traditional territory of many nations..."</em> at events, in government buildings, and universities. This is not performative box-ticking — it is a daily, public reminder that the land has a history predating Canada itself. Knowing what it means, and why it matters, is basic cultural literacy in 2025.</p>
+          </div>
+          <div style="background:white;border-radius:8px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,0.06);border-top:4px solid #8B4513;">
+            <h4 style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:14px;color:#3D1C02;">Reconciliation in Practice</h4>
+            <p style="font-size:14px;line-height:1.8;color:#555;">Canada's Truth and Reconciliation Commission produced <strong>94 Calls to Action</strong> in 2015 — addressing education, child welfare, justice, language revitalisation, and more. Progress has been uneven. Many calls remain unimplemented. This gap between stated commitment and lived reality is one of the defining tensions in contemporary Canadian society — and a live leadership challenge at every level.</p>
+          </div>
+        </div>
+        <div style="background:white;border-radius:8px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,0.06);border-left:4px solid #C8A951;margin-bottom:24px;">
+          <h4 style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:14px;">Indigenous Innovation &amp; Living Culture</h4>
+          <p style="font-size:14px;line-height:1.8;color:#555;margin-bottom:12px;">It would be a mistake to frame Indigenous Canada only through the lens of trauma. Indigenous peoples are also innovators, entrepreneurs, artists, scientists, and leaders actively shaping Canada's present and future. Indigenous-led organisations are pioneering new models in environmental stewardship, community governance, and social enterprise — often drawing on knowledge systems thousands of years older than Western management theory.</p>
+          <p style="font-size:14px;line-height:1.8;color:#555;">In Toronto specifically: growing Indigenous arts scenes and businesses run by First Nations entrepreneurs are part of the city's fabric. When you visit, look for it — it's there.</p>
+        </div>
+        <div class="fun-fact" style="background:#3D1C02;">
+          <div class="ff-icon">&#127795;</div>
+          <p style="color:rgba(245,240,232,0.9);"><strong>Leadership &amp; innovation challenge:</strong> Canada has 94 documented Calls to Action — a detailed blueprint for structural change — and a decade later, most remain incomplete. This is a masterclass in the gap between declared intent and systemic change. What makes reconciliation so hard to operationalise? What would you do differently as a leader to close that gap? And what parallels exist in your own organisations or societies?</p>
+        </div>
+      </div>
     </div>
     <div class="section-nav">
       <button class="nav-btn prev" onclick="goSection(1)">&larr; Warm-Up</button>
-      <span class="section-progress">Section 2 of 5</span>
-      <button class="nav-btn next" onclick="goSection(3)">Toronto vs NYC &rarr;</button>
+      <span class="section-progress">Section 2 of 6</span>
+      <button class="nav-btn next" onclick="goSection(3)">Canadian History &rarr;</button>
     </div>
   </div>
 
-  <!-- S3: TORONTO vs NYC -->
+  <!-- S3: CANADIAN HISTORY -->
   <div class="section" id="s3">
     <div class="section-header">
-      <p class="section-number">03 / 05 &middot; City Deep-Dive</p>
+      <p class="section-number">03 / 06 &middot; History</p>
+      <h2 class="section-title">How Canada — and Toronto — Actually Came to Be</h2>
+      <p class="section-desc">European schools don't teach Canadian history. Here's what you need to know — and it starts with a hat, a river, and 15,000 years of Indigenous civilization.</p>
+    </div>
+    <div class="content-block">
+
+      <!-- BEAVER / FUR TRADE HOOK -->
+      <div style="background:linear-gradient(135deg,#2D1B00 0%,#5C3A1E 100%);border-radius:12px;padding:40px;color:white;margin-bottom:32px;position:relative;overflow:hidden;">
+        <div style="position:absolute;right:-20px;bottom:-30px;font-size:160px;opacity:0.06;line-height:1;">&#129415;</div>
+        <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;color:#C8A951;text-transform:uppercase;margin-bottom:16px;">The origin story</p>
+        <h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:16px;line-height:1.3;">Canada was founded because European men wanted better hats.</h3>
+        <p style="font-size:15px;line-height:1.8;opacity:0.9;max-width:680px;">In the 17th century, the most fashionable thing a European man could wear was a hat made from felted beaver fur. Smooth, water-resistant, durable — beaver felt was the Gore-Tex of its era. Europe had hunted its own beavers nearly to extinction. Then explorers reached North America and found rivers absolutely teeming with them. What followed was one of the most consequential commercial enterprises in history — and the direct reason Toronto exists where it does.</p>
+      </div>
+
+      <!-- TIMELINE -->
+      <h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-bottom:8px;">From Ancient Trade Route to World City</h3>
+      <p style="color:var(--warm-gray);font-size:14px;margin-bottom:32px;">Click any era to expand the story.</p>
+
+      <div class="accordion-item" style="border-color:#4A3728;">
+        <div class="accordion-header" onclick="toggleAccordion(this)" style="background:#FDF8F2;">
+          <span><span style="font-family:'DM Mono',monospace;font-size:11px;color:#8B4513;margin-right:12px;">15,000 BCE – 1600 CE</span> &#127795; The Original Inhabitants — The World Before Europeans</span>
+          <span class="accordion-arrow">&#9660;</span>
+        </div>
+        <div class="accordion-body">
+          <p style="margin-bottom:12px;">Indigenous peoples arrived in the Toronto area at least 12,000–15,000 years ago, following the retreat of the glaciers. The site wasn't chosen randomly — it was a geographical gift. Three rivers (the Don, Humber, and Rouge) converged near a natural harbour on Lake Ontario, and a critical overland trail — the <strong>Toronto Carrying-Place</strong> — ran north along the Humber River, connecting Lake Ontario to Lake Simcoe and the upper Great Lakes. For thousands of years this portage route was the highway of the continent.</p>
+          <p style="margin-bottom:12px;">The name "Toronto" almost certainly comes from the Mohawk word <strong>Tkaronto</strong> — meaning "where the trees stand in the water," referring to fish weirs built across the narrows of Lake Simcoe. The name migrated south as French maps began labelling the portage route "Passage de Taronto."</p>
+          <p style="margin-bottom:16px;">By 1300–1600 CE, the Huron-Wendat people had established large agricultural villages in the region — longhouses surrounded by cornfields, with trading networks stretching as far as the Gulf of Mexico and Hudson Bay. Toronto wasn't wilderness. It was an established, sophisticated civilization.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+            <figure style="margin:0;">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hochelaga.jpg" alt="Artist's reconstruction of a Huron-Wendat village with longhouses" style="width:100%;border-radius:6px;display:block;object-fit:cover;max-height:200px;" onerror="this.parentElement.style.display='none'">
+              <figcaption style="font-size:11px;color:#888;margin-top:6px;font-style:italic;">Artist's reconstruction of a Huron-Wendat longhouse village, similar to those that existed in the Toronto region</figcaption>
+            </figure>
+            <figure style="margin:0;">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Toronto_carrying_place_trail.jpg" alt="Map of the Toronto Carrying Place Trail along the Humber River" style="width:100%;border-radius:6px;display:block;object-fit:cover;max-height:200px;" onerror="this.parentElement.style.display='none'">
+              <figcaption style="font-size:11px;color:#888;margin-top:6px;font-style:italic;">The Toronto Carrying-Place Trail — the ancient Indigenous trade route that determined where Toronto would be built</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item" style="border-color:#4A3728;">
+        <div class="accordion-header" onclick="toggleAccordion(this)" style="background:#FDF8F2;">
+          <span><span style="font-family:'DM Mono',monospace;font-size:11px;color:#8B4513;margin-right:12px;">1600s – 1750s</span> &#129415; The Fur Trade Era — Beavers, Empires, and the French</span>
+          <span class="accordion-arrow">&#9660;</span>
+        </div>
+        <div class="accordion-body">
+          <p style="margin-bottom:12px;">French explorer Etienne Brule became the first European to pass through the Toronto region in 1615, using the very same Indigenous trail networks to travel north. He was dispatched by Samuel de Champlain to seek alliances and access to fur country — and he found it.</p>
+          <p style="margin-bottom:12px;">For the next century, the Toronto Passage made the area strategically vital for controlling the fur trade. Whoever held that portage route controlled access to the beaver-rich interior. The French established a trading post on the Humber in 1720, then a more substantial <strong>Fort Rouille</strong> in 1751 — right where the CNE grounds (Exhibition Place) stand today.</p>
+          <p style="margin-bottom:16px;">Meanwhile, 1,000 km to the north, something even bigger was happening. In 1670, King Charles II of England granted his cousin Prince Rupert a royal charter for the <strong>Hudson's Bay Company</strong> — giving a single private corporation exclusive trading rights over an area of land larger than Western Europe. The HBC built forts across the north, waiting for Indigenous trappers to bring furs by canoe. The beaver pelt became the unit of currency: one prime pelt — a "Made Beaver" — could buy you two pounds of sugar or a pound of tobacco. The HBC ran this territory as a de facto government for nearly 200 years.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+            <figure style="margin:0;">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Canoe_Manned_by_Voyageurs_Passing_a_Waterfall_(Frances_Anne_Hopkins).jpg" alt="Voyageurs in a large fur trade canoe, painting by Frances Anne Hopkins 1869" style="width:100%;border-radius:6px;display:block;object-fit:cover;max-height:200px;" onerror="this.parentElement.style.display='none'">
+              <figcaption style="font-size:11px;color:#888;margin-top:6px;font-style:italic;">Voyageurs in an HBC freight canoe, 1869 painting by Frances Anne Hopkins — she actually travelled these routes with her husband, an HBC officer</figcaption>
+            </figure>
+            <figure style="margin:0;">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Castorhat.jpg" alt="A European beaver felt hat from the 17th century" style="width:100%;border-radius:6px;display:block;object-fit:cover;max-height:200px;" onerror="this.parentElement.style.display='none'">
+              <figcaption style="font-size:11px;color:#888;margin-top:6px;font-style:italic;">A beaver felt hat — the fashion item that launched an empire. This is what Europeans were dying to wear, and why they came to Canada.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item" style="border-color:#4A3728;">
+        <div class="accordion-header" onclick="toggleAccordion(this)" style="background:#FDF8F2;">
+          <span><span style="font-family:'DM Mono',monospace;font-size:11px;color:#8B4513;margin-right:12px;">1759 – 1834</span> &#127988; The British Take Over — York, Wars, and Growing Pains</span>
+          <span class="accordion-arrow">&#9660;</span>
+        </div>
+        <div class="accordion-body">
+          <p style="margin-bottom:12px;">The Seven Years' War (1756–1763) — the first truly global conflict, fought across five continents — ended French power in North America. Britain won. The French burned Fort Rouille themselves as they retreated rather than leave it to the British. France ceded virtually all of its North American territory in the 1763 Treaty of Paris.</p>
+          <p style="margin-bottom:12px;">In 1787, the British Crown negotiated the <strong>Toronto Purchase</strong> with the Mississaugas of the Credit — acquiring roughly 250,000 acres of land around the harbour in exchange for goods. The transaction was later found to be legally defective (the deed was unsigned, the boundaries unclear), and wasn't formally resolved until 2010 — when Canada paid $145 million in settlement.</p>
+          <p style="margin-bottom:12px;">In 1793, Lieutenant Governor <strong>John Graves Simcoe</strong> founded the town of <strong>York</strong> as the capital of the new colony of Upper Canada (now Ontario). He chose the site for its harbour and strategic position. The city was soon nicknamed <strong>"Muddy York"</strong> — the streets were unpaved, rutted, and chronically waterlogged.</p>
+          <p style="margin-bottom:16px;">Then in 1813, during the War of 1812 between Britain and the young United States, American forces sailed across Lake Ontario and <strong>burned York to the ground</strong>. The British retaliated by burning Washington D.C. — the only time since 1814 that a foreign power has burned the US capital. York was rebuilt. In 1834, it was renamed <strong>Toronto</strong>, restoring the original Indigenous name, and incorporated as a city with a population of just 9,000.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+            <figure style="margin:0;">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Map_of_Old_York_(Toronto)_habrbour_--_1793.jpg" alt="Original map of York harbour Toronto 1793" style="width:100%;border-radius:6px;display:block;object-fit:cover;max-height:200px;" onerror="this.parentElement.style.display='none'">
+              <figcaption style="font-size:11px;color:#888;margin-top:6px;font-style:italic;">Original plan of York harbour, 1793 — the same year Simcoe founded the town. The whole settlement fits in what is now a few city blocks.</figcaption>
+            </figure>
+            <figure style="margin:0;">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Events_of_the_American_invasion_of_York_(Toronto)_during_War_of_1812.jpg" alt="Map of the American invasion of York Toronto 1813 War of 1812" style="width:100%;border-radius:6px;display:block;object-fit:cover;max-height:200px;" onerror="this.parentElement.style.display='none'">
+              <figcaption style="font-size:11px;color:#888;margin-top:6px;font-style:italic;">Map of the 1813 American invasion of York — the attack that burned Toronto, and triggered Britain's burning of Washington D.C.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item" style="border-color:#4A3728;">
+        <div class="accordion-header" onclick="toggleAccordion(this)" style="background:#FDF8F2;">
+          <span><span style="font-family:'DM Mono',monospace;font-size:11px;color:#8B4513;margin-right:12px;">1850s – 1960s</span> &#128668; Railroads, Confederation &amp; Immigration Waves</span>
+          <span class="accordion-arrow">&#9660;</span>
+        </div>
+        <div class="accordion-body">
+          <p style="margin-bottom:12px;">The railways changed everything. The <strong>Grand Trunk Railway</strong> connecting Toronto to Montreal opened in 1856, and suddenly Toronto was the hub of a continental network. Goods, timber, grain, and people flowed through the city at a scale that made its harbour and location on Lake Ontario even more valuable.</p>
+          <p style="margin-bottom:12px;">In <strong>1867</strong>, Canada became a self-governing dominion through Confederation — uniting Ontario, Quebec, Nova Scotia, and New Brunswick. Toronto became the capital of the new province of Ontario. The HBC sold its vast Rupert's Land territory to the new Canadian government in 1869, and the country expanded west to the Pacific.</p>
+          <p style="margin-bottom:12px;">The first major immigration waves followed. Irish fleeing the Famine arrived in the 1840s. Then Italians, Poles, Ukrainians, and Jews in the late 1800s and early 1900s — each building their own enclaves in the city. Kensington Market began as a Jewish neighbourhood. Little Italy, Little Portugal, Greektown all took shape in this era.</p>
+          <p style="margin-bottom:16px;">Toronto remained a fairly conservative, British-flavoured city well into the mid-20th century — nicknamed "Toronto the Good" for its Sunday blue laws (shops closed, alcohol banned, even park swings locked on Sundays). It was, in many ways, the most British city outside Britain.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+            <figure style="margin:0;">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Map_of_toronto_railways,_1894.jpg" alt="Map of Toronto railways 1894 showing the city's rail network" style="width:100%;border-radius:6px;display:block;object-fit:cover;max-height:200px;" onerror="this.parentElement.style.display='none'">
+              <figcaption style="font-size:11px;color:#888;margin-top:6px;font-style:italic;">Toronto's railway network in 1894 — the city was already a major continental hub, its geography making it the natural connection point between east and west</figcaption>
+            </figure>
+            <figure style="margin:0;">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Old_map_of_York,_Upper_Canada,_1827,_Chewett,_NMC16819.jpg" alt="Map of York Upper Canada 1827 showing early city layout" style="width:100%;border-radius:6px;display:block;object-fit:cover;max-height:200px;" onerror="this.parentElement.style.display='none'">
+              <figcaption style="font-size:11px;color:#888;margin-top:6px;font-style:italic;">York (Toronto) in 1827 — just 34 years after founding, and already growing rapidly along the lakefront</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item" style="border-color:#4A3728;">
+        <div class="accordion-header" onclick="toggleAccordion(this)" style="background:#FDF8F2;">
+          <span><span style="font-family:'DM Mono',monospace;font-size:11px;color:#8B4513;margin-right:12px;">1971 – Present</span> &#127758; The Multicultural Revolution — How Toronto Became Toronto</span>
+          <span class="accordion-arrow">&#9660;</span>
+        </div>
+        <div class="accordion-body">
+          <p style="margin-bottom:12px;">The transformation of Toronto into the world city it is today has one pivotal date: <strong>1971</strong>, when Prime Minister Pierre Trudeau (father of Justin) declared official <strong>multiculturalism</strong> as Canadian federal policy — the first country in the world to do so. Immigration policy shifted from favouring Europeans to a points-based system open to the world.</p>
+          <p style="margin-bottom:12px;">The results were dramatic. Toronto's demographics transformed within a generation. South Asian, East Asian, Caribbean, African, and Middle Eastern communities arrived in large numbers, each adding to the mosaic. The Chinese community alone grew from a small Chinatown to multiple sprawling suburban communities. Scarborough became one of the most diverse places on earth.</p>
+          <p style="margin-bottom:12px;">In 1998, six surrounding municipalities were amalgamated into a single <strong>City of Toronto</strong> — creating a metropolis of 2.9 million. Today the Greater Toronto Area is home to over 6.7 million people and handles roughly <strong>40% of Canada's total business activity</strong>. It is home to the Toronto Stock Exchange, the headquarters of Canada's major banks, and a world-class tech and film industry (Toronto is one of the largest film production hubs in North America).</p>
+          <p style="margin-bottom:16px;">From beaver pelts to Bay Street. From Muddy York to the world's most diverse city. It took about 400 years — and a remarkable amount of political will.</p>
+          <figure style="margin:0;">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Toronto_-_ON_-_Toronto_Skyline_at_Dusk2.jpg" alt="Toronto skyline modern city at dusk from the water" style="width:100%;border-radius:6px;display:block;object-fit:cover;max-height:240px;" onerror="this.parentElement.style.display='none'">
+            <figcaption style="font-size:11px;color:#888;margin-top:6px;font-style:italic;">Toronto today — a city of 2.9 million built on a spot chosen for its beaver trade routes, its harbour, and one lieutenant governor's instinct in 1793</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- FUN FACTS ROW -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:32px;">
+        <div style="background:white;border-radius:8px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);text-align:center;border-top:4px solid var(--ca-red);">
+          <div style="font-size:36px;margin-bottom:8px;">&#129415;</div>
+          <div style="font-family:'DM Mono',monospace;font-size:22px;font-weight:600;color:var(--ca-red);margin-bottom:6px;">350 years</div>
+          <div style="font-size:13px;color:var(--warm-gray);line-height:1.5;">The Hudson's Bay Company operated as Canada's de facto government before becoming a department store</div>
+        </div>
+        <div style="background:white;border-radius:8px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);text-align:center;border-top:4px solid var(--gold);">
+          <div style="font-size:36px;margin-bottom:8px;">&#128293;</div>
+          <div style="font-family:'DM Mono',monospace;font-size:22px;font-weight:600;color:#8A6800;margin-bottom:6px;">1813</div>
+          <div style="font-size:13px;color:var(--warm-gray);line-height:1.5;">Americans burned Toronto to the ground. Britain responded by burning Washington D.C. The only time a foreign power has done so.</div>
+        </div>
+        <div style="background:white;border-radius:8px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);text-align:center;border-top:4px solid var(--toronto-teal);">
+          <div style="font-size:36px;margin-bottom:8px;">&#128138;</div>
+          <div style="font-family:'DM Mono',monospace;font-size:22px;font-weight:600;color:var(--toronto-teal);margin-bottom:6px;">$145M</div>
+          <div style="font-size:13px;color:var(--warm-gray);line-height:1.5;">Canada paid the Mississaugas of the Credit in 2010 to settle the Toronto Purchase — a land deal from 1787 that was never properly completed</div>
+        </div>
+      </div>
+
+      <div class="fun-fact" style="margin-top:24px;">
+        <div class="ff-icon">&#129504;</div>
+        <p><strong>Discussion:</strong> The HBC was essentially a corporation that governed a territory larger than Western Europe for 200 years — with its own currency, military, and laws. What does that tell us about the relationship between commerce and power? Any parallels today?</p>
+      </div>
+
+    </div>
+    <div class="section-nav">
+      <button class="nav-btn prev" onclick="goSection(2)">&larr; National Cultures</button>
+      <span class="section-progress">Section 3 of 6</span>
+      <button class="nav-btn next" onclick="goSection(4)">Toronto vs NYC &rarr;</button>
+    </div>
+  </div>
+
+  <!-- S4: TORONTO vs NYC -->
+  <div class="section" id="s4">
+    <div class="section-header">
+      <p class="section-number">04 / 06 &middot; City Deep-Dive</p>
       <h2 class="section-title">Toronto &amp; New York:<br>Sister Cities, Different Souls</h2>
       <p class="section-desc">Often compared, occasionally rivalrous — Toronto and NYC share DNA, but their personalities tell two very different stories.</p>
     </div>
@@ -401,16 +601,16 @@
       <div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)"><span>&#127837; Scarborough — The World in One Borough</span><span class="accordion-arrow">&#9660;</span></div><div class="accordion-body">Often overlooked by tourists, Scarborough is where Toronto's true multicultural density lives — Sri Lankan, South Asian, East African, Caribbean, Chinese communities thriving side by side. The food here — Tamil, Hakka-Chinese fusion, roti — is some of the best and most authentic in North America.</div></div>
     </div>
     <div class="section-nav">
-      <button class="nav-btn prev" onclick="goSection(2)">&larr; National Cultures</button>
-      <span class="section-progress">Section 3 of 5</span>
-      <button class="nav-btn next" onclick="goSection(4)">Cultural Dimensions &rarr;</button>
+      <button class="nav-btn prev" onclick="goSection(3)">&larr; Canadian History</button>
+      <span class="section-progress">Section 4 of 6</span>
+      <button class="nav-btn next" onclick="goSection(5)">Cultural Dimensions &rarr;</button>
     </div>
   </div>
 
-  <!-- S4: DIMENSIONS -->
-  <div class="section" id="s4">
+  <!-- S5: DIMENSIONS -->
+  <div class="section" id="s5">
     <div class="section-header">
-      <p class="section-number">04 / 05 &middot; Leadership Lens</p>
+      <p class="section-number">05 / 06 &middot; Leadership Lens</p>
       <h2 class="section-title">Cultural Dimensions for Leaders</h2>
       <p class="section-desc">Using frameworks from cultural psychology, let's see where Canada and the USA actually sit — and what that means for how you lead across borders.</p>
     </div>
@@ -422,16 +622,16 @@
       <div class="fun-fact"><div class="ff-icon">&#127757;</div><p><strong>The Dutch connection:</strong> You come from a low power-distance, relatively individualist culture — you may find Canada's communication style more familiar than expected. But Canada's multicultural workplace will still surprise you. What adjustment will you need to make?</p></div>
     </div>
     <div class="section-nav">
-      <button class="nav-btn prev" onclick="goSection(3)">&larr; Toronto vs NYC</button>
-      <span class="section-progress">Section 4 of 5</span>
-      <button class="nav-btn next" onclick="goSection(5)">City Adventure &rarr;</button>
+      <button class="nav-btn prev" onclick="goSection(4)">&larr; Toronto vs NYC</button>
+      <span class="section-progress">Section 5 of 6</span>
+      <button class="nav-btn next" onclick="goSection(6)">City Adventure &rarr;</button>
     </div>
   </div>
 
-  <!-- S5: ADVENTURE -->
-  <div class="section" id="s5">
+  <!-- S6: ADVENTURE -->
+  <div class="section" id="s6">
     <div class="section-header">
-      <p class="section-number">05 / 05 &middot; Your Day, Your Choices</p>
+      <p class="section-number">06 / 06 &middot; Your Day, Your Choices</p>
       <h2 class="section-title">Choose Your City. Live the Culture.</h2>
       <p class="section-desc">Play alone or with a partner. Navigate a full day making cultural choices at every turn. At the end, see exactly how each answer scored — and discuss as a group why.</p>
     </div>
@@ -496,8 +696,8 @@
 
     </div>
     <div class="section-nav">
-      <button class="nav-btn prev" onclick="goSection(4)" style="border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.5);">&larr; Cultural Dimensions</button>
-      <span class="section-progress">Section 5 of 5</span>
+      <button class="nav-btn prev" onclick="goSection(5)" style="border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.5);">&larr; Cultural Dimensions</button>
+      <span class="section-progress">Section 6 of 6</span>
       <button class="nav-btn next" onclick="goSection(1)" style="border-color:var(--gold);color:var(--gold);">&#8635; Start Over</button>
     </div>
   </div>
@@ -507,7 +707,7 @@
 <script>
 // ===================== CORE NAV =====================
 var currentSection = 1;
-var totalSections = 5;
+var totalSections = 6;
 var startTime = null;
 var sessionMinutes = 60;
 
@@ -523,7 +723,7 @@ function startMasterclass() {
 function buildNavDots() {
   var container = document.getElementById('navDots');
   container.innerHTML = '';
-  var labels = ['Warm-Up','National Cultures','Toronto vs NYC','Cultural Dimensions','City Adventure'];
+  var labels = ['Warm-Up','National Cultures','Canadian History','Toronto vs NYC','Cultural Dimensions','City Adventure'];
   for (var i = 1; i <= totalSections; i++) {
     var dot = document.createElement('button');
     dot.className = 'nav-dot' + (i === 1 ? ' active' : '');
@@ -565,7 +765,7 @@ function answer(btn, isCorrect, revealId) {
   document.getElementById(revealId).classList.add('show');
 }
 
-var tabIds = ['identity','politics','work','language'];
+var tabIds = ['identity','politics','work','language','indigenous'];
 function showTab(id) {
   tabIds.forEach(function(t) {
     var el = document.getElementById('tab-' + t);
